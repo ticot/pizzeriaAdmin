@@ -1,8 +1,13 @@
 package fi.omapizzeria.admin.controller;
 
+import include.ConnectionManager;
+
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -62,6 +67,7 @@ public class ControllerServlet extends HttpServlet {
 	    request.getSession().setAttribute("aloitusaika", ft.format(now));
 
 		 */
+		
 		TuoteDao pDao = new TuoteDao();
 		List<Tuote> pList = null;
 		try {
@@ -102,6 +108,50 @@ public class ControllerServlet extends HttpServlet {
 				System.out.println("Nimi: " + pnimi + "\nHinta: " + phinta);
 				response.sendRedirect("controller?added=true");
 				*/
+		//paketoidaan requestin parametrit yhteen olioon
+		String pnimi = request.getParameter("nimi");
+		String phintas = request.getParameter("hinta");
+		double phinta = Double.parseDouble(phintas);
+		Tuote p = new Tuote(3,pnimi,phinta);
+		
+		//tallennetaan luotu olio requestin atribuutiksi
+		request.setAttribute("pizza", p);
+		
+		//ohjataan pyyntö jsp-sivulle, joka hoitaa tulostuksen muotoilun
+		request.getRequestDispatcher("list.jsp").forward(request, response);
+		
+		//tarvitaan kirjoituskone, jolla voidaan kirjoittaa tekstiä webbiselaimelle takaisin päin
+		//PrintWriter wout = response.getWriter();
+
+		//palautetaan selaimelle sivu, jossa lukee syötetty nimi
+		System.out.println("Nimi: " + pnimi + "\nHinta: " + phinta);
+		
+		ConnectionManager connection = new ConnectionManager();
+
+		List<Tuote> lista = new ArrayList<Tuote>();
+
+		Connection con = connection.doConnection();
+
+		Statement statement = null;
+		ResultSet resultSet = null;
+
+		try {
+			statement = con.createStatement();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} // Statement olion luonti
+
+		try {
+			resultSet = statement.executeQuery("INSERT INTO Pizzat(nimi, hinta) VALUE ('"+pnimi+"', '"+phintas+"')");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		finally{
+			connection.closeConnection(con);
+		}
+		//response.sendRedirect("list?added=true");
 		
 		
 	}
