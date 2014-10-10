@@ -10,9 +10,17 @@ public class ConnectionManager {
 		Connection con = null;
 
 		// KIRJAUTUMISTIEDOT
+		/* Peterin Tunneli
 		String username = "a1303399";
 		String password = "meSEUk52v";
 		String url = "jdbc:mariadb://localhost/a1303399";
+		*/
+		
+		//Tanjan Tunneli
+		String username = "a1303392";
+		String password = "faMUNr33r";
+		String url = "jdbc:mariadb://localhost/a1303392";
+		
 
 		try {
 			Class.forName("org.mariadb.jdbc.Driver").newInstance(); // Ladataan
