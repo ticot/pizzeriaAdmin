@@ -9,14 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import include.ConnectionManager;
-import fi.omapizzeria.admin.bean.Pizza;
+import fi.omapizzeria.admin.bean.Tuote;
 
-public class PizzaDao {
+public class TuoteDao {
 
-	public List<Pizza> haeKaikkiTuotteet() throws SQLException {
+	public List<Tuote> haeKaikkiTuotteet() throws SQLException {
 		ConnectionManager connection = new ConnectionManager();
 
-		List<Pizza> lista = new ArrayList<Pizza>();
+		List<Tuote> lista = new ArrayList<Tuote>();
 
 		Connection con = connection.doConnection();
 
@@ -41,7 +41,7 @@ public class PizzaDao {
 				String nimi = resultSet.getString("nimi");
 				double hinta = resultSet.getDouble("hinta");
 
-				Pizza p = new Pizza(id, nimi, hinta);
+				Tuote p = new Tuote(id, nimi, hinta);
 				lista.add(p);
 			}
 

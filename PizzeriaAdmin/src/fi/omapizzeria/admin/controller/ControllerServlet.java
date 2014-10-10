@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 import javax.xml.bind.ParseConversionEvent;
 
 import fi.omapizzeria.admin.bean.*;
-import fi.omapizzeria.admin.dao.PizzaDao;
+import fi.omapizzeria.admin.dao.TuoteDao;
 
 
 /**
@@ -62,8 +62,8 @@ public class ControllerServlet extends HttpServlet {
 	    request.getSession().setAttribute("aloitusaika", ft.format(now));
 
 		 */
-		PizzaDao pDao = new PizzaDao();
-		List<Pizza> pList = null;
+		TuoteDao pDao = new TuoteDao();
+		List<Tuote> pList = null;
 		try {
 			pList = pDao.haeKaikkiTuotteet();
 		} catch (SQLException e) {

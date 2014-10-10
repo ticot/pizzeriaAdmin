@@ -1,17 +1,17 @@
 package fi.omapizzeria.admin.bean;
 
 
-public class Pizza {
+public class Tuote {
 	private int id;
 	private String nimi;
 	private double hinta;
 	
-	public Pizza(){
+	public Tuote(){
 		id = 0;
 		nimi = "";
 		hinta = 0;
 	}
-	public Pizza(int id, String nimi, double hinta) {
+	public Tuote(int id, String nimi, double hinta) {
 		super();
 		this.id = id;
 		this.nimi = nimi;
