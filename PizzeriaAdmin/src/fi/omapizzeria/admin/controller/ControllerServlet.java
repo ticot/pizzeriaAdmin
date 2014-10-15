@@ -137,7 +137,7 @@ public class ControllerServlet extends HttpServlet {
 
 		try {
 			statement = con.createStatement();
-		} catch (SQLException e) {
+		} catch (SQLException e) {		
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} // Statement olion luonti

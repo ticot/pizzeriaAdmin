@@ -1,4 +1,4 @@
-﻿CREATE TABLE Tuote
+CREATE TABLE Tuote
 (tuote_id INTEGER (3) NOT NULL AUTO_INCREMENT
 ,nimi VARCHAR (10) COLLATE utf8_swedish_ci NOT NULL
 ,PRIMARY KEY (tuote_id)
@@ -7,7 +7,7 @@
 CREATE TABLE Sisalto
 (sisalto_id INTEGER (3) NOT NULL AUTO_INCREMENT
 ,nimi varchar(20) COLLATE utf8_swedish_ci NOT NULL
-,ainesosat varchar (50) COLLATE utf8_swedish_ci NOT NULL
+,sisalto varchar (50) COLLATE utf8_swedish_ci NOT NULL
 ,PRIMARY KEY (sisalto_id)
 )ENGINE=InnoDB;
 

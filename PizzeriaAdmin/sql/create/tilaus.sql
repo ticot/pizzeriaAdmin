@@ -1,10 +1,10 @@
-﻿CREATE TABLE Tilaus
+CREATE TABLE Tilaus
 (tilaus_id INTEGER (10)NOT NULL AUTO_INCREMENT
 ,kayttaja_id INTEGER (10) NOT NULL
 ,maksutapa VARCHAR (100) NOT NULL
 ,hakutapa VARCHAR (100) NOT NULL
-,tilauspvm TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-,toimituspvm DATE
+,tilaus_paivamaara TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+,toimitus_paivamaara DATE
 ,status VARCHAR (50) NOT NULL
 ,PRIMARY KEY (tilaus_id)
 ,FOREIGN KEY (kayttaja_id) REFERENCES Kayttaja (kayttaja_id)
