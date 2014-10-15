@@ -77,13 +77,14 @@ public class ControllerServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		int yhteensa = pList.size();
 		request.setAttribute("pizzat", pList);
 		request.setAttribute("yht", yhteensa);
 
 		request.getRequestDispatcher("list.jsp").forward(request, response);
-		//request.getRequestDispatcher("PETER_TEST_INGORE.jsp").forward(request, response); // IGNORE
+		// request.getRequestDispatcher("PETER_TEST_INGORE.jsp").forward(request,
+		// response); // IGNORE
 
 	}
 
@@ -91,8 +92,42 @@ public class ControllerServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	
+	
+	public void poistaTuote(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("OLLAAN FUNKAN SISÄLLÄ");
+		String id = request.getParameter("action");
+		
+		if(request.getParameter("action") !=null && !request.getParameter("action").equals("") ){
+			ConnectionManager connection = new ConnectionManager();
+			Connection con = connection.doConnection();
+
+			Statement statement = null;
+			ResultSet resultSet = null;
+
+			try {
+				statement = con.createStatement();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} // Statement olion luonti
+
+			try {
+				resultSet = statement
+						.executeQuery("DELETE FROM Pizzat WHERE id='" + id +"'");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				System.out.println(id);
+				connection.closeConnection(con);
+			}
+		}
+	}
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("doPost");
 		/*
 		 * //paketoidaan requestin parametrit yhteen olioon String pnimi =
 		 * request.getParameter("nimi"); String phintas =
@@ -158,7 +193,8 @@ public class ControllerServlet extends HttpServlet {
 		} finally {
 			connection.closeConnection(con);
 		}
-		//response.sendRedirect("list?added=true"); MITEN LISÄTÄ REDIRECT???????
+		// response.sendRedirect("list?added=true"); MITEN LISÄTÄ
+		// REDIRECT???????
 
 	}
 

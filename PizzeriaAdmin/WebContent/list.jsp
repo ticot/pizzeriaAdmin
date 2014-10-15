@@ -74,8 +74,8 @@
 			<c:out value="${yht}" />
 			tuottetta valikoimassa.
 		</p>
-		<button class="btn btn-primary" data-toggle="modal"
-			data-target=".bs-example-modal-lg" id="addbtn">Lis‰‰ tuote</button>
+		<button class="btn btn-success" data-toggle="modal"
+			data-target=".bs-example-modal-lg" >Lis‰‰ tuote</button>
 		<div class="modal fade bs-example-modal-lg" tabindex="-1"
 			role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-lg">
@@ -117,7 +117,7 @@
 					<p class="info">
 						<c:out value="${p.hinta}" />
 					</p>
-					<button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm<c:out value="${p.id}"/>" id="deletebtn">Poista</button>
+					<button class="btn btn-danger" data-toggle="modal" data-target=".bs-example-modal-sm<c:out value="${p.id}"/>">Poista</button>
 					<div class="modal fade bs-example-modal-sm<c:out value="${p.id}"/>" tabindex="-1"
 						role="dialog" aria-labelledby="mySmallModalLabel"
 						aria-hidden="true">
@@ -126,8 +126,11 @@
 								<h1>Poista tuote</h1>
 								<p>Oletko varma ett‰ haluat poistaa valitun tuotteen?</p>
 								<div id="btnwrap2">
-									<button type="button" class="btn btn-primary">Poista tuote</button>
+								<!-- <form name="input" action="list?action=poistatuote=<c:out value="${p.id}"/>" method="POST"> -->
+								
+									<a href="list?action=poistaTuote&id=<c:out value="${p.id}"/>"><button type="submit" class="btn btn-primary">Poista tuote</button></a>
 									<button type="button" data-dismiss="modal" class="btn btn-default">Peruuta</button>
+								
 								</div>
 							</div>
 						</div>
