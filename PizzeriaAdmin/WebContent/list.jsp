@@ -66,7 +66,7 @@
 
 			<div id="centercontent">
 						<h1>Tervetuloa</h1>
-						<p>Hei sinulla on t‰ll‰ hetkell‰ X m‰‰r‰ tuotteita valikoimassa</p>
+						<p>Hei sinulla on t‰ll‰ hetkell‰ <c:out value="${yht}"/> m‰‰r‰ tuotteita valikoimassa</p>
 						<button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg" id="addbtn">Lis‰‰ tuote</button>
 						<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 						  <div class="modal-dialog modal-lg">

@@ -70,14 +70,17 @@ public class ControllerServlet extends HttpServlet {
 		
 		TuoteDao pDao = new TuoteDao();
 		List<Tuote> pList = null;
+		
 		try {
 			pList = pDao.haeKaikkiTuotteet();
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		int yhteensa = pList.size();
 		request.setAttribute("pizzat", pList);
+		request.setAttribute("yht", yhteensa);
 
 		request.getRequestDispatcher("list.jsp").forward(request, response);
 	    
