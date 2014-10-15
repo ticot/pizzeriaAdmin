@@ -78,9 +78,8 @@
 								<textarea class="form-control" rows="3" id="textarea" >
 								</textarea>
 								<div class="btnwrapper">
-								  <button type="button" class="btn btn-default" id="ybtn" value="Submit">Ok</button>
+								  <button type="submit" class="btn btn-default" id="ybtn" value="Submit">Ok</button>
 								  <button type="button" class="btn btn-default" id="nbtn">Peruuta</button>
-								  <input type="submit" value="Submit">
 								</div>
 							</div>
 						  </div>
