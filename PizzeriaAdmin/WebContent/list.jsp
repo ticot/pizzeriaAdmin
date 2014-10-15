@@ -124,7 +124,7 @@
 						<div class="modal-dialog modal-sm">
 							<div class="modal-content" id="del">
 								<h1>Poista tuote</h1>
-								<p>Oletko varma että haluat poistaa valitun tuotteen?</p>
+								<p>Oletko varma että haluat poistaa tuotteen <b><c:out value="${p.nimi}"/></b> ?</p>
 								<div id="btnwrap2">
 								<!-- <form name="input" action="list?action=poistatuote=<c:out value="${p.id}"/>" method="POST"> -->
 								
