@@ -30,6 +30,7 @@ public class TuoteDao {
 																	// luonti
 		try {
 			while (resultSet.next()) { // Iteroidaan läpi
+
 				/*
 				 * int id = resultSet.getInt("id"); String nimi =
 				 * resultSet.getString("nimi"); double hinta =
@@ -55,6 +56,5 @@ public class TuoteDao {
 		System.out.println(lista);
 		return lista;
 	}
-
 
 }
