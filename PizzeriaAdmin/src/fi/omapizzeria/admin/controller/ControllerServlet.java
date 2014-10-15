@@ -83,6 +83,7 @@ public class ControllerServlet extends HttpServlet {
 		request.setAttribute("yht", yhteensa);
 
 		request.getRequestDispatcher("list.jsp").forward(request, response);
+		//request.getRequestDispatcher("PETER_TEST_INGORE.jsp").forward(request, response); // IGNORE
 
 	}
 
@@ -157,7 +158,7 @@ public class ControllerServlet extends HttpServlet {
 		} finally {
 			connection.closeConnection(con);
 		}
-		// response.sendRedirect("list?added=true");
+		//response.sendRedirect("list?added=true"); MITEN LISÄTÄ REDIRECT???????
 
 	}
 
