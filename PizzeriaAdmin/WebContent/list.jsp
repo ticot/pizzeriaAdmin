@@ -150,11 +150,13 @@
 	</div>
 
 	<div class="leftnavigation">
+	<div id="leftwrap">
 		<ul class="nav nav-pills nav-stacked">
 			<li><a href="index.html">Home</a></li>
 			<li class="active"><a href="tuotteet.html">Lisää tuotteitta</a></li>
 			<li><a href="#">Messages</a></li>
 		</ul>
+	</div>	
 	</div>
 
 	<div class="footer">
