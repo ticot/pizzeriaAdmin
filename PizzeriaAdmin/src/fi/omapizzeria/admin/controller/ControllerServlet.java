@@ -152,10 +152,10 @@ public class ControllerServlet extends HttpServlet {
 		String pnimi = request.getParameter("nimi");
 		String phintas = request.getParameter("hinta");
 		double phinta = Double.parseDouble(phintas);
-		Tuote p = new Tuote(3, pnimi, phinta);
+		//Tuote p = new Tuote(3, pnimi, phinta);
 
 		// tallennetaan luotu olio requestin atribuutiksi
-		request.setAttribute("pizza", p);
+		//request.setAttribute("pizza", p);
 
 		// ohjataan pyyntö jsp-sivulle, joka hoitaa tulostuksen muotoilun
 		request.getRequestDispatcher("list.jsp").forward(request, response);
