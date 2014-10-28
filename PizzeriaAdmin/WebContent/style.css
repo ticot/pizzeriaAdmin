@@ -1,11 +1,9 @@
 body {
 	font-family: 'Lora', serif;
 	background-color: #E8E8E8;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-position: center;
+	background-image:url('img/pattern1.png');
 	min-height: 100%;
-	background-size: cover;
+	
 	overflow-y: scroll;
 	color: #F7F2C8;
 	
