@@ -1,7 +1,7 @@
 body {
 	font-family: 'Lora', serif;
 	background-color: #E8E8E8;
-	background-image:url('img/pattern1.png');
+
 	min-height: 100%;
 	
 	overflow-y: scroll;
@@ -17,6 +17,7 @@ body {
 	top:100%;
 	width: 100%;
 	background-color: black;
+		background-image:url('img/pattern1.png');
 }
 
 #loginbtn {
@@ -126,7 +127,7 @@ i.ion-ios7-bell {
 	overflow: hidden;
 	margin-right: 200px;
 	bottom: 0;
-
+	background-image:url('img/pattern1.png');
 	position: fixed;
 }
 
@@ -146,7 +147,7 @@ i.ion-ios7-bell {
 .topbar {
 	width: 100%;
 	height: 50px;
-	/*background-image: url('img/plank.png');*/
+		background-image:url('img/pattern1.png');
 	background-color: #222;
 	font-family: 'Lora', serif;
 	/*position:fixed;*/
