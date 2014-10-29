@@ -126,11 +126,20 @@
 								<h1>Poista tuote</h1>
 								<p>Oletko varma että haluat poistaa tuotteen <b><c:out value="${p.nimi}"/></b> ?</p>
 								<div id="btnwrap2">
-								<!-- <form name="input" action="list?action=poistatuote=<c:out value="${p.id}"/>" method="POST"> -->
+								<form name="input" action="poista?id=<c:out value="${p.id}"/>" method="POST">
+							
+									<button type="submit" class="btn btn-primary" id="ybtn"
+										value="Submit">Tallenna</button>
+									<button type="button" data-dismiss="modal"
+										class="btn btn-default" id="nbtn">Peruuta</button>
+					</form>
+								<!-- 
+								<!-- <form name="input" action="list?action=poistatuote=<c:out value="${p.id}"/>" method="POST"> 
 								
 									<a href="list?action=poistaTuote&id=<c:out value="${p.id}"/>"><button type="submit" class="btn btn-primary">Poista tuote</button></a>
 									<button type="button" data-dismiss="modal" class="btn btn-default">Peruuta</button>
-								
+								 -->
+								 
 								</div>
 							</div>
 						</div>

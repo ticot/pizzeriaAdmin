@@ -192,8 +192,9 @@ public class ControllerServlet extends HttpServlet {
 			e.printStackTrace();
 		} finally {
 			connection.closeConnection(con);
+			//response.sendRedirect("list?added=true"); //MITEN LISÄTÄ
 		}
-		// response.sendRedirect("list?added=true"); MITEN LISÄTÄ
+		
 		// REDIRECT???????
 
 	}
