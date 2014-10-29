@@ -16,7 +16,7 @@ import fi.omapizzeria.admin.dao.TuoteDao;
 /**
  * Servlet implementation class ControllerServlet
  */
-@WebServlet("/pizzat")
+@WebServlet("/Customer/pizzat")
 public class ControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

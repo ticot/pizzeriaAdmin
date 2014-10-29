@@ -21,19 +21,7 @@
 </head>
 <body>
 
-<c:forEach items="${pizzat}" var="p">
-<li>
-	<div class="pizzawrapper">
-		<h2>
-			<c:out value="${p.nimi}" />
-</h2>
 
-<p class="info">
-	<c:out value="${p.hinta}" />
-</p>
-</div>
-</li>
-</c:forEach>
 					
 <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 								<div class="modal-dialog modal-sm">
@@ -104,28 +92,12 @@
 					<img src="img/pizzat.png" align="middle" >
 				</div>
 				<div class="content"> 
-					<div class="pizzawrapper">
-								<h2>Pizza Tropicana</h2><h2 id="price">11,50</h2>
+					<c:forEach items="${pizzat}" var="p">
+						<div class="pizzawrapper">
+								<h2><c:out value="${p.nimi}" /></h2><h2 id="price"><c:out value="${p.hinta}" /></h2>
 								<p>Kinkku, Ananas, Aurajuusto</p>
-								<p class="collapse" id="viewdetails">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-								<p><a class="btn" data-toggle="collapse" data-target="#viewdetails">Tuotekuvaus &raquo;</a></p>
-								<form class="form">
-								<input type="checkbox" name="glutein-free"> Gluteiiniton
-								<input type="checkbox" name="lactose-free"> Laktoositon
-								</form>
-								<div class="buttonwrapper">
-								 <div class="btn-group">
-								 <button type="button" class="btn btn-default">Lis‰‰ ostoskoriin</button>
-							 </div>
-						</div>	 
-						
-						
-					</div>
-					<div class="pizzawrapper">
-								<h2>Pizza Tropicana</h2><h2 id="price">11,50</h2>
-								<p>Kinkku, Ananas, Aurajuusto</p>
-								<p class="collapse" id="viewdetails2">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-								<p><a class="btn" data-toggle="collapse" data-target="#viewdetails2">Tuotekuvaus &raquo;</a></p>
+								<p class="collapse" id="viewdetails<c:out value="${p.id}" />">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+								<p><a class="btn" data-toggle="collapse" data-target="#viewdetails<c:out value="${p.id}" />">Tuotekuvaus &raquo;</a></p>
 								<form class="form">
 								<input type="checkbox" name="glutein-free"> Gluteiiniton
 								<input type="checkbox" name="lactose-free"> Laktoositon
@@ -140,11 +112,10 @@
 					</div>
 					
 					
-					
-					
-					
-				
-
+					</c:forEach>
+						 
+			
+					</div>
 
 
 			</div>

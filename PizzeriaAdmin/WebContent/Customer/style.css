@@ -177,6 +177,7 @@ margin-top:10px;
 .pizzawrapper{
 	height:180px;
 	width:600px;
+	padding-bottom:5px;
 	border-bottom:1px solid #F7F2C8;
 	height: auto;
 	display:inline-block;
