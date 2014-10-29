@@ -83,7 +83,7 @@ public class ControllerServlet extends HttpServlet {
 		request.setAttribute("pizzat", pList);
 		request.setAttribute("yht", yhteensa);
 
-		request.getRequestDispatcher("list.jsp").forward(request, response);
+		request.getRequestDispatcher("list.jsp").forward(request, response);	
 		// request.getRequestDispatcher("PETER_TEST_INGORE.jsp").forward(request,
 		// response); // IGNORE
 
