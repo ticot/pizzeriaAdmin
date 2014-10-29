@@ -6,6 +6,7 @@ CREATE TABLE Tilaus
 ,tilaus_paivamaara TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 ,toimitus_paivamaara DATE
 ,status VARCHAR (50) NOT NULL
+,yhteensa DECIMAL NOT NULL
 ,PRIMARY KEY (tilaus_id)
 ,FOREIGN KEY (kayttaja_id) REFERENCES Kayttaja (kayttaja_id)
 )ENGINE=InnoDB;
