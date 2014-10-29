@@ -67,6 +67,7 @@ public class ControllerServlet extends HttpServlet {
 		 * request.getSession().setAttribute("aloitusaika", ft.format(now));
 		 */
 
+		
 		TuoteDao pDao = new TuoteDao();
 		List<Tuote> pList = null;
 
@@ -158,7 +159,7 @@ public class ControllerServlet extends HttpServlet {
 		//request.setAttribute("pizza", p);
 
 		// ohjataan pyyntö jsp-sivulle, joka hoitaa tulostuksen muotoilun
-		request.getRequestDispatcher("list.jsp").forward(request, response);
+		//request.getRequestDispatcher("list.jsp").forward(request, response);
 
 		// tarvitaan kirjoituskone, jolla voidaan kirjoittaa tekstiä
 		// webbiselaimelle takaisin päin
@@ -192,7 +193,8 @@ public class ControllerServlet extends HttpServlet {
 			e.printStackTrace();
 		} finally {
 			connection.closeConnection(con);
-			//response.sendRedirect("list?added=true"); //MITEN LISÄTÄ
+			//request.getRequestDispatcher("list?added=true").forward(request, response);
+			response.sendRedirect("list?added=true"); //MITEN LISÄTÄ
 		}
 		
 		// REDIRECT???????

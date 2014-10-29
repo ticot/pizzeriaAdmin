@@ -66,6 +66,7 @@ public class poistaServlet extends HttpServlet {
 				e.printStackTrace();
 			} finally {
 				System.out.println("Poistettu pizza id:"+id);
+				response.sendRedirect("list?poistettu=true");
 				connection.closeConnection(con);
 			}
 		}

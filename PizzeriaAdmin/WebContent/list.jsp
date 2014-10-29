@@ -68,6 +68,24 @@
 
 
 	<div id="centercontent">
+	
+	<%
+	
+	if(request.getParameter("added") !=null){
+		
+		%>
+		<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>Pizza lisätty!</div>
+		<% 
+		
+	}
+	if(request.getParameter("poistettu") !=null){
+		
+		%>
+		<div class="alert alert-info alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>Pizza poistettu!</div>
+		<% 
+	}
+	%>
+	
 		<h1>Tervetuloa</h1>
 		<p>
 			Hei sinulla on tällä hetkellä
@@ -129,7 +147,7 @@
 								<form name="input" action="poista?id=<c:out value="${p.id}"/>" method="POST">
 							
 									<button type="submit" class="btn btn-primary" id="ybtn"
-										value="Submit">Tallenna</button>
+										value="Submit">Poista tuote</button>
 									<button type="button" data-dismiss="modal"
 										class="btn btn-default" id="nbtn">Peruuta</button>
 					</form>
