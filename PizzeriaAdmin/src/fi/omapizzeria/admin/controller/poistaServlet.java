@@ -40,7 +40,6 @@ public class poistaServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("OLLAAN FUNKAN SISÄLLÄ");
 		String id = request.getParameter("id");
 		
 		if(request.getParameter("id") !=null && !request.getParameter("id").equals("") ){
@@ -59,7 +58,7 @@ public class poistaServlet extends HttpServlet {
 
 			try {
 				resultSet = statement
-						.executeQuery("DELETE FROM Pizzat WHERE id='" + id +"'");
+						.executeQuery("DELETE FROM Tuote WHERE tuote_id='" + id +"'");
 			} catch (SQLException e) {
 				System.out.println("Ei");
 				// TODO Auto-generated catch block

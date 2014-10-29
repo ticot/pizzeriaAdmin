@@ -94,7 +94,7 @@ public class ControllerServlet extends HttpServlet {
 	 *      response)
 	 */
 	
-	
+	/*
 	public void poistaTuote(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("OLLAAN FUNKAN SISÄLLÄ");
@@ -116,7 +116,7 @@ public class ControllerServlet extends HttpServlet {
 
 			try {
 				resultSet = statement
-						.executeQuery("DELETE FROM Pizzat WHERE id='" + id +"'");
+						.executeQuery("DELETE FROM Tuote WHERE id='" + id +"'");
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -126,6 +126,7 @@ public class ControllerServlet extends HttpServlet {
 			}
 		}
 	}
+	*/
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("doPost");
@@ -186,7 +187,7 @@ public class ControllerServlet extends HttpServlet {
 
 		try {
 			resultSet = statement
-					.executeQuery("INSERT INTO Pizzat(nimi, hinta) VALUE ('"
+					.executeQuery("INSERT INTO Tuote(nimi, hinta) VALUE ('"
 							+ pnimi + "', '" + phintas + "')");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -12,7 +12,7 @@ public class Tuote {
 		id = 0;
 		nimi = "";
 		hinta = 0;
-		tilattavissa = false;
+		tilattavissa = true;
 	}
 	public Tuote(int id, String nimi, double hinta) {
 		super();

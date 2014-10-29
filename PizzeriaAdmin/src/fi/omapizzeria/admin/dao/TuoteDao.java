@@ -25,7 +25,7 @@ public class TuoteDao {
 
 		statement = con.createStatement(); // Statement olion luonti
 
-		resultSet = statement.executeQuery("SELECT * FROM Pizzat"); // Result
+		resultSet = statement.executeQuery("SELECT * FROM Tuote"); // Result
 																	// setin
 																	// luonti
 		try {
@@ -38,7 +38,7 @@ public class TuoteDao {
 				 * + "\nNimi: " + nimi + "\nHinta: " + hinta);
 				 */
 
-				int id = resultSet.getInt("id");
+				int id = resultSet.getInt("tuote_id");
 				String nimi = resultSet.getString("nimi");
 				double hinta = resultSet.getDouble("hinta");
 
