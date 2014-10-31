@@ -67,13 +67,22 @@ public class ControllerServlet extends HttpServlet {
 		 * request.getSession().setAttribute("aloitusaika", ft.format(now));
 		 */
 
-		
 		TuoteDao pDao = new TuoteDao();
 		List<Tuote> pList = null;
+		List<Sisalto> pSisaltoList = null;
 
 		try {
 			pList = pDao.haeKaikkiTuotteet();
+			for (int i = 0; i < pList.size(); i++) {
+				int id = pList.get(i).getId();
+				
 
+				pSisaltoList = pDao.haeTuoteSisalto(id);
+				
+				
+
+			}
+			System.out.println(pSisaltoList);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -81,9 +90,10 @@ public class ControllerServlet extends HttpServlet {
 
 		int yhteensa = pList.size();
 		request.setAttribute("pizzat", pList);
+		request.setAttribute("pizzatSisalto", pSisaltoList);
 		request.setAttribute("yht", yhteensa);
 
-		request.getRequestDispatcher("list.jsp").forward(request, response);	
+		request.getRequestDispatcher("list.jsp").forward(request, response);
 		// request.getRequestDispatcher("PETER_TEST_INGORE.jsp").forward(request,
 		// response); // IGNORE
 
@@ -93,40 +103,29 @@ public class ControllerServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	
+
 	/*
-	public void poistaTuote(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("OLLAAN FUNKAN SISÄLLÄ");
-		String id = request.getParameter("action");
-		
-		if(request.getParameter("action") !=null && !request.getParameter("action").equals("") ){
-			ConnectionManager connection = new ConnectionManager();
-			Connection con = connection.doConnection();
-
-			Statement statement = null;
-			ResultSet resultSet = null;
-
-			try {
-				statement = con.createStatement();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} // Statement olion luonti
-
-			try {
-				resultSet = statement
-						.executeQuery("DELETE FROM Tuote WHERE id='" + id +"'");
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} finally {
-				System.out.println(id);
-				connection.closeConnection(con);
-			}
-		}
-	}
-	*/
+	 * public void poistaTuote(HttpServletRequest request, HttpServletResponse
+	 * response) throws ServletException, IOException {
+	 * System.out.println("OLLAAN FUNKAN SISÄLLÄ"); String id =
+	 * request.getParameter("action");
+	 * 
+	 * if(request.getParameter("action") !=null &&
+	 * !request.getParameter("action").equals("") ){ ConnectionManager
+	 * connection = new ConnectionManager(); Connection con =
+	 * connection.doConnection();
+	 * 
+	 * Statement statement = null; ResultSet resultSet = null;
+	 * 
+	 * try { statement = con.createStatement(); } catch (SQLException e) { //
+	 * TODO Auto-generated catch block e.printStackTrace(); } // Statement olion
+	 * luonti
+	 * 
+	 * try { resultSet = statement .executeQuery("DELETE FROM Tuote WHERE id='"
+	 * + id +"'"); } catch (SQLException e) { // TODO Auto-generated catch block
+	 * e.printStackTrace(); } finally { System.out.println(id);
+	 * connection.closeConnection(con); } } }
+	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("doPost");
@@ -154,13 +153,13 @@ public class ControllerServlet extends HttpServlet {
 		String pnimi = request.getParameter("nimi");
 		String phintas = request.getParameter("hinta");
 		double phinta = Double.parseDouble(phintas);
-		//Tuote p = new Tuote(3, pnimi, phinta);
+		// Tuote p = new Tuote(3, pnimi, phinta);
 
 		// tallennetaan luotu olio requestin atribuutiksi
-		//request.setAttribute("pizza", p);
+		// request.setAttribute("pizza", p);
 
 		// ohjataan pyyntö jsp-sivulle, joka hoitaa tulostuksen muotoilun
-		//request.getRequestDispatcher("list.jsp").forward(request, response);
+		// request.getRequestDispatcher("list.jsp").forward(request, response);
 
 		// tarvitaan kirjoituskone, jolla voidaan kirjoittaa tekstiä
 		// webbiselaimelle takaisin päin
@@ -194,10 +193,11 @@ public class ControllerServlet extends HttpServlet {
 			e.printStackTrace();
 		} finally {
 			connection.closeConnection(con);
-			//request.getRequestDispatcher("list?added=true").forward(request, response);
-			response.sendRedirect("list?added=true"); //MITEN LISÄTÄ
+			// request.getRequestDispatcher("list?added=true").forward(request,
+			// response);
+			response.sendRedirect("list?added=true"); // MITEN LISÄTÄ
 		}
-		
+
 		// REDIRECT???????
 
 	}

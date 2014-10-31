@@ -92,6 +92,7 @@
 					<img src="img/pizzat.png" align="middle" >
 				</div>
 				<div class="content"> 
+
 					<c:forEach items="${pizzat}" var="p">
 						<div class="pizzawrapper">
 								<h2><c:out value="${p.nimi}" /></h2><h2 id="price"><c:out value="${p.hinta}" /></h2>

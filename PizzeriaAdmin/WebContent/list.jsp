@@ -18,7 +18,9 @@
 <title>Melo e Castello</title>
 </head>
 <body>
-	<div class="topbar"><
+
+	<div class="topbar">
+		<
 		<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav"
 			role="banner">
 
@@ -68,24 +70,30 @@
 
 
 	<div id="centercontent">
-	
-	<%
-	
-	if(request.getParameter("added") !=null){
-		
+
+		<%
+			if (request.getParameter("added") != null) {
 		%>
-		<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>Pizza lis‰tty!</div>
-		<% 
-		
-	}
-	if(request.getParameter("poistettu") !=null){
-		
+		<div class="alert alert-success alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert">
+				<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+			</button>
+			Pizza lis‰tty!
+		</div>
+		<%
+			}
+			if (request.getParameter("poistettu") != null) {
 		%>
-		<div class="alert alert-info alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>Pizza poistettu!</div>
-		<% 
-	}
-	%>
-	
+		<div class="alert alert-info alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert">
+				<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+			</button>
+			Pizza poistettu!
+		</div>
+		<%
+			}
+		%>
+
 		<h1>Tervetuloa</h1>
 		<p>
 			Hei sinulla on t‰ll‰ hetkell‰
@@ -93,7 +101,7 @@
 			tuottetta valikoimassa.
 		</p>
 		<button class="btn btn-success" data-toggle="modal"
-			data-target=".bs-example-modal-lg" id="addbtn" >Lis‰‰ tuote</button>
+			data-target=".bs-example-modal-lg" id="addbtn">Lis‰‰ tuote</button>
 		<div class="modal fade bs-example-modal-lg" tabindex="-1"
 			role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-lg">
@@ -133,31 +141,45 @@
 					</h2>
 
 					<p class="info">
+					
 						<c:out value="${p.hinta}" />
+						
+						
+						<c:forEach items="${pizzatSisalto}" var="ps">
+						<c:out value="${ps.tuote_id}" />
+						<c:out value="${ps.nimi}" />
+
+					</c:forEach>
 					</p>
-					<button class="btn btn-danger" data-toggle="modal" data-target=".bs-example-modal-sm<c:out value="${p.id}"/>">Poista</button>
-					<div class="modal fade bs-example-modal-sm<c:out value="${p.id}"/>" tabindex="-1"
-						role="dialog" aria-labelledby="mySmallModalLabel"
+					
+					<button class="btn btn-danger" data-toggle="modal"
+						data-target=".bs-example-modal-sm<c:out value="${p.id}"/>">Poista</button>
+					<div class="modal fade bs-example-modal-sm<c:out value="${p.id}"/>"
+						tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
 						aria-hidden="true">
 						<div class="modal-dialog modal-sm">
 							<div class="modal-content" id="del">
 								<h1>Poista tuote</h1>
-								<p>Oletko varma ett‰ haluat poistaa tuotteen <b><c:out value="${p.nimi}"/></b> ?</p>
+								<p>
+									Oletko varma ett‰ haluat poistaa tuotteen <b><c:out
+											value="${p.nimi}" /></b> ?
+								</p>
 								<div id="btnwrap2">
-								<form name="input" action="poista?id=<c:out value="${p.id}"/>" method="POST">
-							
-									<button type="submit" class="btn btn-primary" id="ybtn"
-										value="Submit">Poista tuote</button>
-									<button type="button" data-dismiss="modal"
-										class="btn btn-default" id="nbtn">Peruuta</button>
-					</form>
-								<!-- 
+									<form name="input" action="poista?id=<c:out value="${p.id}"/>"
+										method="POST">
+
+										<button type="submit" class="btn btn-primary" id="ybtn"
+											value="Submit">Poista tuote</button>
+										<button type="button" data-dismiss="modal"
+											class="btn btn-default" id="nbtn">Peruuta</button>
+									</form>
+									<!-- 
 								<!-- <form name="input" action="list?action=poistatuote=<c:out value="${p.id}"/>" method="POST"> 
 								
 									<a href="list?action=poistaTuote&id=<c:out value="${p.id}"/>"><button type="submit" class="btn btn-primary">Poista tuote</button></a>
 									<button type="button" data-dismiss="modal" class="btn btn-default">Peruuta</button>
 								 -->
-								 
+
 								</div>
 							</div>
 						</div>
@@ -177,13 +199,13 @@
 	</div>
 
 	<div class="leftnavigation">
-	<div id="leftwrap">
-		<ul class="nav nav-pills nav-stacked">
-			<li><a href="index.html">Home</a></li>
-			<li class="active"><a href="tuotteet.html">Lis‰‰ tuotteitta</a></li>
-			<li><a href="#">Messages</a></li>
-		</ul>
-	</div>	
+		<div id="leftwrap">
+			<ul class="nav nav-pills nav-stacked">
+				<li><a href="index.html">Home</a></li>
+				<li class="active"><a href="tuotteet.html">Lis‰‰ tuotteitta</a></li>
+				<li><a href="#">Messages</a></li>
+			</ul>
+		</div>
 	</div>
 
 	<div class="footer">
