@@ -80,6 +80,7 @@
 			</button>
 			Pizza lisätty!
 		</div>
+
 		<%
 			}
 			if (request.getParameter("poistettu") != null) {
@@ -89,6 +90,17 @@
 				<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 			</button>
 			Pizza poistettu!
+		</div>
+		<%
+			}
+
+			if (request.getParameter("muokattu") != null) {
+		%>
+		<div class="alert alert-info alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert">
+				<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+			</button>
+			Pizza muokattu!
 		</div>
 		<%
 			}
@@ -114,9 +126,10 @@
 							placeholder="Tuotteen hinta" id="name" name="hinta">
 						<textarea class="form-control" rows="3" id="textarea">
 								</textarea>
-								
 
-     					 <input type="checkbox" name="tilattavissa" value="1"> Tilattavissa
+
+						<input type="checkbox" name="tilattavissa" value="1">
+						Tilattavissa
 
 
 						<div class="btnwrapper">
@@ -138,10 +151,10 @@
 						</form> 
 						 -->
 	<ul>
-	
 
-	<c:forEach items="${pizzatTilattavissa}" var="ptilattavissa">
-	<h1>Tilattavissa olevat pizzat</h1>
+
+		<c:forEach items="${pizzatTilattavissa}" var="ptilattavissa">
+			<h1>Tilattavissa olevat pizzat</h1>
 			<li>
 				<div class="pizzawrapper">
 					<h2>
@@ -149,15 +162,55 @@
 					</h2>
 
 					<p class="info">
-					
+
 						<c:out value="${ptilattavissa.hinta}" />
-						
-					
+
+
 					</p>
-					
+
+					<button class="btn btn-alert" data-toggle="modal"
+						data-target=".bs-example-modal-sm-muokkaa<c:out value="${ptilattavissa.id}"/>">Muokkaa</button>
+					<div
+						class="modal fade bs-example-modal-sm-muokkaa<c:out value="${ptilattavissa.id}"/>"
+						tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog modal-sm">
+							<div class="modal-content" id="del">
+								<h1>Muokkaa tuotetta</h1>
+								<p>
+									Oletko varma että haluat poistaa tuotteen näkyvistä? <b><c:out
+											value="${ptilattavissa.nimi}" /></b> ?
+								</p>
+								<div id="btnwrap2">
+									<form name="input"
+										action="muokkaa?id=<c:out value="${ptilattavissa.id}"/>"
+										method="POST">
+										<form>
+											<input type="radio" name="action" value="1">Tilattavissa<br>
+											<input type="radio" name="action" value="0">Ei tilattavissa
+										</form>
+										<button type="submit" class="btn btn-primary" id="ybtn"
+											value="Submit">Muokkaa tuote</button>
+										<button type="button" data-dismiss="modal"
+											class="btn btn-default" id="nbtn">Peruuta</button>
+									</form>
+									<!-- 
+								<!-- <form name="input" action="list?action=poistatuote=<c:out value="${p.id}"/>" method="POST"> 
+								
+									<a href="list?action=poistaTuote&id=<c:out value="${p.id}"/>"><button type="submit" class="btn btn-primary">Poista tuote</button></a>
+									<button type="button" data-dismiss="modal" class="btn btn-default">Peruuta</button>
+								 -->
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+
 					<button class="btn btn-danger" data-toggle="modal"
 						data-target=".bs-example-modal-sm<c:out value="${ptilattavissa.id}"/>">Poista</button>
-					<div class="modal fade bs-example-modal-sm<c:out value="${ptilattavissa.id}"/>"
+					<div
+						class="modal fade bs-example-modal-sm<c:out value="${ptilattavissa.id}"/>"
 						tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
 						aria-hidden="true">
 						<div class="modal-dialog modal-sm">
@@ -168,7 +221,8 @@
 											value="${ptilattavissa.nimi}" /></b> ?
 								</p>
 								<div id="btnwrap2">
-									<form name="input" action="poista?id=<c:out value="${ptilattavissa.id}"/>"
+									<form name="input"
+										action="poista?id=<c:out value="${ptilattavissa.id}"/>"
 										method="POST">
 
 										<button type="submit" class="btn btn-primary" id="ybtn"
@@ -187,13 +241,16 @@
 							</div>
 						</div>
 					</div>
+
+
+
 				</div>
 			</li>
 		</c:forEach>
 
 
 
-	<h1>Kaikki pizzat</h1>
+		<h1>Kaikki pizzat</h1>
 		<c:forEach items="${pizzat}" var="p">
 			<li>
 				<div class="pizzawrapper">
@@ -202,17 +259,55 @@
 					</h2>
 
 					<p class="info">
-					
+
 						<c:out value="${p.hinta}" />
-						
-						
+
+
 						<c:forEach items="${pizzatSisalto}" var="ps">
-						<c:out value="${ps.tuote_id}" />
-						<c:out value="${ps.nimi}" />
+							<c:out value="${ps.tuote_id}" />
+							<c:out value="${ps.nimi}" />
 
 						</c:forEach>
 					</p>
-					
+	
+					<button class="btn btn-alert" data-toggle="modal"
+						data-target=".bs-example-modal-sm-muokkaa<c:out value="${p.id}"/>">Muokkaa</button>
+					<div
+						class="modal fade bs-example-modal-sm-muokkaa<c:out value="${p.id}"/>"
+						tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog modal-sm">
+							<div class="modal-content" id="del">
+								<h1>Muokkaa tuotetta</h1>
+								<p>
+									Oletko varma että haluat poistaa tuotteen näkyvistä? <b><c:out
+											value="${p.nimi}" /></b> ?
+								</p>
+								<div id="btnwrap2">
+									<form name="input"
+										action="muokkaa?id=<c:out value="${p.id}"/>"
+										method="POST">
+										<form>
+											<input type="radio" name="action" value="1">Tilattavissa<br>
+											<input type="radio" name="action" value="0">Ei tilattavissa
+										</form>
+										<button type="submit" class="btn btn-primary" id="ybtn"
+											value="Submit">Muokkaa tuote</button>
+										<button type="button" data-dismiss="modal"
+											class="btn btn-default" id="nbtn">Peruuta</button>
+									</form>
+									<!-- 
+								<!-- <form name="input" action="list?action=poistatuote=<c:out value="${p.id}"/>" method="POST"> 
+								
+									<a href="list?action=poistaTuote&id=<c:out value="${p.id}"/>"><button type="submit" class="btn btn-primary">Poista tuote</button></a>
+									<button type="button" data-dismiss="modal" class="btn btn-default">Peruuta</button>
+								 -->
+
+								</div>
+							</div>
+						</div>
+					</div>
+
 					<button class="btn btn-danger" data-toggle="modal"
 						data-target=".bs-example-modal-sm<c:out value="${p.id}"/>">Poista</button>
 					<div class="modal fade bs-example-modal-sm<c:out value="${p.id}"/>"
