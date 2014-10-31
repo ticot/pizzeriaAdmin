@@ -2,6 +2,7 @@ package fi.omapizzeria.admin.controller;
 
 import include.ConnectionManager;
 
+import java.awt.image.TileObserver;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -69,7 +70,15 @@ public class ControllerServlet extends HttpServlet {
 
 		TuoteDao pDao = new TuoteDao();
 		List<Tuote> pList = null;
+		List<Tuote> pTilattavissa = null;
 		List<Sisalto> pSisaltoList = null;
+		
+		try {
+			pTilattavissa = pDao.haeKaikkiTuotteetTilattavissa();
+		} catch (SQLException e1) {
+			System.out.println("Tilattavissa olevien tuotteiden haku epäonnistui");
+			e1.printStackTrace();
+		}
 
 		try {
 			pList = pDao.haeKaikkiTuotteet();
@@ -91,6 +100,7 @@ public class ControllerServlet extends HttpServlet {
 		int yhteensa = pList.size();
 		request.setAttribute("pizzat", pList);
 		request.setAttribute("pizzatSisalto", pSisaltoList);
+		request.setAttribute("pizzatTilattavissa", pTilattavissa);
 		request.setAttribute("yht", yhteensa);
 
 		request.getRequestDispatcher("list.jsp").forward(request, response);
@@ -153,6 +163,8 @@ public class ControllerServlet extends HttpServlet {
 		String pnimi = request.getParameter("nimi");
 		String phintas = request.getParameter("hinta");
 		double phinta = Double.parseDouble(phintas);
+		String tilattavissa = request.getParameter("tilattavissa");
+		
 		// Tuote p = new Tuote(3, pnimi, phinta);
 
 		// tallennetaan luotu olio requestin atribuutiksi
@@ -166,7 +178,7 @@ public class ControllerServlet extends HttpServlet {
 		// PrintWriter wout = response.getWriter();
 
 		// palautetaan selaimelle sivu, jossa lukee syötetty nimi
-		System.out.println("Nimi: " + pnimi + "\nHinta: " + phinta);
+		System.out.println("Nimi: " + pnimi + "\nHinta: " + phinta + "Tilattavissa:" + tilattavissa);
 
 		ConnectionManager connection = new ConnectionManager();
 
@@ -186,8 +198,8 @@ public class ControllerServlet extends HttpServlet {
 
 		try {
 			resultSet = statement
-					.executeQuery("INSERT INTO Tuote(nimi, hinta) VALUE ('"
-							+ pnimi + "', '" + phintas + "')");
+					.executeQuery("INSERT INTO Tuote(nimi, hinta, tilattavissa) VALUE ('"
+							+ pnimi + "', '" + phintas + "', '" + tilattavissa + "')");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

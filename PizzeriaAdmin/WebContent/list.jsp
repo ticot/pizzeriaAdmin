@@ -114,6 +114,11 @@
 							placeholder="Tuotteen hinta" id="name" name="hinta">
 						<textarea class="form-control" rows="3" id="textarea">
 								</textarea>
+								
+
+     					 <input type="checkbox" name="tilattavissa" value="1"> Tilattavissa
+
+
 						<div class="btnwrapper">
 							<button type="submit" class="btn btn-primary" id="ybtn"
 								value="Submit">Tallenna</button>
@@ -133,6 +138,62 @@
 						</form> 
 						 -->
 	<ul>
+	
+
+	<c:forEach items="${pizzatTilattavissa}" var="ptilattavissa">
+	<h1>Tilattavissa olevat pizzat</h1>
+			<li>
+				<div class="pizzawrapper">
+					<h2>
+						<c:out value="${ptilattavissa.nimi}" />
+					</h2>
+
+					<p class="info">
+					
+						<c:out value="${ptilattavissa.hinta}" />
+						
+					
+					</p>
+					
+					<button class="btn btn-danger" data-toggle="modal"
+						data-target=".bs-example-modal-sm<c:out value="${ptilattavissa.id}"/>">Poista</button>
+					<div class="modal fade bs-example-modal-sm<c:out value="${ptilattavissa.id}"/>"
+						tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog modal-sm">
+							<div class="modal-content" id="del">
+								<h1>Poista tuote</h1>
+								<p>
+									Oletko varma että haluat poistaa tuotteen <b><c:out
+											value="${ptilattavissa.nimi}" /></b> ?
+								</p>
+								<div id="btnwrap2">
+									<form name="input" action="poista?id=<c:out value="${ptilattavissa.id}"/>"
+										method="POST">
+
+										<button type="submit" class="btn btn-primary" id="ybtn"
+											value="Submit">Poista tuote</button>
+										<button type="button" data-dismiss="modal"
+											class="btn btn-default" id="nbtn">Peruuta</button>
+									</form>
+									<!-- 
+								<!-- <form name="input" action="list?action=poistatuote=<c:out value="${p.id}"/>" method="POST"> 
+								
+									<a href="list?action=poistaTuote&id=<c:out value="${p.id}"/>"><button type="submit" class="btn btn-primary">Poista tuote</button></a>
+									<button type="button" data-dismiss="modal" class="btn btn-default">Peruuta</button>
+								 -->
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+		</c:forEach>
+
+
+
+	<h1>Kaikki pizzat</h1>
 		<c:forEach items="${pizzat}" var="p">
 			<li>
 				<div class="pizzawrapper">
@@ -149,7 +210,7 @@
 						<c:out value="${ps.tuote_id}" />
 						<c:out value="${ps.nimi}" />
 
-					</c:forEach>
+						</c:forEach>
 					</p>
 					
 					<button class="btn btn-danger" data-toggle="modal"

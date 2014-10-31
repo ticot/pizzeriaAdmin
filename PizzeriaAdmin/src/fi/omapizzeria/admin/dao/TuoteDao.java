@@ -57,6 +57,50 @@ public class TuoteDao {
 		System.out.println(lista);
 		return lista;
 	}
+	
+	public List<Tuote> haeKaikkiTuotteetTilattavissa() throws SQLException {
+		ConnectionManager connection = new ConnectionManager();
+
+		List<Tuote> lista = new ArrayList<Tuote>();
+
+		Connection con = connection.doConnection();
+
+		Statement statement = null;
+		ResultSet resultSet = null;
+
+		statement = con.createStatement(); // Statement olion luonti
+
+		resultSet = statement.executeQuery("SELECT * FROM Tuote WHERE tilattavissa = 1"); // Result
+																	// setin
+																	// luonti
+		try {
+			while (resultSet.next()) { // Iteroidaan läpi
+
+				/*
+				 * int id = resultSet.getInt("id"); String nimi =
+				 * resultSet.getString("nimi"); double hinta =
+				 * resultSet.getDouble("hinta"); System.out.println("ID : " + id
+				 * + "\nNimi: " + nimi + "\nHinta: " + hinta);
+				 */
+
+				int id = resultSet.getInt("tuote_id");
+				String nimi = resultSet.getString("nimi");
+				double hinta = resultSet.getDouble("hinta");
+
+				Tuote p = new Tuote(id, nimi, hinta);
+				lista.add(p);
+			}
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			// LOPULTA AINA SULJETAAN YHTEYS
+			connection.closeConnection(con);
+		}
+		System.out.println(lista);
+		return lista;
+	}
 
 	public List<Sisalto> haeTuoteSisalto(int id) throws SQLException {
 		ConnectionManager connection = new ConnectionManager();

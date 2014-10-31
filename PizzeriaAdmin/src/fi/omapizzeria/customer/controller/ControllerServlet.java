@@ -37,7 +37,7 @@ public class ControllerServlet extends HttpServlet {
 		List<Tuote> pList = null;
 
 		try {
-			pList = pDao.haeKaikkiTuotteet();
+			pList = pDao.haeKaikkiTuotteetTilattavissa();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
