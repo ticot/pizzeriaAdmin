@@ -9,6 +9,45 @@ body {
 	
 }
 
+.row {
+		display: inline-block;
+		padding:12px;
+}
+.row img {
+		width:auto;
+		height:50px;
+}
+.thumbnail {
+		max-width:280px;
+}
+
+.caption ul,h3,p{
+	color:white;
+}
+#back{
+		width: 290px;
+		min-height: 279px;
+		
+}
+#color1{
+		width: 300px;
+		min-height: 279px;
+		background-color:#5cb85c;
+		
+		}
+		
+#color2{
+		width: 300px;
+		min-height: 279px;
+		background-color:#f0ad4e;
+		}
+#color3{
+		width: 300px;
+		min-height: 279px;
+		background-color:#428bca;
+		}
+		
+		
 .footer {
 	float: right;
 	text-align: right;
@@ -296,7 +335,9 @@ body.modal-open {
 	background-color: #9F0F0F;
 	border: 0.5px solid black;
 }
-
+.jumbotron p{
+	color:black;
+}
 .feedback {
 	text-align: center;
 	padding-bottom: 50px;
@@ -321,6 +362,21 @@ body.modal-open {
 .buttonwrapper {
 	margin-left: 365px;
 	margin-top: -10px;
+}
+
+#btn2{
+	background-color:#afd7af;
+	border:none;
+}
+
+#btn3{
+	background-color:#f5d09b;
+	border:none;
+}
+
+#btn4{
+	margin-top:57px;
+	border:none;
 }
 
 .info {
