@@ -6,6 +6,7 @@ public class Tuote {
 	private String nimi;
 	private double hinta;
 	private boolean tilattavissa;
+	private String sisalto;
 	
 
 	public Tuote(){
@@ -14,12 +15,13 @@ public class Tuote {
 		hinta = 0;
 		tilattavissa = true;
 	}
-	public Tuote(int id, String nimi, double hinta) {
+	public Tuote(int id, String nimi, double hinta, boolean tilattavissa, String sisalto) {
 		super();
 		this.id = id;
 		this.nimi = nimi;
 		this.hinta = hinta;
 		this.tilattavissa = tilattavissa;
+		this.setSisalto(sisalto);
 	}
 	public int getId() {
 		return id;
@@ -47,11 +49,19 @@ public class Tuote {
 		this.tilattavissa = tilattavissa;
 	}
 	
+	public String getSisalto() {
+		return sisalto;
+	}
+	public void setSisalto(String sisalto) {
+		this.sisalto = sisalto;
+	}
 	@Override
 	public String toString() {
 		return "Tuote [id=" + id + ", nimi=" + nimi + ", hinta=" + hinta
-				+ ", tilattavissa=" + tilattavissa + "]";
+				+ ", tilattavissa=" + tilattavissa + ", sisalto=" + sisalto
+				+ "]";
 	}
+	
 }
 
 

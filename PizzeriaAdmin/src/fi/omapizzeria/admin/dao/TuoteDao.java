@@ -26,9 +26,12 @@ public class TuoteDao {
 
 		statement = con.createStatement(); // Statement olion luonti
 
-		resultSet = statement.executeQuery("SELECT * FROM Tuote"); // Result
+		//resultSet = statement.executeQuery("SELECT * FROM Tuote"); // Result
 																	// setin
 																	// luonti
+		resultSet = statement
+				.executeQuery("SELECT p.tuote_id, p.nimi, p.hinta, p.tilattavissa, GROUP_CONCAT(DISTINCT c.sisalto ORDER BY c.sisalto SEPARATOR ', ') AS Sisalto FROM Tuote p INNER JOIN Tuotteen_sisalto r ON p.tuote_id = r.tuote_id INNER JOIN Sisalto c ON r.sisalto_id = c.sisalto_id WHERE p.tuote_id = r.tuote_id AND r.sisalto_id = c.sisalto_id GROUP BY p.tuote_id ORDER BY p.nimi");
+		
 		try {
 			while (resultSet.next()) { // Iteroidaan läpi
 
@@ -42,8 +45,10 @@ public class TuoteDao {
 				int id = resultSet.getInt("tuote_id");
 				String nimi = resultSet.getString("nimi");
 				double hinta = resultSet.getDouble("hinta");
+				boolean tilattavissa = resultSet.getBoolean("tilattavissa");
+				String sisalto = resultSet.getString("sisalto");
 
-				Tuote p = new Tuote(id, nimi, hinta);
+				Tuote p = new Tuote(id, nimi, hinta, tilattavissa, sisalto);
 				lista.add(p);
 			}
 
@@ -57,7 +62,7 @@ public class TuoteDao {
 		System.out.println(lista);
 		return lista;
 	}
-	
+
 	public List<Tuote> haeKaikkiTuotteetTilattavissa() throws SQLException {
 		ConnectionManager connection = new ConnectionManager();
 
@@ -70,9 +75,8 @@ public class TuoteDao {
 
 		statement = con.createStatement(); // Statement olion luonti
 
-		resultSet = statement.executeQuery("SELECT * FROM Tuote WHERE tilattavissa = 1"); // Result
-																	// setin
-																	// luonti
+		resultSet = statement
+				.executeQuery("SELECT p.tuote_id, p.nimi, p.hinta, p.tilattavissa, GROUP_CONCAT(DISTINCT c.sisalto ORDER BY c.sisalto SEPARATOR ', ') AS Sisalto FROM Tuote p INNER JOIN Tuotteen_sisalto r ON p.tuote_id = r.tuote_id INNER JOIN Sisalto c ON r.sisalto_id = c.sisalto_id WHERE p.tuote_id = r.tuote_id AND r.sisalto_id = c.sisalto_id AND p.tilattavissa = 1 GROUP BY p.tuote_id ORDER BY p.nimi");
 		try {
 			while (resultSet.next()) { // Iteroidaan läpi
 
@@ -86,8 +90,10 @@ public class TuoteDao {
 				int id = resultSet.getInt("tuote_id");
 				String nimi = resultSet.getString("nimi");
 				double hinta = resultSet.getDouble("hinta");
+				boolean tilattavissa = resultSet.getBoolean("tilattavissa");
+				String sisalto = resultSet.getString("sisalto");
 
-				Tuote p = new Tuote(id, nimi, hinta);
+				Tuote p = new Tuote(id, nimi, hinta, tilattavissa, sisalto);
 				lista.add(p);
 			}
 
@@ -114,9 +120,11 @@ public class TuoteDao {
 
 		statement = con.createStatement(); // Statement olion luonti
 
+		
+		// TÄTÄ EI ENÄÄ KÄYTETÄÄ !!=?!?!!=?!=!=!=!=
 		resultSet = statement
 				.executeQuery("select i.nimi from Sisalto i, Tuote p, Tuotteen_sisalto pi where pi.tuote_id = p.tuote_id and pi.sisalto_id = i.sisalto_id and p.tuote_id = "
-						+ id + ";"); 
+						+ id + ";");
 
 		try {
 			while (resultSet.next()) { // Iteroidaan läpi

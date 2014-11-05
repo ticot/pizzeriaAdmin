@@ -77,7 +77,7 @@ public class MuokkaaServlet extends HttpServlet {
 					connection.closeConnection(con);
 				}
 
-			} else {
+			}else if(action.equals("1")) {
 				try {
 					resultSet = statement
 							.executeQuery("UPDATE Tuote SET tilattavissa=1 WHERE tuote_id='"

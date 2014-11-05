@@ -99,7 +99,7 @@ public class ControllerServlet extends HttpServlet {
 
 		int yhteensa = pList.size();
 		request.setAttribute("pizzat", pList);
-		request.setAttribute("pizzatSisalto", pSisaltoList);
+		//request.setAttribute("pizzatSisalto", pSisaltoList);
 		request.setAttribute("pizzatTilattavissa", pTilattavissa);
 		request.setAttribute("yht", yhteensa);
 

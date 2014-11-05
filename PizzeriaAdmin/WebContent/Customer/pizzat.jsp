@@ -96,7 +96,7 @@
 					<c:forEach items="${pizzat}" var="p">
 						<div class="pizzawrapper">
 								<h2><c:out value="${p.nimi}" /></h2><h2 id="price"><c:out value="${p.hinta}" /></h2>
-								<p>Kinkku, Ananas, Aurajuusto</p>
+								<p><c:out value="${p.sisalto}" /></p>
 								<p class="collapse" id="viewdetails<c:out value="${p.id}" />">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
 								<p><a class="btn" data-toggle="collapse" data-target="#viewdetails<c:out value="${p.id}" />">Tuotekuvaus &raquo;</a></p>
 								<form class="form">

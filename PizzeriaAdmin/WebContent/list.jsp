@@ -152,9 +152,9 @@
 						 -->
 	<ul>
 
-<h1>Tilattavissa olevat pizzat</h1>
+		<h1>Tilattavissa olevat pizzat</h1>
 		<c:forEach items="${pizzatTilattavissa}" var="ptilattavissa">
-			
+
 			<li>
 				<div class="pizzawrapper">
 					<h2>
@@ -167,50 +167,20 @@
 
 
 					</p>
-<!-- 
-					<button class="btn btn-alert" data-toggle="modal"
-						data-target=".bs-example-modal-sm-muokkaa<c:out value="${ptilattavissa.id}"/>">Muokkaa</button>
+					<div class="btn-group">
+					 
+						<form name="input"
+							action="muokkaa?id=<c:out value="${ptilattavissa.id}"/>&action=0"
+							method="POST">
+							 
+							<button class="btn btn-alert">Piilota</button>
+						</form>
+						<button class="btn btn-danger" data-toggle="modal"
+							data-target=".bs-example-modal-sm<c:out value="${ptilattavissa.id}"/>">Poista</button>
+					</div>
+					
 					<div
 						class="modal fade bs-example-modal-sm-muokkaa<c:out value="${ptilattavissa.id}"/>"
-						tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
-						aria-hidden="true">
-						<div class="modal-dialog modal-sm">
-							<div class="modal-content" id="del">
-								<h1>Muokkaa tuotetta</h1>
-								<p>
-									Oletko varma että haluat poistaa tuotteen näkyvistä? <b><c:out
-											value="${ptilattavissa.nimi}" /></b> ?
-								</p>
-								<div id="btnwrap2">
-									<form name="input"
-										action="muokkaa?id=<c:out value="${ptilattavissa.id}"/>"
-										method="POST">
-										<form>
-											<input type="radio" name="action" value="1">Tilattavissa<br>
-											<input type="radio" name="action" value="0">Ei tilattavissa
-										</form>
-										<button type="submit" class="btn btn-primary" id="ybtn"
-											value="Submit">Muokkaa tuote</button>
-										<button type="button" data-dismiss="modal"
-											class="btn btn-default" id="nbtn">Peruuta</button>
-									</form>
-									<!-- 
-								<!-- <form name="input" action="list?action=poistatuote=<c:out value="${p.id}"/>" method="POST"> 
-								
-									<a href="list?action=poistaTuote&id=<c:out value="${p.id}"/>"><button type="submit" class="btn btn-primary">Poista tuote</button></a>
-									<button type="button" data-dismiss="modal" class="btn btn-default">Peruuta</button>
-								 
-
-								</div>
-							</div>
-						</div>
-					</div>
- -->
-
-					<button class="btn btn-danger" data-toggle="modal"
-						data-target=".bs-example-modal-sm<c:out value="${ptilattavissa.id}"/>">Poista</button>
-					<div
-						class="modal fade bs-example-modal-sm<c:out value="${ptilattavissa.id}"/>"
 						tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
 						aria-hidden="true">
 						<div class="modal-dialog modal-sm">
@@ -220,7 +190,7 @@
 									Oletko varma että haluat poistaa tuotteen <b><c:out
 											value="${ptilattavissa.nimi}" /></b> ?
 								</p>
-								<div id="btnwrap2">
+								<div id="btn-group">
 									<form name="input"
 										action="poista?id=<c:out value="${ptilattavissa.id}"/>"
 										method="POST">
@@ -243,7 +213,6 @@
 					</div>
 
 
-
 				</div>
 			</li>
 		</c:forEach>
@@ -261,19 +230,21 @@
 					<p class="info">
 
 						<c:out value="${p.hinta}" />
+						<c:out value="${p.tilattavissa}" />
+						<c:out value="${p.sisalto}" />
 
 
-						<c:forEach items="${pizzatSisalto}" var="ps">
-							<c:out value="${ps.tuote_id}" />
-							<c:out value="${ps.nimi}" />
-
-						</c:forEach>
 					</p>
-	
-					
 
+<div class="btn-group">
+					<form name="input"
+						action="muokkaa?id=<c:out value="${p.id}"/>&action=1"
+						method="POST">
+						<button class="btn btn-alert">Nayta</button>
+					</form>
 					<button class="btn btn-danger" data-toggle="modal"
 						data-target=".bs-example-modal-sm<c:out value="${p.id}"/>">Poista</button>
+						</div>
 					<div class="modal fade bs-example-modal-sm<c:out value="${p.id}"/>"
 						tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
 						aria-hidden="true">
@@ -305,6 +276,7 @@
 						</div>
 					</div>
 				</div>
+
 			</li>
 		</c:forEach>
 		<h1>Debug</h1>

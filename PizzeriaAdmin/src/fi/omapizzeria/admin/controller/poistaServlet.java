@@ -58,6 +58,14 @@ public class poistaServlet extends HttpServlet {
 
 			try {
 				resultSet = statement
+						.executeQuery("DELETE FROM Tuotteen_sisalto WHERE tuote_id='" + id +"'");
+			} catch (SQLException e) {
+				System.out.println("Ei");
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				resultSet = statement
 						.executeQuery("DELETE FROM Tuote WHERE tuote_id='" + id +"'");
 			} catch (SQLException e) {
 				System.out.println("Ei");
