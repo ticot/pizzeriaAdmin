@@ -59,7 +59,6 @@ public class TuoteDao {
 			// LOPULTA AINA SULJETAAN YHTEYS
 			connection.closeConnection(con);
 		}
-		System.out.println(lista);
 		return lista;
 	}
 
@@ -104,11 +103,11 @@ public class TuoteDao {
 			// LOPULTA AINA SULJETAAN YHTEYS
 			connection.closeConnection(con);
 		}
-		System.out.println(lista);
+
 		return lista;
 	}
 
-	public List<Sisalto> haeTuoteSisalto(int id) throws SQLException {
+	public List<Sisalto> haeTuoteSisalto() throws SQLException {
 		ConnectionManager connection = new ConnectionManager();
 
 		List<Sisalto> lista = new ArrayList<Sisalto>();
@@ -123,8 +122,7 @@ public class TuoteDao {
 		
 		// TÄTÄ EI ENÄÄ KÄYTETÄÄ !!=?!?!!=?!=!=!=!=
 		resultSet = statement
-				.executeQuery("select i.nimi from Sisalto i, Tuote p, Tuotteen_sisalto pi where pi.tuote_id = p.tuote_id and pi.sisalto_id = i.sisalto_id and p.tuote_id = "
-						+ id + ";");
+				.executeQuery("SELECT * FROM Sisalto");
 
 		try {
 			while (resultSet.next()) { // Iteroidaan läpi
@@ -135,7 +133,8 @@ public class TuoteDao {
 				 * resultSet.getDouble("hinta"); System.out.println("ID : " + id
 				 * + "\nNimi: " + nimi + "\nHinta: " + hinta);
 				 */
-
+				
+				int id  = resultSet.getInt("sisalto_id");
 				String nimi = resultSet.getString("nimi");
 
 				Sisalto p = new Sisalto(id, nimi);
@@ -149,8 +148,48 @@ public class TuoteDao {
 			// LOPULTA AINA SULJETAAN YHTEYS
 			connection.closeConnection(con);
 		}
-		System.out.println(lista);
 		return lista;
+	}
+	public int haeUusinID() throws SQLException {
+		ConnectionManager connection = new ConnectionManager();
+
+		int tuote_id = 0;
+		Connection con = connection.doConnection();
+
+		Statement statement = null;
+		ResultSet resultSet = null;
+
+		statement = con.createStatement(); // Statement olion luonti
+
+		
+		// TÄTÄ EI ENÄÄ KÄYTETÄÄ !!=?!?!!=?!=!=!=!=
+		resultSet = statement
+				.executeQuery("SELECT tuote_id FROM Tuote ORDER BY tuote_id DESC LIMIT 1;");
+
+		try {
+			while (resultSet.next()) { // Iteroidaan läpi
+
+				/*
+				 * int id = resultSet.getInt("id"); String nimi =
+				 * resultSet.getString("nimi"); double hinta =
+				 * resultSet.getDouble("hinta"); System.out.println("ID : " + id
+				 * + "\nNimi: " + nimi + "\nHinta: " + hinta);
+				 */
+
+				tuote_id = resultSet.getInt("tuote_id");
+
+
+			}
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			// LOPULTA AINA SULJETAAN YHTEYS
+			connection.closeConnection(con);
+		}
+		System.out.println(tuote_id);
+		return tuote_id + 1;
 	}
 
 }

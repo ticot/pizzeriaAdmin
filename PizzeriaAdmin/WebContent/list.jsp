@@ -5,6 +5,7 @@
 <head>
 <link href="css/bootstrap.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="bootstrap-select.min.css">
 <link rel="stylesheet" type="text/css" href="css/ionicons.css">
 <link href="img/title.png" rel="shortcut icon" type="image/x-icon" />
 
@@ -18,6 +19,12 @@
 <title>Melo e Castello</title>
 </head>
 <body>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('select').selectpicker();
+});
+</script>
 
 	<div class="topbar">
 		<
@@ -118,6 +125,7 @@
 			role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
+				<div class="form-group">
 					<h1 class="hh">Lis‰‰ uusi tuote</h1>
 					<form name="input" action="list" method="POST">
 						<input type="text" class="form-control"
@@ -127,10 +135,23 @@
 						<textarea class="form-control" rows="3" id="textarea">
 								</textarea>
 
-
+ <label>
 						<input type="checkbox" name="tilattavissa" value="1">
 						Tilattavissa
+</label> 
+</div>
+<select name="selectpicker2" class="selectpicker2">
+<option value="Ei valittu">Ei valittu</option>
+<c:forEach items="${pizzatSisalto}" var="pSisalto">
+<option value="<c:out value="${pSisalto.tuote_id}"/>"><c:out value="${pSisalto.nimi}" /></option>
+</c:forEach>
+</select>
 
+<br>
+<br>
+<br>
+<br>
+<br>
 
 						<div class="btnwrapper">
 							<button type="submit" class="btn btn-primary" id="ybtn"
@@ -153,6 +174,8 @@
 	<ul>
 
 		<h1>Tilattavissa olevat pizzat</h1>
+
+
 		<c:forEach items="${pizzatTilattavissa}" var="ptilattavissa">
 
 			<li>
@@ -164,6 +187,8 @@
 					<p class="info">
 
 						<c:out value="${ptilattavissa.hinta}" />
+						<c:out value="${ptilattavissa.tilattavissa}" />
+						<c:out value="${ptilattavissa.sisalto}" />
 
 
 					</p>
@@ -311,7 +336,10 @@
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap-select.js"></script>
 	<script src="js/bootstrap.js"></script>
+
+	
 
 </body>
 </html>

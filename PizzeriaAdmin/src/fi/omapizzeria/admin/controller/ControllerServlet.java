@@ -72,26 +72,18 @@ public class ControllerServlet extends HttpServlet {
 		List<Tuote> pList = null;
 		List<Tuote> pTilattavissa = null;
 		List<Sisalto> pSisaltoList = null;
-		
+
 		try {
 			pTilattavissa = pDao.haeKaikkiTuotteetTilattavissa();
 		} catch (SQLException e1) {
-			System.out.println("Tilattavissa olevien tuotteiden haku epäonnistui");
+			System.out
+					.println("Tilattavissa olevien tuotteiden haku epäonnistui");
 			e1.printStackTrace();
 		}
 
 		try {
 			pList = pDao.haeKaikkiTuotteet();
-			for (int i = 0; i < pList.size(); i++) {
-				int id = pList.get(i).getId();
-				
-
-				pSisaltoList = pDao.haeTuoteSisalto(id);
-				
-				
-
-			}
-			System.out.println(pSisaltoList);
+			pSisaltoList = pDao.haeTuoteSisalto();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -99,7 +91,7 @@ public class ControllerServlet extends HttpServlet {
 
 		int yhteensa = pList.size();
 		request.setAttribute("pizzat", pList);
-		//request.setAttribute("pizzatSisalto", pSisaltoList);
+		request.setAttribute("pizzatSisalto", pSisaltoList);
 		request.setAttribute("pizzatTilattavissa", pTilattavissa);
 		request.setAttribute("yht", yhteensa);
 
@@ -138,47 +130,28 @@ public class ControllerServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("doPost");
-		/*
-		 * //paketoidaan requestin parametrit yhteen olioon String pnimi =
-		 * request.getParameter("nimi"); String phintas =
-		 * request.getParameter("hinta"); double phinta =
-		 * Double.parseDouble(phintas); Pizza p = new Pizza(3,pnimi,phinta);
-		 * 
-		 * //tallennetaan luotu olio requestin atribuutiksi
-		 * request.setAttribute("pizza", p);
-		 * 
-		 * //ohjataan pyyntö jsp-sivulle, joka hoitaa tulostuksen muotoilun
-		 * request.getRequestDispatcher("list.jsp").forward(request, response);
-		 * 
-		 * //tarvitaan kirjoituskone, jolla voidaan kirjoittaa tekstiä
-		 * webbiselaimelle takaisin päin //PrintWriter wout =
-		 * response.getWriter();
-		 * 
-		 * //palautetaan selaimelle sivu, jossa lukee syötetty nimi
-		 * System.out.println("Nimi: " + pnimi + "\nHinta: " + phinta);
-		 * response.sendRedirect("controller?added=true");
-		 */
-		// paketoidaan requestin parametrit yhteen olioon
+		TuoteDao pDao = new TuoteDao();
+		int tuote_id = 0;
+		try {
+			tuote_id = pDao.haeUusinID();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 		String pnimi = request.getParameter("nimi");
 		String phintas = request.getParameter("hinta");
+
 		double phinta = Double.parseDouble(phintas);
 		String tilattavissa = request.getParameter("tilattavissa");
-		
-		// Tuote p = new Tuote(3, pnimi, phinta);
+		if(tilattavissa== null){
+			tilattavissa = "0";
+		}
+		String osa1 = request.getParameter("selectpicker2");
+		System.out.println(osa1);
 
-		// tallennetaan luotu olio requestin atribuutiksi
-		// request.setAttribute("pizza", p);
-
-		// ohjataan pyyntö jsp-sivulle, joka hoitaa tulostuksen muotoilun
-		// request.getRequestDispatcher("list.jsp").forward(request, response);
-
-		// tarvitaan kirjoituskone, jolla voidaan kirjoittaa tekstiä
-		// webbiselaimelle takaisin päin
-		// PrintWriter wout = response.getWriter();
-
-		// palautetaan selaimelle sivu, jossa lukee syötetty nimi
-		System.out.println("Nimi: " + pnimi + "\nHinta: " + phinta + "Tilattavissa:" + tilattavissa);
+		System.out.println("Nimi: " + pnimi + "\nHinta: " + phinta
+				+ "Tilattavissa:" + tilattavissa + " Osa1: " + osa1);
 
 		ConnectionManager connection = new ConnectionManager();
 
@@ -199,11 +172,22 @@ public class ControllerServlet extends HttpServlet {
 		try {
 			resultSet = statement
 					.executeQuery("INSERT INTO Tuote(nimi, hinta, tilattavissa) VALUE ('"
-							+ pnimi + "', '" + phintas + "', '" + tilattavissa + "')");
+							+ pnimi
+							+ "', '"
+							+ phintas
+							+ "', '"
+							+ tilattavissa
+							+ "')");
+			resultSet = statement
+					.executeQuery("INSERT INTO Tuotteen_sisalto (sisalto_id, tuote_id) VALUE ('"
+							+ osa1 + "','" + tuote_id + "')");
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
+		}
+
+		finally {
 			connection.closeConnection(con);
 			// request.getRequestDispatcher("list?added=true").forward(request,
 			// response);

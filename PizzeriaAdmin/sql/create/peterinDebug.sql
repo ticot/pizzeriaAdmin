@@ -26,7 +26,7 @@ VALUES ('Aurajuusto','Valio');
 
 
 INSERT INTO Tuotteen_sisalto (sisalto_id, tuote_id)
-VALUES (4,6);
+VALUES (4,8);
 
 INSERT INTO Tuotteen_sisalto (sisalto_id, tuote_id)
 VALUES (4,6);
@@ -36,3 +36,7 @@ VALUES (4,6);
 
 INSERT INTO Tuotteen_sisalto (sisalto_id, tuote_id)
 VALUES (4,6);
+
+SELECT tuote_id FROM Tuote
+ORDER BY tuote_id DESC
+LIMIT 1;

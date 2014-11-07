@@ -6,3 +6,5 @@ WHERE p.product_id = r.product_id
 AND r.content_id = c.content_id
 GROUP BY p.product_id
 ORDER BY p.name;
+
+
