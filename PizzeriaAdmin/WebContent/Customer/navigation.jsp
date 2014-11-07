@@ -8,8 +8,8 @@
 	<ul>
 		<li class="active"><a href="index.jsp">Etusivu</a></li>
 		<li><a href="pizzat.jsp">Pizzat</a></li>
-		<li><a href="Yhteystiedot.jsp">Yhteystiedot</a></li>
-		<li><a href="palaute.html">Palaute</a></li>
+		<li><a href="yhteystiedot.jsp">Yhteystiedot</a></li>
+		<li><a href="palaute.jsp">Palaute</a></li>
 	</ul>
 
 
