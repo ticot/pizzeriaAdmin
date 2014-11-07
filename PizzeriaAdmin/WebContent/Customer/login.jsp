@@ -10,6 +10,7 @@
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
 			<div class="modal-header">
+			
 
 				<h4 class="modal-title" id="myModalLabel">Kirjaudu sisään</h4>
 				<button type="button" class="btn btn-default btn-sm"
