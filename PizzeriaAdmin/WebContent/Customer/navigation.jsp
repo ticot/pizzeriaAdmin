@@ -16,6 +16,8 @@
 	<!-- Small modal -->
 	<button class="btn btn-primary" data-toggle="modal"
 		data-target=".bs-example-modal-sm" data-keyboard="true" id="loginbtn">Kirjaudu</button>
+	<button class="btn btn-primary" data-toggle="modal"
+		data-target=".bs-example-modal-sm" data-keyboard="true" id="regbtn">Rekisteröidy</button>
 
 
 

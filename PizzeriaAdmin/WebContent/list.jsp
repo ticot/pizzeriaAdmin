@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE>
 <html>
@@ -27,7 +27,7 @@ $(document).ready(function(){
 </script>
 
 	<div class="topbar">
-		<
+		
 		<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav"
 			role="banner">
 
@@ -164,6 +164,21 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
+	
+	<br><br>
+	<c:forEach items="${pizzat}" var="p">
+	<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title"><c:out value="${p.nimi}" /> <c:out value="${p.hinta}" /></h3>
+				<span class="glyphicon glyphicon-remove" id="rmv"></span>
+			</div>
+			<div class="panel-body">
+			<c:out value="${p.sisalto}" />
+			
+			</div>
+			 <button type="button" class="btn btn-warning" id="mod">Piilota tuote valikoimasta</button>
+		</div>
+	</c:forEach>
 	<!-- 
 						<form name="input" action="controller" method="POST">
 						<input type="text" name="nimi"><br>
@@ -171,7 +186,7 @@ $(document).ready(function(){
 						<input type="submit" value="Submit">
 						</form> 
 						 -->
-	<ul>
+	<%-- <ul>
 
 		<h1>Tilattavissa olevat pizzat</h1>
 
@@ -312,14 +327,14 @@ $(document).ready(function(){
 				<td><c:out value="${p.hinta}" /></td>
 			</tr>
 		</c:forEach>
-	</ul>
+	</ul> --%>
 	</div>
 
 	<div class="leftnavigation">
 		<div id="leftwrap">
 			<ul class="nav nav-pills nav-stacked">
 				<li><a href="index.html">Home</a></li>
-				<li class="active"><a href="tuotteet.html">Lis‰‰ tuotteitta</a></li>
+				<li class="active"><a href="list.jsp">Lis‰‰ tuotteitta</a></li>
 				<li><a href="#">Messages</a></li>
 			</ul>
 		</div>
