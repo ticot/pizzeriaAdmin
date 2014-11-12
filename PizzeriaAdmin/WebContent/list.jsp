@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE>
 <html>
@@ -20,14 +20,14 @@
 </head>
 <body>
 
-<script type="text/javascript">
-$(document).ready(function(){
-    $('select').selectpicker();
-});
-</script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('select').selectpicker();
+		});
+	</script>
 
 	<div class="topbar">
-		
+
 		<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav"
 			role="banner">
 
@@ -125,68 +125,103 @@ $(document).ready(function(){
 			role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
-				<div class="form-group">
-					<h1 class="hh">Lis‰‰ uusi tuote</h1>
-					<form name="input" action="list" method="POST">
-						<input type="text" class="form-control"
-							placeholder="Tuotteen nimi" id="name" name="nimi"><br>
-						<input type="text" class="form-control"
-							placeholder="Tuotteen hinta" id="name" name="hinta">
-						<textarea class="form-control" rows="3" id="textarea">
+					<div class="form-group">
+						<h1 class="hh">Lis‰‰ uusi tuote</h1>
+						<form name="input" action="list" method="POST">
+							<input type="text" class="form-control"
+								placeholder="Tuotteen nimi" id="name" name="nimi"><br>
+							<input type="text" class="form-control"
+								placeholder="Tuotteen hinta" id="name" name="hinta">
+							<textarea class="form-control" rows="3" id="textarea">
 								</textarea>
 
- <label>
-						<input type="checkbox" name="tilattavissa" value="1">
-						Tilattavissa
-</label> 
-</div>
-<select name="selectpicker2" class="selectpicker2">
-<option value="Ei valittu">Ei valittu</option>
-<c:forEach items="${pizzatSisalto}" var="pSisalto">
-<option value="<c:out value="${pSisalto.tuote_id}"/>"><c:out value="${pSisalto.nimi}" /></option>
-</c:forEach>
-</select>
+							<label> <input type="checkbox" name="tilattavissa"
+								value="1"> Tilattavissa
+							</label>
+					</div>
+					<select name="selectpicker2" class="selectpicker2">
+						<option value="Ei valittu">Ei valittu</option>
+						<c:forEach items="${pizzatSisalto}" var="pSisalto">
+							<option value="<c:out value="${pSisalto.tuote_id}"/>"><c:out
+									value="${pSisalto.nimi}" /></option>
+						</c:forEach>
+					</select> <br> <br> <br> <br> <br>
 
-<br>
-<br>
-<br>
-<br>
-<br>
+					<div class="btnwrapper">
+						<button type="submit" class="btn btn-primary" id="ybtn"
+							value="Submit">Tallenna</button>
+						<button type="button" data-dismiss="modal" class="btn btn-default"
+							id="nbtn">Peruuta</button>
+						</form>
 
-						<div class="btnwrapper">
-							<button type="submit" class="btn btn-primary" id="ybtn"
-								value="Submit">Tallenna</button>
-							<button type="button" data-dismiss="modal"
-								class="btn btn-default" id="nbtn">Peruuta</button>
-					</form>
-
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	
-	<br><br>
-	<c:forEach items="${pizzat}" var="p">
-	<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title"><c:out value="${p.nimi}" /> <c:out value="${p.hinta}" /></h3>
-				<span class="glyphicon glyphicon-remove" id="rmv"></span>
+
+		<br>
+		<br>
+		<c:forEach items="${pizzat}" var="p">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<c:out value="${p.nimi}" />
+						<c:out value="${p.hinta}" />
+						&#128;
+					</h3>
+					<!-- <span class="glyphicon glyphicon-remove" id="rmv"></span> -->
+					<button class="glyphicon glyphicon-remove" id="rmv" data-toggle="modal" data-target=".bs-example-modal-sm<c:out value="${p.id}"/>"></button>
+					<div class="modal fade bs-example-modal-sm<c:out value="${p.id}"/>"
+						tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog modal-sm">
+							<div class="modal-content" id="del">
+								<h1>Poista tuote</h1>
+								<p>
+									Oletko varma ett‰ haluat poistaa tuotteen <b><c:out
+											value="${p.nimi}" /></b> ?
+								</p>
+								<div id="btnwrap2">
+									<form name="input" action="poista?id=<c:out value="${p.id}"/>"
+										method="POST">
+
+										<button type="submit" class="btn btn-primary" id="ybtn"
+											value="Submit">Poista tuote</button>
+										<button type="button" data-dismiss="modal"
+											class="btn btn-default" id="nbtn">Peruuta</button>
+									</form>
+									<!-- 
+								<!-- <form name="input" action="list?action=poistatuote=<c:out value="${p.id}"/>" method="POST"> 
+								
+									<a href="list?action=poistaTuote&id=<c:out value="${p.id}"/>"><button type="submit" class="btn btn-primary">Poista tuote</button></a>
+									<button type="button" data-dismiss="modal" class="btn btn-default">Peruuta</button>
+								 -->
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="panel-body">
+					<c:out value="${p.sisalto}" />
+
+				</div>
+				<c:if test="${p.tilattavissa} = 1}">
+				<button type="button" class="btn btn-success" id="mod">Tilattavissa</button>
+				</c:if>
+				<c:if test="${p.tilattavissa} = 0}">
+				<button type="button" class="btn btn-warning" id="mod">Ei tilattavissa</button>
+				</c:if>
 			</div>
-			<div class="panel-body">
-			<c:out value="${p.sisalto}" />
-			
-			</div>
-			 <button type="button" class="btn btn-warning" id="mod">Piilota tuote valikoimasta</button>
-		</div>
-	</c:forEach>
-	<!-- 
+		</c:forEach>
+		<!-- 
 						<form name="input" action="controller" method="POST">
 						<input type="text" name="nimi"><br>
 						<input type="text" name="hinta"><br>
 						<input type="submit" value="Submit">
 						</form> 
 						 -->
-	<%-- <ul>
+		<%-- <ul>
 
 		<h1>Tilattavissa olevat pizzat</h1>
 
@@ -282,8 +317,7 @@ $(document).ready(function(){
 						method="POST">
 						<button class="btn btn-alert">Nayta</button>
 					</form>
-					<button class="btn btn-danger" data-toggle="modal"
-						data-target=".bs-example-modal-sm<c:out value="${p.id}"/>">Poista</button>
+					<button class="btn btn-danger" data-toggle="modal" data-target=".bs-example-modal-sm<c:out value="${p.id}"/>">Poista</button>
 						</div>
 					<div class="modal fade bs-example-modal-sm<c:out value="${p.id}"/>"
 						tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
@@ -335,6 +369,7 @@ $(document).ready(function(){
 			<ul class="nav nav-pills nav-stacked">
 				<li><a href="index.html">Home</a></li>
 				<li class="active"><a href="list.jsp">Lis‰‰ tuotteitta</a></li>
+				<li><a href="user">Lis‰‰ k‰ytt‰j‰</a></li>
 				<li><a href="#">Messages</a></li>
 			</ul>
 		</div>
@@ -354,7 +389,7 @@ $(document).ready(function(){
 	<script src="js/bootstrap-select.js"></script>
 	<script src="js/bootstrap.js"></script>
 
-	
+
 
 </body>
 </html>

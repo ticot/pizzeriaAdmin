@@ -1,12 +1,138 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<link href="css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="css/ionicons.css">
+<link href="img/title.png" rel="shortcut icon" type="image/x-icon" />
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+		       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<meta charset="UTF-8">
+<title>Melo e Castello</title>
 </head>
 <body>
+	<div class="topbar">
+		<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav"
+			role="banner">
+
+			<nav class="collapse navbar-collapse bs-navbar-collapse"
+				role="navigation">
+				<a class="navbar-brand" href="#">Melo e Castello Admin</a>
+				<ul class="nav navbar-nav" id="loginbtn">
+
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown"><span class="step size-21"> <i
+								class="icon ion-ios7-bell"></i>
+						</span><b class="caret"></b></a>
+						<ul class="dropdown-menu dropdown-menu-right">
+							<li><a href="#">Ilmoitus</a></li>
+							<li><a href="#">Ilmoitus</a></li>
+							<li><a href="#">Ilmoitus <span
+									class="label label-danger">Tärkeä</span></a></li>
+							<li><a href="#">Ilmoitus</a></li>
+
+
+						</ul></li>
+
+
+
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>
+							John Smith <b class="caret"></b></a>
+						<ul class="dropdown-menu dropdown-menu-right">
+							<li><a href="#"><span class="glyphicon glyphicon-user"></span>
+									Profiili</a></li>
+							<li><a href="#"><span class="step size-12"> <i
+										class="icon ion-android-settings"></i>
+								</span>Asetukset</a></li>
+							<li role="presentation" class="divider"></li>
+							<li><a href="#"><span class="step size-14"> <i
+										class="icon ion-log-out"></i>
+								</span>Kirjaudu ulos</a></li>
+						</ul></li>
+
+				</ul>
+			</nav>
+
+		</header>
+
+	</div>
+	<!-- Small modal -->
+
+
+	<div id="centercontent">
+		<div class="jumbotron">
+			<h1>Lisää käyttäjä</h1>
+			<p>Tänään on kaunis päivä!</p>
+		</div>
+
+
+
+		<form class="form-horizontal" name="input" action="user" method="POST">
+			<fieldset>
+
+				<!-- Form Name -->
+				<legend>Lisää uusi käyttäjä</legend>
+
+				<!-- Text input-->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="email">E-mail</label>
+					<div class="col-md-4">
+						<input id="email" name="email" placeholder="E-mail"
+							class="form-control input-md" required="" type="text">
+
+					</div>
+				</div>
+
+				<!-- Password input-->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="salasana">Salasana</label>
+					<div class="col-md-4">
+						<input id="salasana" name="salasana" placeholder="Salasana"
+							class="form-control input-md" required="" type="password">
+
+					</div>
+				</div>
+
+				<button type="submit" class="btn btn-primary" id="ybtn"
+					value="Submit">Poista tuote</button>
+				<button type="button" data-dismiss="modal" class="btn btn-default"
+					id="nbtn">Peruuta</button>
+
+			</fieldset>
+		</form>
+
+	</div>
+	<div class="leftnavigation">
+		<div id="leftwrap">
+			<ul class="nav nav-pills nav-stacked">
+				<li class="active"><a href="index.html">Home</a></li>
+				<li><a href="list">Lisää tuotteitta</a></li>
+				<li><a href="user">Lisää käyttäjä</a></li>
+				<li><a href="#">Messages</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="footer">
+		<a href="#"><img src="img/ico_tico.png"></a>
+	</div>
+
+
+
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.js"></script>
 
 </body>
 </html>
