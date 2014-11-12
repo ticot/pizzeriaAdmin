@@ -24,7 +24,20 @@ body {
 .thumbnail {
 		max-width:280px;
 }
-
+#mod{
+	float:right;
+	margin-top:-35px;
+	margin-right:5px;
+	padding:5px;
+}
+#mod p, h4{
+	padding:30px;
+}
+#rmv{
+	float:right;
+	margin-top:-20px;
+	margin-right:-10px;
+}
 .caption ul,h3,p{
 	color:white;
 }
