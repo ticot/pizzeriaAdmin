@@ -129,10 +129,9 @@
 						<h1 class="hh">Lis‰‰ uusi tuote</h1>
 						<form name="input" action="list" method="POST">
 							<input type="text" class="form-control"
-								placeholder="Tuotteen nimi" id="name" name="nimi"><br>
-							<input type="text" class="form-control"
-								placeholder="Tuotteen hinta" id="name" name="hinta">
-							<textarea class="form-control" rows="3" id="textarea">
+								placeholder="Tuotteen nimi" id="name" name="nimi" required=""><br>
+							<input type="number" min="0" step="any" class="form-control"
+								placeholder="Tuotteen hinta" id="name" name="hinta" required="">
 								</textarea>
 
 							<label> <input type="checkbox" name="tilattavissa"
@@ -140,7 +139,7 @@
 							</label>
 					</div>
 					<select name="selectpicker2" class="selectpicker2">
-						<option value="Ei valittu">Ei valittu</option>
+						<option value="5">Ei valittu</option>
 						<c:forEach items="${pizzatSisalto}" var="pSisalto">
 							<option value="<c:out value="${pSisalto.tuote_id}"/>"><c:out
 									value="${pSisalto.nimi}" /></option>
@@ -159,8 +158,7 @@
 			</div>
 		</div>
 
-		<br>
-		<br>
+		<br> <br>
 		<c:forEach items="${pizzat}" var="p">
 			<div class="panel panel-default">
 				<div class="panel-heading">
@@ -170,7 +168,9 @@
 						&#128;
 					</h3>
 					<!-- <span class="glyphicon glyphicon-remove" id="rmv"></span> -->
-					<button class="glyphicon glyphicon-remove" id="rmv" data-toggle="modal" data-target=".bs-example-modal-sm<c:out value="${p.id}"/>"></button>
+					<button class="glyphicon glyphicon-remove" id="rmv"
+						data-toggle="modal"
+						data-target=".bs-example-modal-sm<c:out value="${p.id}"/>"></button>
 					<div class="modal fade bs-example-modal-sm<c:out value="${p.id}"/>"
 						tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
 						aria-hidden="true">
@@ -206,11 +206,21 @@
 					<c:out value="${p.sisalto}" />
 
 				</div>
-				<c:if test="${p.tilattavissa} = 1}">
-				<button type="button" class="btn btn-success" id="mod">Tilattavissa</button>
+				<c:if test="${p.tilattavissa}">
+				<form name="input"
+							action="muokkaa?id=<c:out value="${p.id}"/>&action=0"
+							method="POST">
+					<button type="submit" class="btn btn-success" id="mod"
+						name="action" value="Tilattavissa">Tilattavissa</button>
+						</form>
 				</c:if>
-				<c:if test="${p.tilattavissa} = 0}">
-				<button type="button" class="btn btn-warning" id="mod">Ei tilattavissa</button>
+				<c:if test="${!p.tilattavissa}">
+				<form name="input"
+							action="muokkaa?id=<c:out value="${p.id}"/>&action=1"
+							method="POST">
+					<button type="submit" class="btn btn-warning" id="mod">Ei
+						tilattavissa</button>
+						</form>
 				</c:if>
 			</div>
 		</c:forEach>
@@ -368,7 +378,7 @@
 		<div id="leftwrap">
 			<ul class="nav nav-pills nav-stacked">
 				<li><a href="index.html">Home</a></li>
-				<li class="active"><a href="list.jsp">Lis‰‰ tuotteitta</a></li>
+				<li class="active"><a href="list">Lis‰‰ tuotteitta</a></li>
 				<li><a href="user">Lis‰‰ k‰ytt‰j‰</a></li>
 				<li><a href="#">Messages</a></li>
 			</ul>
