@@ -13,7 +13,7 @@ CREATE TABLE Tilaus
 
 CREATE TABLE Tilauksen_tuote
 (tilaus_id INTEGER (10)NOT NULL
-,tuote_id INTEGER (3) NOT NULL
+,tuote_id INTEGER (10) NOT NULL
 ,gluteeniton BOOLEAN NOT NULL
 ,laktoositon BOOLEAN NOT NULL
 ,fantasia VARCHAR (100) NOT NULL
