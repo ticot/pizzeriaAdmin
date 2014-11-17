@@ -1,6 +1,7 @@
 package fi.omapizzeria.admin.controller;
 
 import include.ConnectionManager;
+import include.Hash;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fi.omapizzeria.admin.bean.Tuote;
 import fi.omapizzeria.admin.dao.TuoteDao;
+
 
 /**
  * Servlet implementation class User
@@ -48,7 +50,12 @@ public class User extends HttpServlet {
 		TuoteDao pDao = new TuoteDao();
 
 		String email = request.getParameter("email");
-		String salasana = request.getParameter("salasana");
+		//String salasana = request.getParameter("salasana");
+		Hash h = new Hash();
+		String salasana = h.getHash(request.getParameter("salasana"));
+		System.out.println("salasana=" + salasana);
+		
+		String level = request.getParameter("level");
 		
 		ConnectionManager connection = new ConnectionManager();
 
@@ -68,8 +75,8 @@ public class User extends HttpServlet {
 
 		try {
 			resultSet = statement
-					.executeQuery("INSERT INTO KAYTTAJA (email, salasana) VALUE ('"
-							+ email + "','" + salasana + "')");
+					.executeQuery("INSERT INTO Kayttaja (email, salasana, level) VALUE ('"
+							+ email + "','" + salasana + "','" + level +"')");
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
