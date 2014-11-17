@@ -10,26 +10,27 @@
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
 			<div class="modal-header">
-			
+
 
 				<h4 class="modal-title" id="myModalLabel">Kirjaudu sisään</h4>
 				<button type="button" class="btn btn-default btn-sm"
 					data-dismiss="modal" id="close">
 					<span class="glyphicon glyphicon-remove"></span>
 			</div>
-			<form class="form-horizontal" role="form">
+			<form action="login" class="form-horizontal" role="form">
 
 				<div class="form-group">
-					<label for="inputEmail3" class="col-sm-2 control-label">Tunnus</label>
+					<label for="inputEmail3" class="col-sm-2 control-label">E-mail</label>
 					<div class="col-sm-10">
-						<input type="email" class="form-control" id="inputEmail3"
-							placeholder="Käyttäjätunnus" required="">
+						<input type="email" class="form-control" id="inputEmail3" name="email"
+							placeholder="E-mail" required="">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="inputPassword3" class="col-sm-2 control-label">Salasana</label>
 					<div class="col-sm-10">
-						<input type="password" class="form-control" id="inputPassword3" placeholder="Salasana" required="">
+						<input type="password" class="form-control" id="inputPassword3" name="salasana"
+							placeholder="Salasana" required="">
 					</div>
 				</div>
 				<div class="form-group">

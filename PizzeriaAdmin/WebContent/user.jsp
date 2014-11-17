@@ -100,6 +100,14 @@
 
 					</div>
 				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="salasana">Salasana uudelleen</label>
+					<div class="col-md-4">
+						<input id="salasana2" name="salasana2" placeholder="Salasana uudelleen"
+							class="form-control input-md" required="" type="password" required="">
+
+					</div>
+				</div>
 				
 				<!-- User level input -->
 				<div class="form-group">
