@@ -22,7 +22,7 @@ INSERT INTO Sisalto (nimi, sisalto)
 VALUES ('Pillumehu','Vosu');
 
 INSERT INTO Sisalto (nimi, sisalto)
-VALUES ('Aurajuusto','Valio');
+VALUES ('Ei aineosia','Ei aineosia');
 
 
 INSERT INTO Tuotteen_sisalto (sisalto_id, tuote_id)

@@ -165,7 +165,7 @@ public class TuoteDao {
 		// TÄTÄ EI ENÄÄ KÄYTETÄÄ !!=?!?!!=?!=!=!=!=
 		resultSet = statement
 				.executeQuery("SELECT tuote_id FROM Tuote ORDER BY tuote_id DESC LIMIT 1;");
-
+				
 		try {
 			while (resultSet.next()) { // Iteroidaan läpi
 
@@ -176,8 +176,9 @@ public class TuoteDao {
 				 * + "\nNimi: " + nimi + "\nHinta: " + hinta);
 				 */
 
+					
 				tuote_id = resultSet.getInt("tuote_id");
-
+				
 
 			}
 
