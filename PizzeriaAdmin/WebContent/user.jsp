@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE>
 <html>
 <head>
@@ -81,12 +81,12 @@
 				<!-- Form Name -->
 				<legend>Lis‰‰ uusi k‰ytt‰j‰</legend>
 
-				<!-- Text input-->
+				<!-- Email input -->
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="email">E-mail</label>
 					<div class="col-md-4">
 						<input id="email" name="email" placeholder="E-mail"
-							class="form-control input-md" required="" type="text">
+							class="form-control input-md" required="" type="text" required="">
 
 					</div>
 				</div>
@@ -96,13 +96,26 @@
 					<label class="col-md-4 control-label" for="salasana">Salasana</label>
 					<div class="col-md-4">
 						<input id="salasana" name="salasana" placeholder="Salasana"
-							class="form-control input-md" required="" type="password">
+							class="form-control input-md" required="" type="password" required="">
+
+					</div>
+				</div>
+				
+				<!-- User level input -->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="userlevel">K‰ytt‰j‰taso</label>
+					<div class="col-md-4">
+						<select id="level" name="level" placeholder="Level">
+							<option value="0">0 - Ei m‰‰ritelty.</option>
+							<option value="1">1 - Yll‰pito.</option>
+							<option value="2">2 - Perusk‰ytt‰j‰.</option>
+						</select>
 
 					</div>
 				</div>
 
 				<button type="submit" class="btn btn-primary" id="ybtn"
-					value="Submit">Poista tuote</button>
+					value="Submit">Lis‰‰ K‰ytt‰j‰</button>
 				<button type="button" data-dismiss="modal" class="btn btn-default"
 					id="nbtn">Peruuta</button>
 
@@ -113,9 +126,9 @@
 	<div class="leftnavigation">
 		<div id="leftwrap">
 			<ul class="nav nav-pills nav-stacked">
-				<li class="active"><a href="index.html">Home</a></li>
+				<li ><a href="index.html">Home</a></li>
 				<li><a href="list">Lis‰‰ tuotteitta</a></li>
-				<li><a href="user">Lis‰‰ k‰ytt‰j‰</a></li>
+				<li class="active"><a href="user">Lis‰‰ k‰ytt‰j‰</a></li>
 				<li><a href="#">Messages</a></li>
 			</ul>
 		</div>
