@@ -15,6 +15,9 @@ public class Ostoskori {
 	private String extra;
 	private double hinta;
 
+	public Ostoskori(){
+		
+	}
 	public Ostoskori(int tuote_id, int kayttaja_id, int lkm, boolean glu,
 			boolean lakt, double hintayhteensa, Date toimitusaika,
 			String fantasia, String extra, double hinta) {
