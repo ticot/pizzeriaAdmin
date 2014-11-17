@@ -6,6 +6,7 @@ public class UserBean {
 	private String firstName;
 	private String lastName;
 	private String email;
+	private int level;
 	public boolean valid;
 
 	public String getFirstName() {

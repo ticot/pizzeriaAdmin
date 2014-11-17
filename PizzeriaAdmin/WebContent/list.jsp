@@ -19,7 +19,14 @@
 <title>Melo e Castello</title>
 </head>
 <body>
+<%
+		if (session.getAttribute("currentSessionUser") == null) {
+			response.sendRedirect("Customer/index.jsp");
+	
+		} else {
 
+		
+	%>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('select').selectpicker();
@@ -54,7 +61,7 @@
 
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>
-							John Smith <b class="caret"></b></a>
+							<c:out value="${currentSessionUser.email}"/> <b class="caret"></b></a>
 						<ul class="dropdown-menu dropdown-menu-right">
 							<li><a href="#"><span class="glyphicon glyphicon-user"></span>
 									Profiili</a></li>
@@ -407,23 +414,8 @@
 
 
 
+<% }%>
+
 </body>
 </html>
 
-<!--  
-<c:if test="${not empty param.added}">Uusi Pizza lisätty<br></c:if>
-<c:out value="${aloitusaika}"/>
-<c:forEach items="${piz}" var="pizza">
-<p><b>${pizza.nimi}</b>
-${pizza.hinta}e</p>
-</c:forEach>
- -->
-
-
-<!-- 
-<form name="input" action="controller" method="POST">
-<input type="text" name="nimi"><br>
-<input type="text" name="hinta"><br>
-<input type="submit" value="Submit">
-</form> 
-	 -->
