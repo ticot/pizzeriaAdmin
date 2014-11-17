@@ -26,13 +26,7 @@
 
 
 	<jsp:include page="login.jsp" />
-	<div id="navigation">
-		<ul>
-			<li><a href="index.html">Etusivu</a></li>
-			<li class="active"><a href="pizzat.html">Pizzat</a></li>
-			<li><a href="Yhteystiedot.html">Yhteystiedot</a></li>
-			<li><a href="palaute.html">Palaute</a></li>
-		</ul>
+	<jsp:include page="navigation.jsp" />
 
 
 		<!-- Small modal -->

@@ -16,13 +16,7 @@ public class ConnectionManager {
 		String url = "jdbc:mariadb://localhost/a1303399";
 		
 		
-		//Tanjan Tunneli
-		/*
-		String username = "a1303392";
-		String password = "faMUNr33r";
-		String url = "jdbc:mariadb://localhost/a1303392";
-		*/
-
+	
 		try {
 			Class.forName("org.mariadb.jdbc.Driver").newInstance(); // Ladataan
 																	// ajurit
