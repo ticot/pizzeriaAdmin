@@ -28,11 +28,14 @@
 		<div class="content">
 			<h1 class="feedback">Anna Palautetta</h1>
 
-			<input type="text" class="form-control" placeholder="Nimi" id="name">
+			<form class="form-horizontal" name="input" action="palaute" method="POST">
+			<input type="text" class="form-control" placeholder="Nimi" id="name" name="nimi" required="">
 			<input type="text" class="form-control" placeholder="Sähköposti"
-				id="name">
+				id="name" name="email">
+			<input type="text" class="form-control" placeholder="Otsikko" id="name" name="otsikko" required="">	
 
-			<textarea class="form-control" rows="3" id="textarea">
+			<textarea class="form-control" rows="1" id="textarea" name="palaute" required="" placeholder="ASD">
+			
 				</textarea>
 			<p>Sähköposti tai nimi eivät ole pakollisia. Laita sähköposti
 				osoitteesi vain siinä tapauksessa, jos haluat meiltä paluupostia
@@ -40,6 +43,7 @@
 				tyhjiksi ja palautteesi tulee meille nimettömänä</p>
 			<p>Arvostamme kaikkea meille saapuvaa palautetta!</p>
 			<button type="submit" class="btn btn-primary">Lähetä</button>
+			</form>
 		</div>
 
 
