@@ -19,13 +19,11 @@
 <title>Melo e Castello</title>
 </head>
 <body>
-<%
+	<%
 		if (session.getAttribute("currentSessionUser") == null) {
 			response.sendRedirect("Customer/index.jsp");
-	
-		} else {
 
-		
+		} else {
 	%>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -61,7 +59,7 @@
 
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>
-							<c:out value="${currentSessionUser.email}"/> <b class="caret"></b></a>
+							<c:out value="${currentSessionUser.email}" /> <b class="caret"></b></a>
 						<ul class="dropdown-menu dropdown-menu-right">
 							<li><a href="#"><span class="glyphicon glyphicon-user"></span>
 									Profiili</a></li>
@@ -69,7 +67,7 @@
 										class="icon ion-android-settings"></i>
 								</span>Asetukset</a></li>
 							<li role="presentation" class="divider"></li>
-							<li><a href="#"><span class="step size-14"> <i
+							<li><a href="logout.jsp"><span class="step size-14"> <i
 										class="icon ion-log-out"></i>
 								</span>Kirjaudu ulos</a></li>
 						</ul></li>
@@ -97,7 +95,7 @@
 
 		<%
 			}
-			if (request.getParameter("poistettu") != null) {
+				if (request.getParameter("poistettu") != null) {
 		%>
 		<div class="alert alert-info alert-dismissible" role="alert">
 			<button type="button" class="close" data-dismiss="alert">
@@ -108,7 +106,7 @@
 		<%
 			}
 
-			if (request.getParameter("muokattu") != null) {
+				if (request.getParameter("muokattu") != null) {
 		%>
 		<div class="alert alert-info alert-dismissible" role="alert">
 			<button type="button" class="close" data-dismiss="alert">
@@ -124,16 +122,16 @@
 			<h1>Hallitse tuotteita</h1>
 			<p>
 				Hei sinulla on t‰ll‰ hetkell‰
-			<c:out value="${yht}" />
-			tuottetta valikoimassa.
+				<c:out value="${yht}" />
+				tuottetta valikoimassa.
 			</p>
 			<br>
 			<button class="btn btn-success" data-toggle="modal"
-			data-target=".bs-example-modal-lg" id="addbtn">Lis‰‰ tuote</button>
+				data-target=".bs-example-modal-lg" id="addbtn">Lis‰‰ tuote</button>
 		</div>
-			
-		
-		
+
+
+
 		<div class="modal fade bs-example-modal-lg" tabindex="-1"
 			role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-lg">
@@ -145,7 +143,7 @@
 								placeholder="Tuotteen nimi" id="name" name="nimi" required=""><br>
 							<input type="number" min="0" step="any" class="form-control"
 								placeholder="Tuotteen hinta" id="name" name="hinta" required="">
-								</textarea>
+							</textarea>
 
 							<label> <input type="checkbox" name="tilattavissa"
 								value="1"> Tilattavissa
@@ -220,20 +218,20 @@
 
 				</div>
 				<c:if test="${p.tilattavissa}">
-				<form name="input"
-							action="muokkaa?id=<c:out value="${p.id}"/>&action=0"
-							method="POST">
-					<button type="submit" class="btn btn-success" id="mod"
-						name="action" value="Tilattavissa">Tilattavissa</button>
-						</form>
+					<form name="input"
+						action="muokkaa?id=<c:out value="${p.id}"/>&action=0"
+						method="POST">
+						<button type="submit" class="btn btn-success" id="mod"
+							name="action" value="Tilattavissa">Tilattavissa</button>
+					</form>
 				</c:if>
 				<c:if test="${!p.tilattavissa}">
-				<form name="input"
-							action="muokkaa?id=<c:out value="${p.id}"/>&action=1"
-							method="POST">
-					<button type="submit" class="btn btn-warning" id="mod">Ei
-						tilattavissa</button>
-						</form>
+					<form name="input"
+						action="muokkaa?id=<c:out value="${p.id}"/>&action=1"
+						method="POST">
+						<button type="submit" class="btn btn-warning" id="mod">Ei
+							tilattavissa</button>
+					</form>
 				</c:if>
 			</div>
 		</c:forEach>
@@ -414,7 +412,9 @@
 
 
 
-<% }%>
+	<%
+		}
+	%>
 
 </body>
 </html>
