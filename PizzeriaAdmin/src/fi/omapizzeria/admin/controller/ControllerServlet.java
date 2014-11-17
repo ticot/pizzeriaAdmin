@@ -95,6 +95,7 @@ public class ControllerServlet extends HttpServlet {
 		request.setAttribute("pizzatTilattavissa", pTilattavissa);
 		request.setAttribute("yht", yhteensa);
 
+	
 		request.getRequestDispatcher("list.jsp").forward(request, response);
 		// request.getRequestDispatcher("PETER_TEST_INGORE.jsp").forward(request,
 		// response); // IGNORE
@@ -134,6 +135,9 @@ public class ControllerServlet extends HttpServlet {
 		int tuote_id = 0;
 		try {
 			tuote_id = pDao.haeUusinID();
+			if(tuote_id == 0){
+				tuote_id = 1; 
+			}
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -144,14 +148,14 @@ public class ControllerServlet extends HttpServlet {
 
 		double phinta = Double.parseDouble(phintas);
 		String tilattavissa = request.getParameter("tilattavissa");
-		if(tilattavissa== null){
+		if(tilattavissa == null){
 			tilattavissa = "0";
 		}
 		String osa1 = request.getParameter("selectpicker2");
-		System.out.println(osa1);
 
 		System.out.println("Nimi: " + pnimi + "\nHinta: " + phinta
 				+ "Tilattavissa:" + tilattavissa + " Osa1: " + osa1);
+		System.out.println("Tuote id on !!!! " +tuote_id);
 
 		ConnectionManager connection = new ConnectionManager();
 

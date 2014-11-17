@@ -126,10 +126,10 @@
 	<div class="leftnavigation">
 		<div id="leftwrap">
 			<ul class="nav nav-pills nav-stacked">
-				<li ><a href="index.html">Home</a></li>
-				<li><a href="list">Lis‰‰ tuotteitta</a></li>
+				<li ><a href="index.html">Etusivu</a></li>
+				<li><a href="list">Tuotteet</a></li>
 				<li class="active"><a href="user">Lis‰‰ k‰ytt‰j‰</a></li>
-				<li><a href="#">Messages</a></li>
+				<li><a href="palaute.jsp">Palautteet</a></li>
 			</ul>
 		</div>
 	</div>

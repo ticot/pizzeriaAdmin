@@ -113,14 +113,20 @@
 			}
 		%>
 
-		<h1>Tervetuloa</h1>
-		<p>
-			Hei sinulla on t‰ll‰ hetkell‰
+		<div class="jumbotron">
+			<h1>Hallitse tuotteita</h1>
+			<p>
+				Hei sinulla on t‰ll‰ hetkell‰
 			<c:out value="${yht}" />
 			tuottetta valikoimassa.
-		</p>
-		<button class="btn btn-success" data-toggle="modal"
+			</p>
+			<br>
+			<button class="btn btn-success" data-toggle="modal"
 			data-target=".bs-example-modal-lg" id="addbtn">Lis‰‰ tuote</button>
+		</div>
+			
+		
+		
 		<div class="modal fade bs-example-modal-lg" tabindex="-1"
 			role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-lg">
@@ -139,7 +145,7 @@
 							</label>
 					</div>
 					<select name="selectpicker2" class="selectpicker2">
-						<option value="5">Ei valittu</option>
+						<!-- <option value="5">Ei valittu</option> -->
 						<c:forEach items="${pizzatSisalto}" var="pSisalto">
 							<option value="<c:out value="${pSisalto.tuote_id}"/>"><c:out
 									value="${pSisalto.nimi}" /></option>
@@ -377,10 +383,10 @@
 	<div class="leftnavigation">
 		<div id="leftwrap">
 			<ul class="nav nav-pills nav-stacked">
-				<li><a href="index.html">Home</a></li>
-				<li class="active"><a href="list">Lis‰‰ tuotteitta</a></li>
+				<li><a href="index.html">Etusivu</a></li>
+				<li class="active"><a href="list">Tuotteet</a></li>
 				<li><a href="user">Lis‰‰ k‰ytt‰j‰</a></li>
-				<li><a href="#">Messages</a></li>
+				<li><a href="palaute.jsp">Palautteet</a></li>
 			</ul>
 		</div>
 	</div>
