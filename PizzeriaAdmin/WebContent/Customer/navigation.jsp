@@ -15,9 +15,11 @@
 
 	<!-- Small modal -->
 	<button class="btn btn-primary" data-toggle="modal"
-		data-target=".bs-example-modal-sm" data-keyboard="true" id="loginbtn">Kirjaudu</button>
+		data-target=".bs-example-modal-sm2" data-keyboard="true" id="regbtn">Rekisteröidy</button>
 	<button class="btn btn-primary" data-toggle="modal"
-		data-target=".bs-example-modal-sm" data-keyboard="true" id="regbtn">Rekisteröidy</button>
+		data-target=".bs-example-modal-sm" data-keyboard="true" id="loginbtn">Kirjaudu</button>
+	
+
 
 
 
