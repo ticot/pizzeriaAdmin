@@ -70,6 +70,7 @@ public class ControllerServlet extends HttpServlet {
 
 		TuoteDao pDao = new TuoteDao();
 		List<Tuote> pList = null;
+		List<Palaute> palauteList = null;
 		List<Tuote> pTilattavissa = null;
 		List<Sisalto> pSisaltoList = null;
 
@@ -82,6 +83,13 @@ public class ControllerServlet extends HttpServlet {
 		}
 
 		try {
+			palauteList = pDao.haeKaikkiPalautteet();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		try {
 			pList = pDao.haeKaikkiTuotteet();
 			pSisaltoList = pDao.haeTuoteSisalto();
 		} catch (SQLException e) {
@@ -93,10 +101,12 @@ public class ControllerServlet extends HttpServlet {
 		request.setAttribute("pizzat", pList);
 		request.setAttribute("pizzatSisalto", pSisaltoList);
 		request.setAttribute("pizzatTilattavissa", pTilattavissa);
+		request.setAttribute("palautteet", palauteList);
 		request.setAttribute("yht", yhteensa);
 
 	
 		request.getRequestDispatcher("list.jsp").forward(request, response);
+		//request.getRequestDispatcher("dummy.jsp").forward(request, response);
 		// request.getRequestDispatcher("PETER_TEST_INGORE.jsp").forward(request,
 		// response); // IGNORE
 

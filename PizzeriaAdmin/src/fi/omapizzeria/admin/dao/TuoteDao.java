@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import include.ConnectionManager;
+import fi.omapizzeria.admin.bean.Palaute;
 import fi.omapizzeria.admin.bean.Tuote;
 import fi.omapizzeria.admin.bean.Sisalto;
 
@@ -191,6 +192,54 @@ public class TuoteDao {
 		}
 		System.out.println(tuote_id);
 		return tuote_id + 1;
+	}
+	
+	public List<Palaute> haeKaikkiPalautteet() throws SQLException {
+		ConnectionManager connection = new ConnectionManager();
+
+		List<Palaute> palautelista = new ArrayList<Palaute>();
+
+		Connection con = connection.doConnection();
+
+		Statement statement = null;
+		ResultSet resultSet = null;
+
+		statement = con.createStatement(); 
+
+		resultSet = statement
+				.executeQuery("SELECT * FROM Palaute");
+		
+		try {
+			while (resultSet.next()) { // Iteroidaan läpi
+
+				/*
+				 * int id = resultSet.getInt("id"); String nimi =
+				 * resultSet.getString("nimi"); double hinta =
+				 * resultSet.getDouble("hinta"); System.out.println("ID : " + id
+				 * + "\nNimi: " + nimi + "\nHinta: " + hinta);
+				 */
+
+				int id = resultSet.getInt("id");
+				String nimi = resultSet.getString("nimi");
+				String email = resultSet.getString("email");
+				String otsikko = resultSet.getString("otsikko");
+				String sisalto = resultSet.getString("sisalto");
+				boolean luettu = resultSet.getBoolean("luettu");
+				
+
+				//Tuote p = new Tuote(id, nimi, hinta, tilattavissa, sisalto);
+				Palaute palaute = new Palaute(id, nimi, email, otsikko, sisalto, luettu);
+				palautelista.add(palaute);
+			}
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			// LOPULTA AINA SULJETAAN YHTEYS
+			connection.closeConnection(con);
+		}
+		return palautelista;
 	}
 
 }
