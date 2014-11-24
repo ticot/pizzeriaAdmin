@@ -28,35 +28,104 @@
 		<div class="banner2"></div>
 
 		<div class="content">
-			<h1>Ostoskori</h1>
-			<p>sinulla on x m‰‰r‰ tuotteita ostoskorissa</p>
+			<h1 class="cent">Ostoskori</h1>
+			<p class="cent">sinulla on x m‰‰r‰ tuotteita ostoskorissa</p>
 			<div class="contentwhite">
 				<h3>Tuotteet</h3>
 				<div class="cartwrap">
 
 					<div class="panel panel-default">
-						
-						<div class="panel-heading">Pizza  </div>
-						
-						<div class="panel-body">Herkkusieni, jauheliha</div>
+
+						<div class="panel-heading">
+							Pizza X &#8364;
+							<button class="glyphicon glyphicon-remove" id="rmv"></button>
+						</div>
+
+						<div class="panel-body">
+							Herkkusieni, jauheliha
+							<div class="btn-group">
+								<button class="btn btn-default btn-xs dropdown-toggle"
+									id="dpbtn" type="button" data-toggle="dropdown"
+									aria-expanded="false">
+									jotain<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" role="menu">
+									<li>Gluteiiniton</li>
+									<li>Ei</li>
+
+								</ul>
+							</div>
+						</div>
+
 					</div>
+					<div class="panel panel-default">
+
+						<div class="panel-heading">
+							Pizza X &#8364;
+							<button class="glyphicon glyphicon-remove" id="rmv"></button>
+						</div>
+
+						<div class="panel-body">
+							Herkkusieni, jauheliha
+							<div class="btn-group">
+								<button class="btn btn-default btn-xs dropdown-toggle"
+									id="dpbtn" type="button" data-toggle="dropdown"
+									aria-expanded="false">
+									jotain<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" role="menu">
+									<li>Gluteiiniton</li>
+									<li>Ei</li>
+
+								</ul>
+							</div>
+						</div>
+
+					</div><div class="panel panel-default">
+
+						<div class="panel-heading">
+							Pizza X &#8364;
+							<button class="glyphicon glyphicon-remove" id="rmv"></button>
+						</div>
+
+						<div class="panel-body">
+							Herkkusieni, jauheliha
+							<div class="btn-group">
+								<button class="btn btn-default btn-xs dropdown-toggle"
+									id="dpbtn" type="button" data-toggle="dropdown"
+									aria-expanded="false">
+									jotain<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" role="menu">
+									<li>Gluteiiniton</li>
+									<li>Ei</li>
+
+								</ul>
+							</div>
+						</div>
+
+					</div>
+
+
+
 				</div>
 				<div class="contentlink">
-					<h2 >Siirry kassalle</h2>
-					<p>Jatka ostosten tekemist‰</p>
-				</div>
-				</div>
+					<h2>Ostosten hinta x &#8364;</h2>
 
+					<button type="button" class="btn btn-default" id="cashout">Kassalle</button>
+				</div>
 			</div>
+
 		</div>
+	</div>
 
 
 
 
-		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-		<script
-			src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		<!-- Include all compiled plugins (below), or include individual files as needed -->
-		<script src="js/bootstrap.js"></script>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.js"></script>
 </body>
 </html>
