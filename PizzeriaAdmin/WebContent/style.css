@@ -49,6 +49,10 @@ body {
 #ybtn {
 	margin-left: 50px;
 }
+.specialbtn{
+	color:black;
+}
+
 #nbtn {
 	margin-left: 10px;
 }
@@ -333,6 +337,7 @@ body.modal-open {
 	margin-left: 50px;
 	padding-top: 25px;
 	padding-bottom: 25px;
+	color:black; !important
 }
 
 .btnwrapper {
