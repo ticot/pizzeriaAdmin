@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -73,14 +75,13 @@
 					role="button">Päivitä</a>
 			</p>
 		</div>
+		<c:forEach items="${palautteet}" var="i">
+		
 		<div class="panel panel-primary">
-			<div class="panel-heading">Panel heading without title</div>
-			<div class="panel-body">Panel content</div>
+			<div class="panel-heading"><c:out value="${i.nimi}" /></div>
+			<div class="panel-body"></div>
 		</div>
-		<div class="panel panel-info">
-			<div class="panel-heading">Panel heading without title</div>
-			<div class="panel-body">Panel content</div>
-		</div>
+		</c:forEach>
 	</div>
 	<div class="leftnavigation">
 		<div id="leftwrap">

@@ -130,8 +130,7 @@ a:hover {
 }
 .contentlink{
 	float:right;
-	margin-right:110px;
-	
+	margin-right:110px;    
 }
 #center .ornament img {
 	display: block;
@@ -177,6 +176,7 @@ a:hover {
 	width:300px;
 	float:left;
 	height:auto;
+	
 }
 
 #center .content p {

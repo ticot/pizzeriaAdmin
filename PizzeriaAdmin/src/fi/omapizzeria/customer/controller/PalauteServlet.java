@@ -48,7 +48,7 @@ public class PalauteServlet extends HttpServlet {
 		String nimi = request.getParameter("nimi");
 		String email = request.getParameter("email");
 		String otsikko = request.getParameter("otsikko");
-		String palaute = request.getParameter("palaute");
+		String palaute = request.getParameter("sisalto");
 
 		ConnectionManager connection = new ConnectionManager();
 
@@ -66,7 +66,7 @@ public class PalauteServlet extends HttpServlet {
 
 		try {
 			resultSet = statement
-					.executeQuery("INSERT INTO Palaute (nimi, email, otsikko, palaute) VALUE ('"
+					.executeQuery("INSERT INTO Palaute (nimi, email, otsikko, sisalto) VALUE ('"
 							+ nimi
 							+ "','"
 							+ email
@@ -82,7 +82,7 @@ public class PalauteServlet extends HttpServlet {
 
 		finally {
 			connection.closeConnection(con);
-			response.sendRedirect("palaute?added=true"); // MITEN LISÄTÄ
+			response.sendRedirect("palaute?added=true");
 		}
 
 	}

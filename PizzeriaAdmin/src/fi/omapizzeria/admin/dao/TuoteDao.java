@@ -219,12 +219,13 @@ public class TuoteDao {
 				 * + "\nNimi: " + nimi + "\nHinta: " + hinta);
 				 */
 
-				int id = resultSet.getInt("id");
+				int id = resultSet.getInt("palaute_id");
 				String nimi = resultSet.getString("nimi");
 				String email = resultSet.getString("email");
 				String otsikko = resultSet.getString("otsikko");
-				String sisalto = resultSet.getString("sisalto");
-				boolean luettu = resultSet.getBoolean("luettu");
+				String sisalto = resultSet.getString("palaute");
+				//boolean luettu = resultSet.getBoolean("luettu");
+				boolean luettu = false;
 				
 
 				//Tuote p = new Tuote(id, nimi, hinta, tilattavissa, sisalto);
