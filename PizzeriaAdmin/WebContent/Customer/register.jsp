@@ -1,18 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<link href="css/bootstrap.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="style.css">
-<link href="img/title.png" rel="shortcut icon" type="image/x-icon" />
-<link href='http://fonts.googleapis.com/css?family=Lora:400,400italic'
-	rel='stylesheet' type='text/css'>
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog"
-	aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="modal fade bs-example-modal-sm2" tabindex="-1" role="dialog"
+	aria-labelledby="mySmallModalLabel2" aria-hidden="true">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
 			<div class="modal-header">
 
 
-				<h4 class="modal-title" id="myModalLabel">Kirjaudu sisään</h4>
+				<h4 class="modal-title" id="myModalLabel">Rekisteröidy käyttäjäksi</h4>
 				<button type="button" class="btn btn-default btn-sm"
 					data-dismiss="modal" id="close">
 					<span class="glyphicon glyphicon-remove"></span>
@@ -51,3 +53,5 @@
 		</div>
 	</div>
 </div>
+</body>
+</html>

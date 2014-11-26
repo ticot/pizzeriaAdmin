@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE>
 <html>
 <head>
@@ -18,6 +20,12 @@
 <title>Melo e Castello</title>
 </head>
 <body>
+	<%
+		if (session.getAttribute("currentSessionUser") == null) {
+			response.sendRedirect("Customer/index.jsp");
+
+		} else {
+	%>
 	<div class="topbar">
 		<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav"
 			role="banner">
@@ -53,7 +61,7 @@
 										class="icon ion-android-settings"></i>
 								</span>Asetukset</a></li>
 							<li role="presentation" class="divider"></li>
-							<li><a href="#"><span class="step size-14"> <i
+							<li><a href="logout.jsp"><span class="step size-14"> <i
 										class="icon ion-log-out"></i>
 								</span>Kirjaudu ulos</a></li>
 						</ul></li>
@@ -69,81 +77,80 @@
 
 	<div id="centercontent">
 		<div class="jumbotron">
-			<h1>Lis‰‰ k‰ytt‰j‰</h1>
+			<h1>Tervetuloa</h1>
 			<p>T‰n‰‰n on kaunis p‰iv‰!</p>
 		</div>
-
-
-
-		<form class="form-horizontal" name="input" action="user" method="POST">
-			<fieldset>
-
-				<!-- Form Name -->
-				<legend>Lis‰‰ uusi k‰ytt‰j‰</legend>
-
-				<!-- Email input -->
-				<div class="form-group">
-					<label class="col-md-4 control-label" for="email">E-mail</label>
-					<div class="col-md-4">
-						<input id="email" name="email" placeholder="E-mail"
-							class="form-control input-md" required="" type="text" required="">
-
+		<div class="row">
+			<div class="col-sm-6 col-md-4" id="back">
+				<div class="thumbnail" id="color1">
+					<img src="img/messages.png" alt="Moi">
+					<div class="caption">
+						<h3>Palaute</h3>
+						<ul>
+							<li>object1</li>
+							<li>object1</li>
+							<li>object1</li>
+							<li>object1</li>
+						</ul>
+						<p>
+							<a href="#" class="btn btn-info" role="button" id="btn2">N‰yt‰
+								lis‰‰</a>
+						</p>
 					</div>
 				</div>
+			</div>
+		</div>
 
-				<!-- Password input-->
-				<div class="form-group">
-					<label class="col-md-4 control-label" for="salasana">Salasana</label>
-					<div class="col-md-4">
-						<input id="salasana" name="salasana" placeholder="Salasana"
-							class="form-control input-md" required="" type="password" required="">
-
+		<div class="row">
+			<div class="col-sm-6 col-md-4" id="back">
+				<div class="thumbnail" id="color2">
+					<img src="img/orders.png" alt="Moi">
+					<div class="caption">
+						<h3>Tilaukset</h3>
+						<ul>
+							<li>object1</li>
+							<li>object1</li>
+							<li>object1</li>
+							<li>object1</li>
+						</ul>
+						<p>
+							<a href="#" class="btn btn-info" role="button" id="btn3">N‰yt‰
+								lis‰‰</a>
+						</p>
 					</div>
 				</div>
-				<div class="form-group">
-					<label class="col-md-4 control-label" for="salasana">Salasana uudelleen</label>
-					<div class="col-md-4">
-						<input id="salasana2" name="salasana2" placeholder="Salasana uudelleen"
-							class="form-control input-md" required="" type="password" required="">
-
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6 col-md-4" id="back">
+				<div class="thumbnail" id="color3">
+					<img src="img/products.png" alt="Moi">
+					<div class="caption">
+						<h3>Tuotteet</h3>
+						<p>Sinulla x m‰‰r‰ tuotteita tilattavissa</p>
+						<p>
+							<a href="#" class="btn btn-info" role="button" id="btn4">N‰yt‰
+								lis‰‰</a>
+						</p>
 					</div>
 				</div>
-				
-				<!-- User level input -->
-				<div class="form-group">
-					<label class="col-md-4 control-label" for="userlevel">K‰ytt‰j‰taso</label>
-					<div class="col-md-4">
-						<select id="level" name="level" placeholder="Level">
-							<option value="0">0 - Ei m‰‰ritelty.</option>
-							<option value="1">1 - Yll‰pito.</option>
-							<option value="2">2 - Perusk‰ytt‰j‰.</option>
-						</select>
-
-					</div>
-				</div>
-
-				<button type="submit" class="btn btn-primary" id="ybtn"
-					value="Submit">Lis‰‰ K‰ytt‰j‰</button>
-				<button type="button" data-dismiss="modal" class="btn btn-default"
-					id="nbtn">Peruuta</button>
-
-			</fieldset>
-		</form>
-
+			</div>
+		</div>
 	</div>
 	<div class="leftnavigation">
 		<div id="leftwrap">
 			<ul class="nav nav-pills nav-stacked">
-				<li ><a href="index.html">Etusivu</a></li>
+				<li class="active"><a href="index.html">Etusivu</a></li>
 				<li><a href="list">Tuotteet</a></li>
-				<li class="active"><a href="user">Lis‰‰ k‰ytt‰j‰</a></li>
+				<li><a href="user">Lis‰‰ k‰ytt‰j‰</a></li>
 				<li><a href="palaute.jsp">Palautteet</a></li>
 			</ul>
 		</div>
 	</div>
 
 	<div class="footer">
-		<a href="#"><img src="img/ico_tico.png"></a>
+		<a href="#"><img id="logo" src="img/tikolicious.png" width="100px"
+			height="auto"></a>
 	</div>
 
 
@@ -155,5 +162,8 @@
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="js/bootstrap.js"></script>
 
+	<%
+		}
+	%>
 </body>
 </html>
