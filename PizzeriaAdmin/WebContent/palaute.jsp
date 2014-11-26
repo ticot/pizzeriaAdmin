@@ -71,8 +71,14 @@
 			<h1>Palautteet</h1>
 			<p>Sinulla on X m‰‰r‰ saapuneita palautteita</p>
 			<p>
-				<a class="btn btn-primary btn-lg" HREF="javascript:history.go(0)"
-					role="button">P‰ivit‰</a>
+			
+					<button class="btn btn-primary btn-lg" onclick="myFunction()">P‰ivit‰ sivu</button>
+					
+					<script>
+function myFunction() {
+    location.reload();
+}
+</script>
 			</p>
 		</div>
 		<c:forEach items="${palautteet}" var="i">

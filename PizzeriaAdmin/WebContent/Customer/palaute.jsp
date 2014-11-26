@@ -19,6 +19,7 @@
 </head>
 <body>
 	<jsp:include page="login.jsp" />
+	<jsp:include page="register.jsp" />
 	<jsp:include page="navigation.jsp" />
 
 	<div id="center">
