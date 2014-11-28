@@ -87,13 +87,14 @@
 					<div class="caption">
 						<h3>Palaute</h3>
 						<ul>
-							<li>object1</li>
-							<li>object1</li>
-							<li>object1</li>
-							<li>object1</li>
+						
+							<c:forEach items="${palautteet}" var="i">
+							<li><a href="palaute?id=<c:out value="${i.id}"/>"><c:out value="${i.otsikko}" /></a></li>
+							</c:forEach>
 						</ul>
+						
 						<p>
-							<a href="#" class="btn btn-info" role="button" id="btn2">N‰yt‰
+							<a href="palaute" class="btn btn-info" role="button" id="btn2">N‰yt‰
 								lis‰‰</a>
 						</p>
 					</div>
@@ -127,7 +128,7 @@
 					<img src="img/products.png" alt="Moi">
 					<div class="caption">
 						<h3>Tuotteet</h3>
-						<p>Sinulla x m‰‰r‰ tuotteita tilattavissa</p>
+						<p>Sinulla <c:out value="${yht}"></c:out> tuotetta tilattavissa</p>
 						<p>
 							<a href="#" class="btn btn-info" role="button" id="btn4">N‰yt‰
 								lis‰‰</a>
@@ -140,10 +141,10 @@
 	<div class="leftnavigation">
 		<div id="leftwrap">
 			<ul class="nav nav-pills nav-stacked">
-				<li class="active"><a href="index.html">Etusivu</a></li>
+				<li class="active"><a href="index">Etusivu</a></li>
 				<li><a href="list">Tuotteet</a></li>
 				<li><a href="user">Lis‰‰ k‰ytt‰j‰</a></li>
-				<li><a href="palaute.jsp">Palautteet</a></li>
+				<li><a href="palaute">Palautteet</a></li>
 			</ul>
 		</div>
 	</div>

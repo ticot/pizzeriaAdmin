@@ -123,8 +123,11 @@
 			<p>
 				Hei sinulla on t‰ll‰ hetkell‰
 				<c:out value="${yht}" />
-				tuottetta valikoimassa.
+				tuottetta valikoimassa yhteens‰.
 			</p>
+				<c:out value="${yhtTil}" />
+				 niist‰ on tilattavissa
+			<br>
 			<br>
 			<button class="btn btn-success" data-toggle="modal"
 				data-target=".bs-example-modal-lg" id="addbtn">Lis‰‰ tuote</button>
@@ -388,7 +391,7 @@
 	<div class="leftnavigation">
 		<div id="leftwrap">
 			<ul class="nav nav-pills nav-stacked">
-				<li><a href="index.html">Etusivu</a></li>
+				<li><a href="index">Etusivu</a></li>
 				<li class="active"><a href="list">Tuotteet</a></li>
 				<li><a href="user">Lis‰‰ k‰ytt‰j‰</a></li>
 				<li><a href="palaute">Palautteet</a></li>

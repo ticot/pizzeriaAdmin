@@ -33,6 +33,8 @@ public class PalauteServletAdmin extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String highlight = request.getParameter("id");
+		
 		TuoteDao pDao = new TuoteDao();
 		List<Palaute> palauteList = null;
 		
@@ -46,7 +48,7 @@ public class PalauteServletAdmin extends HttpServlet {
 		int yhteensa = palauteList.size();
 		
 		request.setAttribute("yht", yhteensa);
-		
+		request.setAttribute("highlight", highlight);
 		request.setAttribute("palautteet", palauteList);
 		request.getRequestDispatcher("palaute.jsp").forward(request, response);
 		

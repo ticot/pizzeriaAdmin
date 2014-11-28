@@ -242,5 +242,54 @@ public class TuoteDao {
 		}
 		return palautelista;
 	}
+	
+	public List<Palaute> haeKaikkiPalautteetRajattu() throws SQLException {
+		ConnectionManager connection = new ConnectionManager();
+
+		List<Palaute> palautelista = new ArrayList<Palaute>();
+
+		Connection con = connection.doConnection();
+
+		Statement statement = null;
+		ResultSet resultSet = null;
+
+		statement = con.createStatement(); 
+
+		resultSet = statement
+				.executeQuery("SELECT * FROM Palaute ORDER BY palaute_id DESC LIMIT 5");
+		
+		try {
+			while (resultSet.next()) { // Iteroidaan läpi
+
+				/*
+				 * int id = resultSet.getInt("id"); String nimi =
+				 * resultSet.getString("nimi"); double hinta =
+				 * resultSet.getDouble("hinta"); System.out.println("ID : " + id
+				 * + "\nNimi: " + nimi + "\nHinta: " + hinta);
+				 */
+
+				int id = resultSet.getInt("palaute_id");
+				String nimi = resultSet.getString("nimi");
+				String email = resultSet.getString("email");
+				String otsikko = resultSet.getString("otsikko");
+				String sisalto = resultSet.getString("palaute");
+				boolean luettu = resultSet.getBoolean("luettu");
+				//boolean luettu = false;
+				
+
+				//Tuote p = new Tuote(id, nimi, hinta, tilattavissa, sisalto);
+				Palaute palaute = new Palaute(id, nimi, email, otsikko, sisalto, luettu);
+				palautelista.add(palaute);
+			}
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			// LOPULTA AINA SULJETAAN YHTEYS
+			connection.closeConnection(con);
+		}
+		return palautelista;
+	}
 
 }

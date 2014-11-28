@@ -40,6 +40,10 @@ body {
 #leftwrap{
 	margin-top:70px;
 }
+.panel-heading-highlight{
+	background:black;
+	color:#666;
+}
 #logo{ 
 	
 

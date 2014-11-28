@@ -38,11 +38,12 @@
 			<textarea class="form-control" rows="1" id="textarea" name="palaute" required="" placeholder="ASD">
 			
 				</textarea>
-			<p>Sähköposti tai nimi eivät ole pakollisia. Laita sähköposti
+			<p class="infofield">
+			Sähköposti tai nimi eivät ole pakollisia. Laita sähköposti
 				osoitteesi vain siinä tapauksessa, jos haluat meiltä paluupostia
 				palautteestasi tai hyvitystä. Muussa tapauksessa voit jättää kentät
-				tyhjiksi ja palautteesi tulee meille nimettömänä</p>
-			<p>Arvostamme kaikkea meille saapuvaa palautetta!</p>
+				tyhjiksi ja palautteesi tulee meille nimettömänä
+			Arvostamme kaikkea meille saapuvaa palautetta!</p>
 			<button type="submit" class="btn btn-primary">Lähetä</button>
 			</form>
 		</div>

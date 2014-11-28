@@ -29,14 +29,14 @@ import fi.omapizzeria.admin.dao.TuoteDao;
 /**
  * Servlet implementation class ControllerServlet
  */
-@WebServlet("/list")
-public class ControllerServlet extends HttpServlet {
+@WebServlet("/index")
+public class AdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Default constructor.
 	 */
-	public ControllerServlet() {
+	public AdminServlet() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -46,28 +46,7 @@ public class ControllerServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		/*
-		 * List<Pizza> lista = new ArrayList<Pizza>(); lista.add(new Pizza(1,
-		 * "Margarita", 7.90)); lista.add(new Pizza(2, "Frutti di Mare", 9.90));
-		 * response.setContentType("text/html");
-		 * 
-		 * java.io.PrintWriter wout = response.getWriter();
-		 * 
-		 * 
-		 * request.setAttribute("piz", lista);
-		 * 
-		 * //ohjataan pyyntö jsp-sivulle, joka hoitaa tulostuksen muotoilun
-		 * request.getRequestDispatcher("list.jsp").forward(request, response);
-		 * 
-		 * String aloitusaika; Date now = new Date(); SimpleDateFormat ft = new
-		 * SimpleDateFormat ("E yyyy.MM.dd 'at' hh:mm:ss");
-		 * 
-		 * aloitusaika =
-		 * (String)request.getSession().getAttribute("aloitusaika");
-		 * 
-		 * request.getSession().setAttribute("aloitusaika", ft.format(now));
-		 */
-
+		
 		TuoteDao pDao = new TuoteDao();
 		List<Tuote> pList = null;
 		List<Palaute> palauteList = null;
@@ -83,7 +62,7 @@ public class ControllerServlet extends HttpServlet {
 		}
 
 		try {
-			palauteList = pDao.haeKaikkiPalautteet();
+			palauteList = pDao.haeKaikkiPalautteetRajattu();
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -97,17 +76,15 @@ public class ControllerServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		int yhteensa = pList.size();
-		int yhteensaTil = pTilattavissa.size();
+		int yhteensa = pTilattavissa.size();
 		request.setAttribute("pizzat", pList);
 		request.setAttribute("pizzatSisalto", pSisaltoList);
 		request.setAttribute("pizzatTilattavissa", pTilattavissa);
 		request.setAttribute("palautteet", palauteList);
 		request.setAttribute("yht", yhteensa);
-		request.setAttribute("yhtTil", yhteensaTil);
 
 	
-		request.getRequestDispatcher("list.jsp").forward(request, response);
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 		//request.getRequestDispatcher("dummy.jsp").forward(request, response);
 		// request.getRequestDispatcher("PETER_TEST_INGORE.jsp").forward(request,
 		// response); // IGNORE

@@ -85,8 +85,19 @@ function refresh() {
 
 
 			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<c:out value="${i.id}" />
+			<c:set var="h" value="${highlight}"/>
+<c:choose>
+<c:when test="${i.id == h}">
+<div class="panel-heading-highlight">
+</c:when>
+<c:otherwise>
+<div class="panel-heading">
+</c:otherwise>
+</c:choose>
+				
+
+		
+					<a name="palaute<c:out value="${i.id}" />"></a><c:out value="${i.id}" />
 					.&nbsp;
 					<c:out value="${i.otsikko}" />
 					
@@ -119,7 +130,7 @@ function refresh() {
 	<div class="leftnavigation">
 		<div id="leftwrap">
 			<ul class="nav nav-pills nav-stacked">
-				<li><a href="index.html">Etusivu</a></li>
+				<li><a href="index">Etusivu</a></li>
 				<li><a href="list">Tuotteet</a></li>
 				<li><a href="user">Lis‰‰ k‰ytt‰j‰</a></li>
 				<li class="active"><a href="palaute">Palautteet</a></li>
