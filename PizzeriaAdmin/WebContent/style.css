@@ -25,6 +25,7 @@ body {
 	font-size: 17px;
 	padding-top: 15px;
 }
+
 #back{
 		width: 290px;
 		min-height: 279px;
@@ -51,6 +52,7 @@ body {
 }
 .specialbtn{
 	color:black;
+	cursor:pointer;
 }
 
 #nbtn {
@@ -428,11 +430,6 @@ body.modal-open {
 #logo:hover{
 	filter:none;
 	-webkit-filter:grayscale(0%);
-	-moz-transition: all 0.5s ease-in-out;	/* feidaus, ei toimi */
-	-o-transition: all 0.5s ease-in-out;	
-	-ms-transition: all 0.5s ease-in-out;
-	transition: all 0.5s ease-in-out;
-	
 }
 
 }

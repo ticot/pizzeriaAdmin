@@ -4,5 +4,6 @@ CREATE TABLE Palaute
 ,email VARCHAR (100)
 ,otsikko VARCHAR (100) NOT NULL
 ,palaute VARCHAR (1000) NOT NULL
+,luettu BOOLEAN DEFAULT FALSE
 ,PRIMARY KEY (palaute_id)
 )ENGINE=InnoDB;

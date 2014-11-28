@@ -6,10 +6,10 @@
 <link href='http://fonts.googleapis.com/css?family=Lora:400,400italic' rel='stylesheet' type='text/css'>
 <div id="navigation">
 	<ul>
-		<li class="active"><a href="index.jsp">Etusivu</a></li>
-		<li><a href="pizzat.jsp">Pizzat</a></li>
-		<li><a href="yhteystiedot.jsp">Yhteystiedot</a></li>
-		<li><a href="palaute.jsp">Palaute</a></li>
+		<li><a href="index.jsp">Etusivu</a></li>
+		<li><a href="pizzat">Pizzat</a></li>
+		<li><a href="yhteystiedot">Yhteystiedot</a></li>
+		<li><a href="palaute">Palaute</a></li>
 	</ul>
 
 

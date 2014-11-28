@@ -207,7 +207,7 @@ public class TuoteDao {
 		statement = con.createStatement(); 
 
 		resultSet = statement
-				.executeQuery("SELECT * FROM Palaute");
+				.executeQuery("SELECT * FROM Palaute ORDER BY palaute_id DESC");
 		
 		try {
 			while (resultSet.next()) { // Iteroidaan läpi
@@ -224,8 +224,8 @@ public class TuoteDao {
 				String email = resultSet.getString("email");
 				String otsikko = resultSet.getString("otsikko");
 				String sisalto = resultSet.getString("palaute");
-				//boolean luettu = resultSet.getBoolean("luettu");
-				boolean luettu = false;
+				boolean luettu = resultSet.getBoolean("luettu");
+				//boolean luettu = false;
 				
 
 				//Tuote p = new Tuote(id, nimi, hinta, tilattavissa, sisalto);

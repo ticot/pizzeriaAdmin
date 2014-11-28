@@ -69,13 +69,13 @@
 	<div id="centercontent">
 		<div class="jumbotron">
 			<h1>Palautteet</h1>
-			<p>Sinulla on X määrä saapuneita palautteita</p>
+			<p>Sinulla on yhteensä <c:out value="${yht}" />  saapunutta palautetta</p>
 			<p>
 			
-					<button class="btn btn-primary btn-lg" onclick="myFunction()">Päivitä sivu</button>
+					<button class="btn btn-primary btn-lg" onclick="refresh()">Päivitä sivu</button>
 					
 					<script>
-function myFunction() {
+function refresh() {
     location.reload();
 }
 </script>
@@ -89,17 +89,29 @@ function myFunction() {
 					<c:out value="${i.id}" />
 					.&nbsp;
 					<c:out value="${i.otsikko}" />
-					&nbsp; &nbsp;Lähettänyt:&nbsp;
-					<c:out value="${i.nimi}" />
+					
+				
 				</div>
 				<div class="panel-body">
 					
-					<p class="collapse" id="viewdetails<c:out value="${i.id}" />"><c:out value="${i.sisalto}" /></p>
-					<p>
-						<a class="specialbtn" data-toggle="collapse"
-							data-target="#viewdetails<c:out value="${i.id}" />">Palautteen sisältö
-							&raquo;</a>
+					<p class="collapse" id="viewdetails<c:out value="${i.id}" />"><c:out value="${i.sisalto}" />
+				
+					<br>
+					<br>
+					Lähettäjä:<c:out value="${i.nimi}" />
+					<br>
+					Sähköposti:<c:out value="${i.email}" />
+					
 					</p>
+					
+					
+					 
+							<p>
+						<a class="specialbtn" data-toggle="collapse"
+							data-target="#viewdetails<c:out value="${i.id}" />">
+							Palautteen sisältö&raquo;</a>
+					</p>
+					
 				</div>
 			</div>
 		</c:forEach>
@@ -110,7 +122,7 @@ function myFunction() {
 				<li><a href="index.html">Etusivu</a></li>
 				<li><a href="list">Tuotteet</a></li>
 				<li><a href="user">Lisää käyttäjä</a></li>
-				<li class="active"><a href="palaute.jsp">Palautteet</a></li>
+				<li class="active"><a href="palaute">Palautteet</a></li>
 			</ul>
 		</div>
 	</div>

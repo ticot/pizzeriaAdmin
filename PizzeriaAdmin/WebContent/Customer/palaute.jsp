@@ -28,13 +28,13 @@
 
 		<div class="content">
 			<h1 class="feedback">Anna Palautetta</h1>
-
+			<div class="mvm">
 			<form class="form-horizontal" name="input" action="palaute" method="POST">
 			<input type="text" class="form-control" placeholder="Nimi" id="name" name="nimi" required="">
 			<input type="text" class="form-control" placeholder="Sähköposti"
 				id="name" name="email">
 			<input type="text" class="form-control" placeholder="Otsikko" id="name" name="otsikko" required="">	
-
+			</div>
 			<textarea class="form-control" rows="1" id="textarea" name="palaute" required="" placeholder="ASD">
 			
 				</textarea>
