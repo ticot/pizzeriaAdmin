@@ -8,7 +8,7 @@
 	<ul>
 		<li><a href="index.jsp">Etusivu</a></li>
 		<li><a href="pizzat">Pizzat</a></li>
-		<li><a href="yhteystiedot">Yhteystiedot</a></li>
+		<li><a href="yhteystiedot.jsp">Yhteystiedot</a></li>
 		<li><a href="palaute">Palaute</a></li>
 	</ul>
 
