@@ -143,7 +143,8 @@
 			<ul class="nav nav-pills nav-stacked">
 				<li class="active"><a href="index">Etusivu</a></li>
 				<li><a href="list">Tuotteet</a></li>
-				<li><a href="user">Lis‰‰ k‰ytt‰j‰</a></li>
+				<li><a href="user">K‰ytt‰j‰t</a></li>
+				<li> <a href="sisalto">Aineosat</a></li>
 				<li><a href="palaute">Palautteet</a></li>
 			</ul>
 		</div>

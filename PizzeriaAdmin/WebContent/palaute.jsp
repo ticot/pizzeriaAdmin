@@ -104,8 +104,16 @@ function refresh() {
 				
 				</div>
 				<div class="panel-body">
-					
-					<p class="collapse" id="viewdetails<c:out value="${i.id}" />"><c:out value="${i.sisalto}" />
+
+				<c:choose>
+					<c:when test="${i.id == h}">
+							<p class="collapse in" id="viewdetails<c:out value="${i.id}" />"><c:out value="${i.sisalto}" />
+					</c:when>
+					<c:otherwise>
+							<p class="collapse" id="viewdetails<c:out value="${i.id}" />"><c:out value="${i.sisalto}" />
+					</c:otherwise>
+				</c:choose>
+			
 				
 					<br>
 					<br>
@@ -132,7 +140,8 @@ function refresh() {
 			<ul class="nav nav-pills nav-stacked">
 				<li><a href="index">Etusivu</a></li>
 				<li><a href="list">Tuotteet</a></li>
-				<li><a href="user">Lis‰‰ k‰ytt‰j‰</a></li>
+				<li><a href="user">K‰ytt‰j‰t</a></li>
+				<li><a href="sisalto">Aineosat</a></li>
 				<li class="active"><a href="palaute">Palautteet</a></li>
 			</ul>
 		</div>

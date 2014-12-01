@@ -35,7 +35,7 @@
 				id="name" name="email">
 			<input type="text" class="form-control" placeholder="Otsikko" id="name" name="otsikko" required="">	
 			</div>
-			<textarea class="form-control" rows="1" id="textarea" name="palaute" required="" placeholder="ASD">
+			<textarea class="form-control" rows="1" id="textarea" name="palaute" required="">
 			
 				</textarea>
 			<p class="infofield">

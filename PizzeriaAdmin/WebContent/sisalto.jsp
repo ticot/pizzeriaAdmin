@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE>
 <html>
 <head>
@@ -66,69 +67,93 @@
 	</div>
 	<!-- Small modal -->
 
-
 	<div id="centercontent">
+<%
+		
+				if (request.getParameter("poistettu") != null) {
+		%>
+		<div class="alert alert-info alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert">
+				<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+			</button>
+			Aineosa poistettu!
+		</div>
+		<%
+			}
+		%>
+
+
+
+
 		<div class="jumbotron">
-			<h1>Lis‰‰ k‰ytt‰j‰</h1>
+			<h1>Lis‰‰ uusia aineosia</h1>
 			<p>T‰n‰‰n on kaunis p‰iv‰!</p>
 		</div>
 
 
 
-		<form class="form-horizontal" name="input" action="user" method="POST">
+		<form class="form-horizontal" name="input" action="sisalto" method="POST">
 			<fieldset>
 
 				<!-- Form Name -->
-				<legend>Lis‰‰ uusi k‰ytt‰j‰</legend>
+				<legend>Lis‰‰ uusi aineosa</legend>
 
 				<!-- Email input -->
 				<div class="form-group">
-					<label class="col-md-4 control-label" for="email">E-mail</label>
+					<label class="col-md-4 control-label" for="email">Aineosan nimi</label>
 					<div class="col-md-4">
-						<input id="email" name="email" placeholder="E-mail"
-							class="form-control input-md" required="" type="text" required="">
-
-					</div>
-				</div>
-
-				<!-- Password input-->
-				<div class="form-group">
-					<label class="col-md-4 control-label" for="salasana">Salasana</label>
-					<div class="col-md-4">
-						<input id="salasana" name="salasana" placeholder="Salasana"
-							class="form-control input-md" required="" type="password" required="">
-
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-md-4 control-label" for="salasana">Salasana uudelleen</label>
-					<div class="col-md-4">
-						<input id="salasana2" name="salasana2" placeholder="Salasana uudelleen"
-							class="form-control input-md" required="" type="password" required="">
-
-					</div>
-				</div>
-				
-				<!-- User level input -->
-				<div class="form-group">
-					<label class="col-md-4 control-label" for="userlevel">K‰ytt‰j‰taso</label>
-					<div class="col-md-4">
-						<select id="level" name="level" placeholder="Level">
-							<option value="0">0 - Ei m‰‰ritelty.</option>
-							<option value="1">1 - Yll‰pito.</option>
-							<option value="2">2 - Perusk‰ytt‰j‰.</option>
-						</select>
+						<input id="sisalto" name="sisalto" placeholder="Nimi"
+							class="form-control input-md" required="" type="text">
 
 					</div>
 				</div>
 
 				<button type="submit" class="btn btn-primary" id="ybtn"
-					value="Submit">Lis‰‰ K‰ytt‰j‰</button>
+					value="Submit">Lis‰‰ aineosa</button>
 				<button type="button" data-dismiss="modal" class="btn btn-default"
 					id="nbtn">Peruuta</button>
 
 			</fieldset>
 		</form>
+<legend>Olemassa olevat aineosat</legend>
+<ul class="list-group">
+<c:forEach items="${pizzatSisalto}" var="pSisalto">
+							  <li class="list-group-item"><c:out
+									value="${pSisalto.nimi}" /><button class="glyphicon glyphicon-remove" id="rmv2"
+						data-toggle="modal"
+						data-target=".bs-example-modal-sm-<c:out value="${pSisalto.tuote_id}"/>"></button>
+					<div class="modal fade bs-example-modal-sm-<c:out value="${pSisalto.tuote_id}"/>"
+						tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog modal-sm">
+							<div class="modal-content" id="del">
+								<h1>Poista tuote</h1>
+								<p>
+									Oletko varma ett‰ haluat poistaa tuotteen <b><c:out
+											value="${pSisalto.nimi}" /></b> ?
+								</p>
+								<div id="btnwrap2">
+									<form name="input" action="sisaltopoisto?id=<c:out value="${pSisalto.tuote_id}"/>"
+										method="POST">
+
+										<button type="submit" class="btn btn-primary" id="ybtn"
+											value="Submit">Poista tuote</button>
+										<button type="button" data-dismiss="modal"
+											class="btn btn-default" id="nbtn">Peruuta</button>
+									</form>
+									<!-- 
+								<!-- <form name="input" action="list?action=poistatuote=<c:out value="${p.id}"/>" method="POST"> 
+								
+									<a href="list?action=poistaTuote&id=<c:out value="${p.id}"/>"><button type="submit" class="btn btn-primary">Poista tuote</button></a>
+									<button type="button" data-dismiss="modal" class="btn btn-default">Peruuta</button>
+								 -->
+
+								</div>
+							</div>
+						</div>
+					</div></li>
+						</c:forEach>
+</ul>
 
 	</div>
 	<div class="leftnavigation">
@@ -136,8 +161,8 @@
 			<ul class="nav nav-pills nav-stacked">
 				<li><a href="index">Etusivu</a></li>
 				<li><a href="list">Tuotteet</a></li>
-				<li class="active"><a href="user">K‰ytt‰j‰t</a></li>
-				<li><a href="sisalto">Aineosat</a></li>
+				<li><a href="user">K‰ytt‰j‰t</a></li>
+				<li class="active"><a href="sisalto">Aineosat</a></li>
 				<li><a href="palaute">Palautteet</a></li>
 			</ul>
 		</div>

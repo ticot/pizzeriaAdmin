@@ -25,7 +25,10 @@ body {
 	font-size: 17px;
 	padding-top: 15px;
 }
-
+#textarea{
+	max-width:400px !important;
+	
+}
 #back{
 		width: 290px;
 		min-height: 279px;
@@ -37,12 +40,16 @@ body {
 		background-color:#5cb85c;
 		
 }
+.formtyylitelty{
+	float:right;
+}
 #leftwrap{
 	margin-top:70px;
 }
 .panel-heading-highlight{
+	padding:12px;
 	background:black;
-	color:#666;
+	color:white;
 }
 #logo{ 
 	
@@ -109,22 +116,32 @@ color:black;
 .thumbnail {
 		max-width:280px;
 }
+
 #mod{
 	float:right;
 	margin-top:-35px;
 	margin-right:5px;
 	padding:5px;
 }
+
 #mod p, h4{
 	padding:30px;
 }
+
 #rmv{
 	float:right;
 	margin-top:-20px;
 	margin-right:-10px;
 }
+#rmv2{
+	float:right;
+	margin-right:-10px;
+}
 .caption ul,h3,p{
 	color:white;
+}
+legend{
+	padding:20px;
 }
 #back{
 		width: 290px;
@@ -311,7 +328,7 @@ a:hover {
 	text-align: center;
 	margin: 0 auto;
 }
-
+/*
 #textarea {
 	margin: 0 auto;
 	max-width: 400px;
@@ -321,6 +338,7 @@ a:hover {
 	height: 500px;
 	margin-top: 60px;
 }
+*/
 
 #name {
 	float: left;

@@ -67,8 +67,8 @@
 										class="icon ion-android-settings"></i>
 								</span>Asetukset</a></li>
 							<li role="presentation" class="divider"></li>
-							<li><a href="logout.jsp"><span class="step size-14"> <i
-										class="icon ion-log-out"></i>
+							<li><a href="logout.jsp"><span class="step size-14">
+										<i class="icon ion-log-out"></i>
 								</span>Kirjaudu ulos</a></li>
 						</ul></li>
 
@@ -125,10 +125,8 @@
 				<c:out value="${yht}" />
 				tuottetta valikoimassa yhteens‰.
 			</p>
-				<c:out value="${yhtTil}" />
-				 niist‰ on tilattavissa
-			<br>
-			<br>
+			<c:out value="${yhtTil}" />
+			niist‰ on tilattavissa <br> <br>
 			<button class="btn btn-success" data-toggle="modal"
 				data-target=".bs-example-modal-lg" id="addbtn">Lis‰‰ tuote</button>
 		</div>
@@ -139,6 +137,7 @@
 			role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
+					<!-- 
 					<div class="form-group">
 						<h1 class="hh">Lis‰‰ uusi tuote</h1>
 						<form name="input" action="list" method="POST">
@@ -147,19 +146,52 @@
 							<input type="number" min="0" step="any" class="form-control"
 								placeholder="Tuotteen hinta" id="name" name="hinta" required="">
 							</textarea>
-
+<div class="input-group">
 							<label> <input type="checkbox" name="tilattavissa"
 								value="1"> Tilattavissa
 							</label>
-					</div>
-					<select name="selectpicker2" class="selectpicker2">
-						<!-- <option value="5">Ei valittu</option> -->
+							</div>
+					
+					<div class="input-group">
+					<select name="selectpicker1" class="selectpicker1">
+				
 						<c:forEach items="${pizzatSisalto}" var="pSisalto">
 							<option value="<c:out value="${pSisalto.tuote_id}"/>"><c:out
 									value="${pSisalto.nimi}" /></option>
 						</c:forEach>
-					</select> <br> <br> <br> <br> <br>
-
+					</select>
+					</div>
+					
+					<div class="input-group">
+					<select name="selectpicker2" class="selectpicker2">
+					
+						<c:forEach items="${pizzatSisalto}" var="pSisalto">
+							<option value="<c:out value="${pSisalto.tuote_id}"/>"><c:out
+									value="${pSisalto.nimi}" /></option>
+						</c:forEach>
+					</select>
+					</div>
+					
+					<div class="input-group">
+					<select name="selectpicker3" class="selectpicker3">
+						
+						<c:forEach items="${pizzatSisalto}" var="pSisalto">
+							<option value="<c:out value="${pSisalto.tuote_id}"/>"><c:out
+									value="${pSisalto.nimi}" /></option>
+						</c:forEach>
+					</select>
+					</div>
+					
+					<div class="input-group">
+					<select name="selectpicker4" class="selectpicker4">
+				
+						<c:forEach items="${pizzatSisalto}" var="pSisalto">
+							<option value="<c:out value="${pSisalto.tuote_id}"/>"><c:out
+									value="${pSisalto.nimi}" /></option>
+						</c:forEach>
+					</select>
+					</div>
+					</div>
 					<div class="btnwrapper">
 						<button type="submit" class="btn btn-primary" id="ybtn"
 							value="Submit">Tallenna</button>
@@ -168,6 +200,128 @@
 						</form>
 
 					</div>
+					-->
+
+					<form class="form-horizontal" name="input" action="list"
+						method="POST">
+						<fieldset>
+
+							<!-- Form Name -->
+							<legend>Lis‰‰ uusi tuote</legend>
+
+							<!-- Text input-->
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="textinput">Nimi</label>
+								<div class="col-md-6">
+									<input id="textinput" name="nimi" placeholder="Tuotteen nimi"
+										class="form-control input-md" type="text" required="">
+								</div>
+							</div>
+
+							<!-- Text input-->
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="textinput">Hinta</label>
+								<div class="col-md-6">
+									<input type="number" min="0" step="any"
+										class="form-control input-md" placeholder="Tuotteen hinta"
+										name="hinta" required=""><span class="help-block">K‰yt‰
+										erottimena pistett‰(.)</span>
+								</div>
+							</div>
+
+							<!-- Select Basic -->
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="selectbasic">Aineosa
+									1</label>
+								<div class="col-md-6">
+									<select id="selectbasic" name="selectpicker1"
+										class="form-control">
+										<c:forEach items="${pizzatSisalto}" var="pSisalto">
+											<option value="<c:out value="${pSisalto.tuote_id}"/>"><c:out
+													value="${pSisalto.nimi}" /></option>
+										</c:forEach>
+									</select>
+								</div>
+							</div>
+
+							<!-- Select Basic -->
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="selectbasic">Aineosa
+									2</label>
+								<div class="col-md-6">
+									<select id="selectbasic" name="selectpicker2"
+										class="form-control">
+										<c:forEach items="${pizzatSisalto}" var="pSisalto">
+											<option value="<c:out value="${pSisalto.tuote_id}"/>"><c:out
+													value="${pSisalto.nimi}" /></option>
+										</c:forEach>
+									</select>
+								</div>
+							</div>
+
+							<!-- Select Basic -->
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="selectbasic">Aineosa
+									3</label>
+								<div class="col-md-6">
+									<select id="selectbasic" name="selectpicker3"
+										class="form-control">
+										<c:forEach items="${pizzatSisalto}" var="pSisalto">
+											<option value="<c:out value="${pSisalto.tuote_id}"/>"><c:out
+													value="${pSisalto.nimi}" /></option>
+										</c:forEach>
+									</select>
+								</div>
+							</div>
+
+							<!-- Select Basic -->
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="selectbasic">Aineosa
+									4</label>
+								<div class="col-md-6">
+									<select id="selectbasic" name="selectpicker4"
+										class="form-control">
+										<c:forEach items="${pizzatSisalto}" var="pSisalto">
+											<option value="<c:out value="${pSisalto.tuote_id}"/>"><c:out
+													value="${pSisalto.nimi}" /></option>
+										</c:forEach>
+									</select>
+								</div>
+							</div>
+
+							<!-- Textarea -->
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="textarea">Kuvaus</label>
+								<div class="col-md-6">
+									<textarea class="form-control" id="textarea" name="textarea">Tuotteen kuvaus</textarea>
+								</div>
+							</div>
+
+							<!-- Multiple Checkboxes -->
+							<div class="form-group">
+								<label class="col-md-4 control-label" for="checkboxes">Tilattavissa</label>
+								<div class="col-md-6">
+									<div class="checkbox">
+										<label for="checkboxes-0"> <input name="checkboxes"
+											id="checkboxes-0" name="tilattavissa" value="1"
+											type="checkbox">
+										</label>
+									</div>
+								</div>
+							</div>
+
+						</fieldset>
+						<div class="btnwrapper">
+							<button type="submit" class="btn btn-primary" id="ybtn"
+								value="Submit">Tallenna</button>
+							<button type="button" data-dismiss="modal"
+								class="btn btn-default" id="nbtn">Peruuta</button>
+
+						</div>
+					</form>
+
+
+
 				</div>
 			</div>
 		</div>
@@ -217,9 +371,11 @@
 					</div>
 				</div>
 				<div class="panel-body">
-					<c:out value="${p.sisalto}" />
+					
+							<c:out value="${p.sisalto}" />
+						</div>
 
-				</div>
+					  
 				<c:if test="${p.tilattavissa}">
 					<form name="input"
 						action="muokkaa?id=<c:out value="${p.id}"/>&action=0"
@@ -236,6 +392,8 @@
 							tilattavissa</button>
 					</form>
 				</c:if>
+			
+					
 			</div>
 		</c:forEach>
 		<!-- 
@@ -393,7 +551,8 @@
 			<ul class="nav nav-pills nav-stacked">
 				<li><a href="index">Etusivu</a></li>
 				<li class="active"><a href="list">Tuotteet</a></li>
-				<li><a href="user">Lis‰‰ k‰ytt‰j‰</a></li>
+				<li><a href="user">K‰ytt‰j‰t</a></li>
+				<li><a href="sisalto">Aineosat</a></li>
 				<li><a href="palaute">Palautteet</a></li>
 			</ul>
 		</div>

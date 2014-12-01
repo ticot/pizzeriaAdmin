@@ -163,7 +163,16 @@ public class ControllerServlet extends HttpServlet {
 		if(tilattavissa == null){
 			tilattavissa = "0";
 		}
-		String osa1 = request.getParameter("selectpicker2");
+		
+		int osia = 0;
+		String osa1 = request.getParameter("selectpicker1");
+		String osa2 = request.getParameter("selectpicker2");
+		String osa3 = request.getParameter("selectpicker3");
+		String osa4 = request.getParameter("selectpicker4");
+		
+		
+		
+		
 
 		System.out.println("Nimi: " + pnimi + "\nHinta: " + phinta
 				+ "Tilattavissa:" + tilattavissa + " Osa1: " + osa1);
@@ -194,9 +203,20 @@ public class ControllerServlet extends HttpServlet {
 							+ "', '"
 							+ tilattavissa
 							+ "')");
+			
+			
 			resultSet = statement
 					.executeQuery("INSERT INTO Tuotteen_sisalto (sisalto_id, tuote_id) VALUE ('"
 							+ osa1 + "','" + tuote_id + "')");
+			resultSet = statement
+					.executeQuery("INSERT INTO Tuotteen_sisalto (sisalto_id, tuote_id) VALUE ('"
+							+ osa2 + "','" + tuote_id + "')");
+			resultSet = statement
+					.executeQuery("INSERT INTO Tuotteen_sisalto (sisalto_id, tuote_id) VALUE ('"
+							+ osa3 + "','" + tuote_id + "')");
+			resultSet = statement
+					.executeQuery("INSERT INTO Tuotteen_sisalto (sisalto_id, tuote_id) VALUE ('"
+							+ osa4 + "','" + tuote_id + "')");
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

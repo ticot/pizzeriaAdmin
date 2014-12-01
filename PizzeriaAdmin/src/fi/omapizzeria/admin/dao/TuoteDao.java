@@ -31,7 +31,7 @@ public class TuoteDao {
 																	// setin
 																	// luonti
 		resultSet = statement
-				.executeQuery("SELECT p.tuote_id, p.nimi, p.hinta, p.tilattavissa, GROUP_CONCAT(DISTINCT c.sisalto ORDER BY c.sisalto SEPARATOR ', ') AS Sisalto FROM Tuote p INNER JOIN Tuotteen_sisalto r ON p.tuote_id = r.tuote_id INNER JOIN Sisalto c ON r.sisalto_id = c.sisalto_id WHERE p.tuote_id = r.tuote_id AND r.sisalto_id = c.sisalto_id GROUP BY p.tuote_id ORDER BY p.nimi");
+				.executeQuery("SELECT p.tuote_id, p.nimi, p.hinta, p.tilattavissa, GROUP_CONCAT(DISTINCT c.nimi ORDER BY c.nimi SEPARATOR ', ') AS Sisalto FROM Tuote p INNER JOIN Tuotteen_sisalto r ON p.tuote_id = r.tuote_id INNER JOIN Sisalto c ON r.sisalto_id = c.sisalto_id WHERE p.tuote_id = r.tuote_id AND r.sisalto_id = c.sisalto_id GROUP BY p.tuote_id ORDER BY p.tilattavissa DESC");
 		
 		try {
 			while (resultSet.next()) { // Iteroidaan läpi
@@ -76,7 +76,7 @@ public class TuoteDao {
 		statement = con.createStatement(); // Statement olion luonti
 
 		resultSet = statement
-				.executeQuery("SELECT p.tuote_id, p.nimi, p.hinta, p.tilattavissa, GROUP_CONCAT(DISTINCT c.sisalto ORDER BY c.sisalto SEPARATOR ', ') AS Sisalto FROM Tuote p INNER JOIN Tuotteen_sisalto r ON p.tuote_id = r.tuote_id INNER JOIN Sisalto c ON r.sisalto_id = c.sisalto_id WHERE p.tuote_id = r.tuote_id AND r.sisalto_id = c.sisalto_id AND p.tilattavissa = 1 GROUP BY p.tuote_id ORDER BY p.nimi");
+				.executeQuery("SELECT p.tuote_id, p.nimi, p.hinta, p.tilattavissa, GROUP_CONCAT(DISTINCT c.nimi ORDER BY c.nimi SEPARATOR ', ') AS Sisalto FROM Tuote p INNER JOIN Tuotteen_sisalto r ON p.tuote_id = r.tuote_id INNER JOIN Sisalto c ON r.sisalto_id = c.sisalto_id WHERE p.tuote_id = r.tuote_id AND r.sisalto_id = c.sisalto_id AND p.tilattavissa = 1 GROUP BY p.tuote_id ORDER BY p.nimi");
 		try {
 			while (resultSet.next()) { // Iteroidaan läpi
 
@@ -121,7 +121,7 @@ public class TuoteDao {
 		statement = con.createStatement(); // Statement olion luonti
 
 		
-		// TÄTÄ EI ENÄÄ KÄYTETÄÄ !!=?!?!!=?!=!=!=!=
+		
 		resultSet = statement
 				.executeQuery("SELECT * FROM Sisalto");
 
@@ -151,6 +151,53 @@ public class TuoteDao {
 		}
 		return lista;
 	}
+	
+	public List<Sisalto> haeTuoteSisaltoPakolliset() throws SQLException {
+		ConnectionManager connection = new ConnectionManager();
+
+		List<Sisalto> lista = new ArrayList<Sisalto>();
+
+		Connection con = connection.doConnection();
+
+		Statement statement = null;
+		ResultSet resultSet = null;
+
+		statement = con.createStatement(); // Statement olion luonti
+
+		
+		
+		resultSet = statement
+				.executeQuery("SELECT * FROM Sisalto");
+
+		try {
+			while (resultSet.next()) { // Iteroidaan läpi
+
+				/*
+				 * int id = resultSet.getInt("id"); String nimi =
+				 * resultSet.getString("nimi"); double hinta =
+				 * resultSet.getDouble("hinta"); System.out.println("ID : " + id
+				 * + "\nNimi: " + nimi + "\nHinta: " + hinta);
+				 */
+				if(resultSet.getInt("sisalto_id") != 1){
+					int id  = resultSet.getInt("sisalto_id");
+					String nimi = resultSet.getString("nimi");
+
+					Sisalto p = new Sisalto(id, nimi);
+					lista.add(p);
+				}
+				
+			}
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			// LOPULTA AINA SULJETAAN YHTEYS
+			connection.closeConnection(con);
+		}
+		return lista;
+	}
+	
 	public int haeUusinID() throws SQLException {
 		ConnectionManager connection = new ConnectionManager();
 
@@ -228,7 +275,6 @@ public class TuoteDao {
 				//boolean luettu = false;
 				
 
-				//Tuote p = new Tuote(id, nimi, hinta, tilattavissa, sisalto);
 				Palaute palaute = new Palaute(id, nimi, email, otsikko, sisalto, luettu);
 				palautelista.add(palaute);
 			}

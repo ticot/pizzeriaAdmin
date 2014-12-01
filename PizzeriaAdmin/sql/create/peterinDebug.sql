@@ -19,9 +19,6 @@ INSERT INTO Sisalto (nimi, sisalto)
 VALUES ('Ananas','Mehico');
 
 INSERT INTO Sisalto (nimi, sisalto)
-VALUES ('Pillumehu','Vosu');
-
-INSERT INTO Sisalto (nimi, sisalto)
 VALUES ('Ei aineosia','Ei aineosia');
 
 
