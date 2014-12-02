@@ -22,44 +22,18 @@
 <title>Melo e Castello</title>
 </head>
 <body>
+<%
+		if (session.getAttribute("currentSessionUser") == null) {
+			response.sendRedirect("Customer/index.jsp");
+
+		} 
+	%>
 	<div class="topbar">
 		<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav"
 			role="banner"> <nav
 			class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
 		<a class="navbar-brand" href="#">Melo e Castello Admin</a>
-		<ul class="nav navbar-nav" id="loginbtn">
-
-			<li class="dropdown"><a href="#" class="dropdown-toggle"
-				data-toggle="dropdown"><span class="step size-21"> <i
-						class="icon ion-ios7-bell"></i>
-				</span><b class="caret"></b></a>
-				<ul class="dropdown-menu dropdown-menu-right">
-					<li><a href="#">Ilmoitus</a></li>
-					<li><a href="#">Ilmoitus</a></li>
-					<li><a href="#">Ilmoitus <span class="label label-danger">Tärkeä</span></a></li>
-					<li><a href="#">Ilmoitus</a></li>
-
-
-				</ul></li>
-
-
-
-			<li class="dropdown"><a href="#" class="dropdown-toggle"
-				data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>
-					John Smith <b class="caret"></b></a>
-				<ul class="dropdown-menu dropdown-menu-right">
-					<li><a href="#"><span class="glyphicon glyphicon-user"></span>
-							Profiili</a></li>
-					<li><a href="#"><span class="step size-12"> <i
-								class="icon ion-android-settings"></i>
-						</span>Asetukset</a></li>
-					<li role="presentation" class="divider"></li>
-					<li><a href="#"><span class="step size-14"> <i
-								class="icon ion-log-out"></i>
-						</span>Kirjaudu ulos</a></li>
-				</ul></li>
-
-		</ul>
+		<jsp:include page="currentuser.jsp" />
 		</nav> </header>
 
 	</div>
