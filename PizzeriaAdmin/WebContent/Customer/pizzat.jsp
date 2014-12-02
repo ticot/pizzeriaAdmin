@@ -22,16 +22,24 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="login.jsp"/>
+<jsp:include page="register.jsp"/>
+	<div id="navigation">
+		<ul>
+			<li><a href="index.jsp">Etusivu</a></li>
+			<li class="active"><a href="pizzat">Pizzat</a></li>
+			<li><a href="yhteystiedot.jsp">Yhteystiedot</a></li>
+			<li><a href="palaute">Palaute</a></li>
+		</ul>
+		
+		<jsp:include page="navigation.jsp" />
+
+	</div>
 
 
-
-	<jsp:include page="login.jsp" />
-	<jsp:include page="navigation.jsp" />
-
-
-		<!-- Small modal -->
-		<button class="btn btn-primary" data-toggle="modal"
-			data-target=".bs-example-modal-sm" data-keyboard="true" id="loginbtn">Kirjaudu</button>
+	<!-- Small modal -->
+	<button class="btn btn-primary" data-toggle="modal"
+		data-target=".bs-example-modal-sm" data-keyboard="true" id="loginbtn">Kirjaudu</button>
 
 
 

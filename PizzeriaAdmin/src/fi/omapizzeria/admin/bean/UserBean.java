@@ -1,49 +1,89 @@
 package fi.omapizzeria.admin.bean;
 
 public class UserBean {
-	private String username;
-	private String password;
-	private String firstName;
-	private String lastName;
+	private String salasana;
+	private String etunimi;
+	private String sukunimi;
+	private String katuosoite;
+	private String postinumero;
+	private String postitoimipaikka;
+	private String puhelinnumero;
 	private String email;
 	private int level;
 	public boolean valid;
+	
+	
 
-	public String getFirstName() {
-		return firstName;
+	public String getSalasana() {
+		return salasana;
 	}
 
-	public void setFirstName(String newFirstName) {
-		firstName = newFirstName;
+	public void setSalasana(String salasana) {
+		this.salasana = salasana;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getEtunimi() {
+		return etunimi;
 	}
 
-	public void setLastName(String newLastName) {
-		lastName = newLastName;
+	public void setEtunimi(String etunimi) {
+		this.etunimi = etunimi;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getSukunimi() {
+		return sukunimi;
 	}
 
-	public void setPassword(String newPassword) {
-		
-		password = newPassword;
+	public void setSukunimi(String sukunimi) {
+		this.sukunimi = sukunimi;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getKatuosoite() {
+		return katuosoite;
 	}
 
-	public void setUserName(String newUsername) {
-		username = newUsername;
+	public void setKatuosoite(String katuosoite) {
+		this.katuosoite = katuosoite;
 	}
 
-	public void setEmail(String newEmail){
-		email = newEmail;
+	public String getPostinumero() {
+		return postinumero;
+	}
+
+	public void setPostinumero(String postinumero) {
+		this.postinumero = postinumero;
+	}
+
+	public String getPostitoimipaikka() {
+		return postitoimipaikka;
+	}
+
+	public void setPostitoimipaikka(String postitoimipaikka) {
+		this.postitoimipaikka = postitoimipaikka;
+	}
+
+	public String getPuhelinnumero() {
+		return puhelinnumero;
+	}
+
+	public void setPuhelinnumero(String puhelinnumero) {
+		this.puhelinnumero = puhelinnumero;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
 	}
 
 	public boolean isValid() {
@@ -54,8 +94,5 @@ public class UserBean {
 		valid = newValid;
 	}
 
-	public String getEmail() {
-		// TODO Auto-generated method stub
-		return email;
-	}
+	
 }

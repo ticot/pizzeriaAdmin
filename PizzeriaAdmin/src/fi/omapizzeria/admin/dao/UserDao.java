@@ -34,11 +34,11 @@ public class UserDao {
 				 */
 
 				int id = resultSet.getInt("id");
-				String EtuNimi = resultSet.getString("FirstName");
-				String SukuNimi = resultSet.getString("LastName");
-				String username = resultSet.getString("username");
+				String etunimi = resultSet.getString("etunimi");
+				String sukunimi = resultSet.getString("etunimi");
+				String email = resultSet.getString("email");
 				String password = resultSet.getString("password");
-				User u = new User(id, EtuNimi, SukuNimi, username, password);
+				User u = new User(id, etunimi, sukunimi, email, password);
 				lista.add(u);
 			}
 
@@ -46,7 +46,7 @@ public class UserDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			// LOPULTA AINA SULJETAAN YHTEYS
+			// SULJETAAN YHTEYS
 			connection.closeConnection(con);
 		}
 		System.out.println(lista);
@@ -58,7 +58,7 @@ public class UserDao {
 		ResultSet rs = null;	 
 		Connection con = null;
 		String email = bean.getEmail();
-		String salasana = bean.getPassword();
+		String salasana = bean.getSalasana();
 		
 		String searchQuery = "select * from Kayttaja"
 				+ " where email ='"
@@ -88,12 +88,24 @@ public class UserDao {
 			}
 			else if(more)
 			{
-				/*
-				String firstName = rs.getString("FirstName");
-				String lastName = rs.getString("LastName");
-				bean.setFirstName(firstName);
-				bean.setLastName(lastName);
-				*/
+				
+				String etunimi = rs.getString("etunimi");
+				String sukunimi = rs.getString("sukunimi");
+				String katuosoite = rs.getString("katuosoite");
+				String postinumero = rs.getString("postinumero");
+				String postitoimipaikka = rs.getString("postitoimipaikka");
+				String puhelinnumero = rs.getString("puhelinnro");
+				int level = rs.getInt("level");
+
+				bean.setEtunimi(etunimi);
+				bean.setSukunimi(sukunimi);
+				bean.setKatuosoite(katuosoite);
+				bean.setPostinumero(postinumero);
+				bean.setPostitoimipaikka(postitoimipaikka);
+				bean.setPuhelinnumero(puhelinnumero);
+				bean.setLevel(level);
+				
+				
 				bean.setValid(true);
 			}
 		}

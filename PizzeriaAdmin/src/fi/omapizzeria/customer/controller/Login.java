@@ -29,7 +29,7 @@ public class Login extends HttpServlet {
 			UserBean user = new UserBean();
 			user.setEmail(request.getParameter("email"));
 			Hash h = new Hash();
-			user.setPassword(h.getHash(request.getParameter("salasana")));
+			user.setSalasana(h.getHash(request.getParameter("salasana")));
 
 			user = UserDao.login(user);
 

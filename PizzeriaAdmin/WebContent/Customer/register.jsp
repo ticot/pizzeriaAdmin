@@ -19,34 +19,76 @@
 					data-dismiss="modal" id="close">
 					<span class="glyphicon glyphicon-remove"></span>
 			</div>
-			<form action="login" class="form-horizontal" role="form">
+			<form action="register" class="form-horizontal" role="form" method="POST">
 
 				<div class="form-group">
-					<label for="inputEmail3" class="col-sm-2 control-label">E-mail</label>
+					<label for="email" class="col-sm-2 control-label">E-mail</label>
 					<div class="col-sm-10">
-						<input type="email" class="form-control" id="inputEmail3" name="email"
+						<input type="email" class="form-control" id="email" name="email"
 							placeholder="E-mail" required="">
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inputPassword3" class="col-sm-2 control-label">Salasana</label>
+					<label for="salasana" class="col-sm-2 control-label">Salasana</label>
 					<div class="col-sm-10">
-						<input type="password" class="form-control" id="inputPassword3" name="salasana"
+						<input type="password" class="form-control" id="salasana" name="salasana"
 							placeholder="Salasana" required="">
 					</div>
 				</div>
 				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
-						<div class="checkbox" id="rmb">
-							<label> <input type="checkbox"> Muista minut
-							</label>
-						</div>
+					<label for="salasana2" class="col-sm-2 control-label"></label>
+					<div class="col-sm-10">
+						<input type="password" class="form-control" id="salasana2" name="salasana2"
+							placeholder="Salasana uudelleen" required="">
 					</div>
 				</div>
 				<div class="form-group">
+					<label for="etunimi" class="col-sm-2 control-label">Etunimi</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="etunimi" name="etunimi"
+							placeholder="Etunimi" required="">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="sukunimi" class="col-sm-2 control-label">Sukunimi</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="sukunimi" name="sukunimi"
+							placeholder="Sukunimi" required="">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="katuosoite" class="col-sm-2 control-label">Katuosoite</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="katuosoite" name="katuosoite"
+							placeholder="Katuosoite" required="">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="postinumero" class="col-sm-2 control-label">Postinumero</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="postinumero" name="postinumero"
+							placeholder="Postinumero" required="">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="postitoimipaikka" class="col-sm-2 control-label">Postitoimipaikka</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="postitoimipaikka" name="postitoimipaikka"
+							placeholder="Postitoimipaikka" required="">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="puhelinnumero" class="col-sm-2 control-label">Puhelinnumero</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="puhelinnumero" name="puhelinnumero"
+							placeholder="Puhelinnumero" required="">
+					</div>
+				</div>
+				
+				
+				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-default">Kirjaudu
-							sisään</button>
+						<button type="submit" class="btn btn-default">Rekisteröidy</button>
 					</div>
 				</div>
 			</form>
