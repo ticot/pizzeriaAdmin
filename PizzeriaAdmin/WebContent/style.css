@@ -46,11 +46,36 @@ body {
 #leftwrap{
 	margin-top:70px;
 }
-.panel-heading-highlight{
-	padding:12px;
-	background:black;
-	color:white;
+
+ .ribbon-wrapper {
+	position: relative;z-index:998;
+	display:inline;
+	height:50px;
+	widtH:500px;
 }
+
+
+@-webkit-keyframes flow {
+	0% { left:-20px;opacity: 0;}
+	50% {left:100px;opacity: 0.3;}
+    100%{ left:180px;opacity: 0;}
+}
+@keyframes flow {
+	0% { left:-20px;opacity: 0;}
+	50% {left:100px;opacity: 0.3;}
+    100%{ left:180px;opacity: 0;}
+}
+
+.glow{ background: rgb(255,255,255); width:700px; height:50px; margin-top:-10px; z-index:999; position:absolute; animation-iteration-count:1; -webkit-animation: flow 2.0s;-moz-animation: flow 2.0s linear infinite;
+	  
+	   background: -moz-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 1%, rgba(255,255,255,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,0)), color-stop(1%,rgba(255,255,255,0)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,0) 1%,rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,0) 1%,rgba(255,255,255,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,0) 1%,rgba(255,255,255,1) 100%); /* IE10+ */
+background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,0) 1%,rgba(255,255,255,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=1 ); /* IE6-9 */ }
+
 #logo{ 
 	
 

@@ -62,7 +62,14 @@ function refresh() {
 			<c:set var="h" value="${highlight}"/>
 <c:choose>
 <c:when test="${i.id == h}">
-<div class="panel-heading-highlight">
+<div class="panel-heading">
+	<div class="ribbon-wrapper"><div class="glow">&nbsp;</div>
+		<div class="ribbon-front">
+			
+		</div>
+		
+	</div>
+	
 </c:when>
 <c:otherwise>
 <div class="panel-heading">
