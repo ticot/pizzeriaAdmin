@@ -66,7 +66,7 @@ body {
     100%{ left:180px;opacity: 0;}
 }
 
-.glow{ background: rgb(255,255,255); width:700px; height:50px; margin-top:-10px; z-index:999; position:absolute; animation-iteration-count:1; -webkit-animation: flow 2.0s;-moz-animation: flow 2.0s linear infinite;
+.glow{ background: rgb(255,255,255); width:700px; height:42px; margin-top:-1px; z-index:999; position:absolute; animation-iteration-count:1; -webkit-animation: flow 2.0s;-moz-animation: flow 2.0s linear infinite;
 	  
 	   background: -moz-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 1%, rgba(255,255,255,1) 100%); /* FF3.6+ */
 background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,0)), color-stop(1%,rgba(255,255,255,0)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
@@ -82,6 +82,24 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
      filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 3.5+ */
         filter: gray; /* IE6-9 */
         -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+}
+.panel-heading{
+	position:relative;
+}
+.collapsespan{ 
+  position:absolute; 
+  width:100%;
+  height:100%;
+  top:0;
+  left: 0;
+
+  /* edit: added z-index */
+  z-index: 1;
+
+  /* edit: fixes overlap error in IE7/8, 
+     make sure you have an empty gif */
+  background-image: url('empty.gif');
+
 }
 #ybtn {
 	margin-left: 50px;

@@ -63,16 +63,20 @@ function refresh() {
 <c:choose>
 <c:when test="${i.id == h}">
 <div class="panel-heading">
+<a data-toggle="collapse"
+							data-target=".panel-body<c:out value="${i.id}" />"><span class="collapsespan"> 
 	<div class="ribbon-wrapper"><div class="glow">&nbsp;</div>
 		<div class="ribbon-front">
 			
 		</div>
 		
 	</div>
+	</span></a>
 	
 </c:when>
 <c:otherwise>
-<div class="panel-heading">
+<div class="panel-heading"><a data-toggle="collapse"
+							data-target=".panel-body<c:out value="${i.id}" />"><span class="collapsespan"> </span></a>
 </c:otherwise>
 </c:choose>
 				
@@ -84,18 +88,19 @@ function refresh() {
 					
 				
 				</div>
-				<div class="panel-body">
-
+				<!-- 
+				<div class="panel-body<c:out value="${i.id}" /> collapse">
+ -->
 				<c:choose>
 					<c:when test="${i.id == h}">
-							<p class="collapse in" id="viewdetails<c:out value="${i.id}" />"><c:out value="${i.sisalto}" />
+							<div class="panel-body<c:out value="${i.id}" /> collapse in"><c:out value="${i.sisalto}" />
 					</c:when>
 					<c:otherwise>
-							<p class="collapse" id="viewdetails<c:out value="${i.id}" />"><c:out value="${i.sisalto}" />
+							<div class="panel-body<c:out value="${i.id}" /> collapse"><c:out value="${i.sisalto}" />
 					</c:otherwise>
 				</c:choose>
 			
-				
+			 
 					<br>
 					<br>
 					Lähettäjä:<c:out value="${i.nimi}" />
