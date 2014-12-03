@@ -3,7 +3,12 @@ public class User {
 private int id;
 private String Etunimi;
 private String Sukunimi;
-private String username;
+
+private String katuosoite;
+private String postinumero;
+private String postitoimipaikka;
+private String puhelinnumero;
+
 private String email;
 private String password;
 private boolean valid;
@@ -11,19 +16,22 @@ public User(){
 	id = 0;
 	Etunimi ="";
 	Sukunimi="";
-	username="";
+	katuosoite="";
+	postinumero="";
+	postitoimipaikka="";
+	puhelinnumero="";
 	email="";
 	password="";
 	valid=false;
 	
 }
-public User(int id, String etunimi, String sukunimi, String username,
+public User(int id, String etunimi, String sukunimi, String email,
 		String password) {
 	super();
 	this.id = id;
 	Etunimi = etunimi;
 	Sukunimi = sukunimi;
-	this.username = username;
+	
 	this.password = password;
 	this.email = email;
 	valid=true;
@@ -53,12 +61,8 @@ public String getSukunimi() {
 public void setSukunimi(String sukunimi) {
 	Sukunimi = sukunimi;
 }
-public String getUsername() {
-	return username;
-}
-public void setUsername(String username) {
-	this.username = username;
-}
+
+
 public String getPassword() {
 	return password;
 }

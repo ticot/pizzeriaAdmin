@@ -2,16 +2,14 @@ package fi.omapizzeria.admin.dao;
 import java.sql.*;
 import java.util.*;
 
-
-
-import fi.omapizzeria.admin.bean.*;
+import fi.omapizzeria.admin.bean.UserBean;
 import include.ConnectionManager;
 public class UserDao {
-	public List<User> getUsers() throws SQLException {
+	public List<UserBean> getUsers() throws SQLException {
 		
 		ConnectionManager connection = new ConnectionManager();
 
-		List<User> lista = new ArrayList<User>();
+		List<UserBean> lista = new ArrayList<UserBean>();
 
 		Connection con = connection.doConnection();
 
@@ -34,11 +32,18 @@ public class UserDao {
 				 */
 
 				int id = resultSet.getInt("id");
+				int level = resultSet.getInt("level");
 				String etunimi = resultSet.getString("etunimi");
-				String sukunimi = resultSet.getString("etunimi");
+				String sukunimi = resultSet.getString("sukunimi");
+				String katuosoite = resultSet.getString("katuosoite");
+				String postinumero = resultSet.getString("postinumero");
+				String postitoimipaikka = resultSet.getString("postitoimipaikka");
+				String puhelinnumero = resultSet.getString("puhelinnro");
+				
+				
 				String email = resultSet.getString("email");
-				String password = resultSet.getString("password");
-				User u = new User(id, etunimi, sukunimi, email, password);
+				
+				UserBean u = new UserBean(etunimi, sukunimi, katuosoite, postinumero, postitoimipaikka, puhelinnumero, email, level);
 				lista.add(u);
 			}
 

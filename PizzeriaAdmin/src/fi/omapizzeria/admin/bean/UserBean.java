@@ -1,6 +1,7 @@
 package fi.omapizzeria.admin.bean;
 
 public class UserBean {
+	private int id;
 	private String salasana;
 	private String etunimi;
 	private String sukunimi;
@@ -12,7 +13,34 @@ public class UserBean {
 	private int level;
 	public boolean valid;
 	
-	
+	public UserBean(){
+		id = 0;
+		etunimi ="";
+		sukunimi="";
+		katuosoite="";
+		postinumero="";
+		postitoimipaikka="";
+		puhelinnumero="";
+		email="";
+		
+		valid=false;
+	}
+
+	public UserBean(String etunimi, String sukunimi,
+			String katuosoite, String postinumero, String postitoimipaikka,
+			String puhelinnumero, String email, int level) {
+		super();
+		
+		this.etunimi = etunimi;
+		this.sukunimi = sukunimi;
+		this.katuosoite = katuosoite;
+		this.postinumero = postinumero;
+		this.postitoimipaikka = postitoimipaikka;
+		this.puhelinnumero = puhelinnumero;
+		this.email = email;
+		this.level = level;
+		valid = true;
+	}
 
 	public String getSalasana() {
 		return salasana;

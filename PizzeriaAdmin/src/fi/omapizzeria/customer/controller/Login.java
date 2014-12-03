@@ -36,7 +36,8 @@ public class Login extends HttpServlet {
 			if (user.isValid()) {
 				HttpSession session = request.getSession(true);
 				session.setAttribute("currentSessionUser", user);
-				response.sendRedirect("../index.jsp");
+				
+				response.sendRedirect("../index");
 			} else {
 				response.sendRedirect("index.jsp");
 				JOptionPane.showMessageDialog(null,
