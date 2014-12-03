@@ -26,7 +26,7 @@ INSERT INTO Tuotteen_sisalto (sisalto_id, tuote_id)
 VALUES (4,8);
 
 INSERT INTO Tuotteen_sisalto (sisalto_id, tuote_id)
-VALUES (4,6);
+VALUES (4,4), (5,4);
 
 INSERT INTO Tuotteen_sisalto (sisalto_id, tuote_id)
 VALUES (4,6);

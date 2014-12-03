@@ -1,4 +1,7 @@
 INSERT INTO Sisalto (nimi, sisalto)
+VALUES ('Ei tuotteita', 'Ei tuotteita');
+
+INSERT INTO Sisalto (nimi, sisalto)
 VALUES ('Mozzarela', 'maito');
 
 INSERT INTO Sisalto (nimi, sisalto)
