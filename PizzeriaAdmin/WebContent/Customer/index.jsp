@@ -21,13 +21,14 @@
 <jsp:include page="login.jsp"/>
 <jsp:include page="register.jsp"/>
 <div id="navigation">
+
 	<ul>
 		<li class="active"><a href="index.jsp">Etusivu</a></li>
 		<li><a href="pizzat">Pizzat</a></li>
 		<li><a href="yhteystiedot.jsp">Yhteystiedot</a></li>
 		<li><a href="palaute">Palaute</a></li>
 	</ul>
-	
+		
 	<jsp:include page="navigation.jsp" />
 	
 	</div>

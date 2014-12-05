@@ -22,14 +22,16 @@
 <jsp:include page="login.jsp"/>
 <jsp:include page="register.jsp"/>
 	<div id="navigation">
+	
 	<ul>
 		<li><a href="index.jsp">Etusivu</a></li>
 		<li><a href="pizzat">Pizzat</a></li>
 		<li><a href="yhteystiedot.jsp">Yhteystiedot</a></li>
 		<li><a href="palaute">Palaute</a></li>
 	</ul>
-
 	<jsp:include page="navigation.jsp" />
+	<a href="shoppingcart.jsp"><img src="img/shopping.png" width="35" height="30" id="cartimg"></a>
+	
 	
 	</div>
 
@@ -47,7 +49,7 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							Pizza X &#8364;
-							<button class="glyphicon glyphicon-remove" id="rmv"></button>
+							
 						</div>
 						<div class="panel-body">
 							Herkkusieni, jauheliha
@@ -93,7 +95,7 @@
 				<div class="contentlink">
 					<h2>Ostosten hinta x &#8364;</h2>
 
-					<button type="button" class="btn btn-default" id="cashout">Kassalle</button>
+					<a href="Order.jsp"><button type="button" class="btn btn-default" id="cashout">Kassalle</button></a>
 				</div>
 			</div>
 
