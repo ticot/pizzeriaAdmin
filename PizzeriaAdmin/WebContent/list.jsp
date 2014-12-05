@@ -354,7 +354,18 @@
 
 							<button class="btn btn-info" type="button" data-toggle="modal"
 								data-target=".bs-example-modal-sm-muokkaa<c:out value="${p.id}"/>">Muokkaa</button>
-							<div
+							
+
+
+							<button type="submit" class="btn btn-success" name="action"
+								value="Tilattavissa">Tilattavissa</button>
+						</div>
+
+
+
+					</form>
+					
+					<div
 								class="modal fade bs-example-modal-sm-muokkaa<c:out value="${p.id}"/>"
 								tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
 								aria-hidden="true">
@@ -362,7 +373,7 @@
 									<div class="modal-content" id="del">
 
 
-										<form class="form-horizontal" name="input" action="list"
+										<form class="form-horizontal" name="input" action="muokkaasisalto"
 											method="POST">
 											<fieldset>
 
@@ -402,8 +413,34 @@
 													<div class="col-md-6">
 														<select id="selectbasic" name="selectpicker1"
 															class="form-control">
-																<option value="<c:out value="${p.sisalto}"/>"><c:out
-																		value="${p.sisalto}" /></option>
+															<c:out value="${p.nimi}" />
+															<c:set var="sisalto" value="${p.sisalto}"/>
+															<%
+															//Sisalto erottelu
+															
+															
+															String sis = (String) pageContext.getAttribute("sisalto");
+															String[] parts = sis.split(", ");
+															String part1 = parts[0]; 
+															String part2 = parts[1];
+															String part3 = parts[2]; 
+															String part4 = parts[3];
+															pageContext.setAttribute("osa1", part1);
+															pageContext.setAttribute("osa2", part2);
+															pageContext.setAttribute("osa3", part3);
+															pageContext.setAttribute("osa4", part4);
+															
+															
+															
+															
+															
+															
+															%>
+															
+															
+																<option value="<c:out value="${osa1}"/>"><c:out
+																		value="${osa1}" /></option>
+																		
 															<c:forEach items="${pizzatSisalto}" var="pSisalto">
 														
 																<option value="<c:out value="${pSisalto.tuote_id}"/>"><c:out
@@ -420,7 +457,8 @@
 													<div class="col-md-6">
 														<select id="selectbasic" name="selectpicker2"
 															class="form-control">
-															
+															<option value="<c:out value="${osa2}"/>"><c:out
+																		value="${osa2}" /></option>
 															<c:forEach items="${pizzatSisalto}" var="pSisalto">
 																<option value="<c:out value="${pSisalto.tuote_id}"/>"><c:out
 																		value="${pSisalto.nimi}" /></option>
@@ -436,6 +474,8 @@
 													<div class="col-md-6">
 														<select id="selectbasic" name="selectpicker3"
 															class="form-control">
+															<option value="<c:out value="${osa3}"/>"><c:out
+																		value="${osa3}" /></option>
 															<c:forEach items="${pizzatSisalto}" var="pSisalto">
 																<option value="<c:out value="${pSisalto.tuote_id}"/>"><c:out
 																		value="${pSisalto.nimi}" /></option>
@@ -451,6 +491,8 @@
 													<div class="col-md-6">
 														<select id="selectbasic" name="selectpicker4"
 															class="form-control">
+															<option value="<c:out value="${osa4}"/>"><c:out
+																		value="${osa4}" /></option>
 															<c:forEach items="${pizzatSisalto}" var="pSisalto">
 																<option value="<c:out value="${pSisalto.tuote_id}"/>"><c:out
 																		value="${pSisalto.nimi}" /></option>
@@ -512,15 +554,8 @@
 									</div>
 								</div>
 							</div>
-
-
-							<button type="submit" class="btn btn-success" name="action"
-								value="Tilattavissa">Tilattavissa</button>
-						</div>
-
-
-
-					</form>
+					
+					
 				</c:if>
 				<c:if test="${!p.tilattavissa}">
 					<form name="input"

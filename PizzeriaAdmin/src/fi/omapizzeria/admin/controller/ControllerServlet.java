@@ -92,7 +92,14 @@ public class ControllerServlet extends HttpServlet {
 		
 		try {
 			pList = pDao.haeKaikkiTuotteet();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
 			pSisaltoList = pDao.haeTuoteSisalto();
+		System.out.println(pSisaltoList);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
