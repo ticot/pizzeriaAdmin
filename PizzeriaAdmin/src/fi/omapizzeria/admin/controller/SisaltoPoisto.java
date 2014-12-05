@@ -59,15 +59,15 @@ public class SisaltoPoisto extends HttpServlet {
 			try {
 				resultSet = statement
 						.executeQuery("DELETE FROM Sisalto WHERE sisalto_id='" + id +"'");
+				response.sendRedirect("sisalto?poistettu=true");
 			} catch (SQLException e) {
 				System.out.println("Ei");
+				response.sendRedirect("sisalto?error=aineosa_jo_olemassa");
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
 			finally {
-				System.out.println("Poistettu pizza id:"+id);
-				response.sendRedirect("sisalto?poistettu=true");
+				//System.out.println("Poistettu pizza id:"+id);
 				connection.closeConnection(con);
 			}
 		}

@@ -23,7 +23,7 @@
 		if (session.getAttribute("currentSessionUser") == null) {
 			response.sendRedirect("Customer/index.jsp");
 
-		} 
+		}
 	%>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -62,7 +62,7 @@
 
 		<%
 			}
-				if (request.getParameter("poistettu") != null) {
+			if (request.getParameter("poistettu") != null) {
 		%>
 		<div class="alert alert-info alert-dismissible" role="alert">
 			<button type="button" class="close" data-dismiss="alert">
@@ -73,7 +73,7 @@
 		<%
 			}
 
-				if (request.getParameter("muokattu") != null) {
+			if (request.getParameter("muokattu") != null) {
 		%>
 		<div class="alert alert-info alert-dismissible" role="alert">
 			<button type="button" class="close" data-dismiss="alert">
@@ -338,17 +338,188 @@
 					</div>
 				</div>
 				<div class="panel-body">
-					
-							<c:out value="${p.sisalto}" />
-						</div>
 
-					  
+					<c:out value="${p.sisalto}" />
+				</div>
+
+
 				<c:if test="${p.tilattavissa}">
+
 					<form name="input"
 						action="muokkaa?id=<c:out value="${p.id}"/>&action=0"
 						method="POST">
-						<button type="submit" class="btn btn-success" id="mod"
-							name="action" value="Tilattavissa">Tilattavissa</button>
+						<div class="btn-group" role="group" aria-label="..." id="mod">
+							<!--  <button type="submit" class="btn btn-success" name="action"
+								value="Muokkaa">Muokkaa</button>-->
+
+							<button class="btn btn-info" type="button" data-toggle="modal"
+								data-target=".bs-example-modal-sm-muokkaa<c:out value="${p.id}"/>">Muokkaa</button>
+							<div
+								class="modal fade bs-example-modal-sm-muokkaa<c:out value="${p.id}"/>"
+								tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+								aria-hidden="true">
+								<div class="modal-dialog modal-sm">
+									<div class="modal-content" id="del">
+
+
+										<form class="form-horizontal" name="input" action="list"
+											method="POST">
+											<fieldset>
+
+												<!-- Form Name -->
+												<legend>
+													Muokkaa tuotetta
+													<c:out value="${p.nimi}" />
+												</legend>
+
+												<!-- Text input-->
+												<div class="form-group">
+													<label class="col-md-4 control-label" for="textinput">Nimi</label>
+													<div class="col-md-6">
+														<input id="textinput" name="nimi"
+															placeholder="Tuotteen nimi" class="form-control input-md"
+															type="text" required=""
+															value="<c:out value="${p.nimi}"/>">
+													</div>
+												</div>
+
+												<!-- Text input-->
+												<div class="form-group">
+													<label class="col-md-4 control-label" for="textinput">Hinta</label>
+													<div class="col-md-6">
+														<input type="number" min="0" step="any"
+															class="form-control input-md"
+															placeholder="Tuotteen hinta" name="hinta" required=""
+															value="<c:out value="${p.hinta}"/>"><span
+															class="help-block">Käytä erottimena pistettä(.)</span>
+													</div>
+												</div>
+
+												<!-- Select Basic -->
+												<div class="form-group">
+													<label class="col-md-4 control-label" for="selectbasic">Aineosa
+														1</label>
+													<div class="col-md-6">
+														<select id="selectbasic" name="selectpicker1"
+															class="form-control">
+																<option value="<c:out value="${p.sisalto}"/>"><c:out
+																		value="${p.sisalto}" /></option>
+															<c:forEach items="${pizzatSisalto}" var="pSisalto">
+														
+																<option value="<c:out value="${pSisalto.tuote_id}"/>"><c:out
+																		value="${pSisalto.nimi}" /></option>
+															</c:forEach>
+														</select>
+													</div>
+												</div>
+
+												<!-- Select Basic -->
+												<div class="form-group">
+													<label class="col-md-4 control-label" for="selectbasic">Aineosa
+														2</label>
+													<div class="col-md-6">
+														<select id="selectbasic" name="selectpicker2"
+															class="form-control">
+															
+															<c:forEach items="${pizzatSisalto}" var="pSisalto">
+																<option value="<c:out value="${pSisalto.tuote_id}"/>"><c:out
+																		value="${pSisalto.nimi}" /></option>
+															</c:forEach>
+														</select>
+													</div>
+												</div>
+
+												<!-- Select Basic -->
+												<div class="form-group">
+													<label class="col-md-4 control-label" for="selectbasic">Aineosa
+														3</label>
+													<div class="col-md-6">
+														<select id="selectbasic" name="selectpicker3"
+															class="form-control">
+															<c:forEach items="${pizzatSisalto}" var="pSisalto">
+																<option value="<c:out value="${pSisalto.tuote_id}"/>"><c:out
+																		value="${pSisalto.nimi}" /></option>
+															</c:forEach>
+														</select>
+													</div>
+												</div>
+
+												<!-- Select Basic -->
+												<div class="form-group">
+													<label class="col-md-4 control-label" for="selectbasic">Aineosa
+														4</label>
+													<div class="col-md-6">
+														<select id="selectbasic" name="selectpicker4"
+															class="form-control">
+															<c:forEach items="${pizzatSisalto}" var="pSisalto">
+																<option value="<c:out value="${pSisalto.tuote_id}"/>"><c:out
+																		value="${pSisalto.nimi}" /></option>
+															</c:forEach>
+														</select>
+													</div>
+												</div>
+
+												<!-- Textarea -->
+												<div class="form-group">
+													<label class="col-md-4 control-label" for="textarea">Kuvaus</label>
+													<div class="col-md-6">
+														<textarea class="form-control" id="textarea"
+															name="textarea">Tuotteen kuvaus</textarea>
+													</div>
+												</div>
+
+												<!-- Multiple Checkboxes -->
+												<div class="form-group">
+													<label class="col-md-4 control-label" for="checkboxes">Tilattavissa</label>
+													<div class="col-md-6">
+														<div class="checkbox">
+
+
+															<label for="checkboxes-0"> <input
+																name="checkboxes" id="checkboxes-0" name="tilattavissa"
+																value="1" type="checkbox"
+																<c:if test="${p.tilattavissa}">checked </c:if>>
+
+
+<!-- 
+																<label for="checkboxes-0"> <input
+																	name="checkboxes" id="checkboxes-0" name="tilattavissa"
+																	value="1" type="checkbox">
+ -->
+															</label>
+														</div>
+													</div>
+												</div>
+
+											</fieldset>
+											<div class="btnwrapper">
+												<button type="submit" class="btn btn-primary" id="ybtn"
+													value="Submit">Tallenna</button>
+												<button type="button" data-dismiss="modal"
+													class="btn btn-default" id="nbtn">Peruuta</button>
+
+											</div>
+										</form>
+
+
+
+
+
+
+
+
+
+									</div>
+								</div>
+							</div>
+
+
+							<button type="submit" class="btn btn-success" name="action"
+								value="Tilattavissa">Tilattavissa</button>
+						</div>
+
+
+
 					</form>
 				</c:if>
 				<c:if test="${!p.tilattavissa}">
@@ -359,8 +530,8 @@
 							tilattavissa</button>
 					</form>
 				</c:if>
-			
-					
+
+
 			</div>
 		</c:forEach>
 		<!-- 
@@ -541,8 +712,7 @@
 
 
 
-	
+
 
 </body>
 </html>
-

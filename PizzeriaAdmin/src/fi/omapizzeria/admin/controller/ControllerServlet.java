@@ -53,6 +53,7 @@ public class ControllerServlet extends HttpServlet {
 		 * 
 		 * java.io.PrintWriter wout = response.getWriter();
 		 * 
+		 *
 		 * 
 		 * request.setAttribute("piz", lista);
 		 * 
@@ -217,17 +218,18 @@ public class ControllerServlet extends HttpServlet {
 			resultSet = statement
 					.executeQuery("INSERT INTO Tuotteen_sisalto (sisalto_id, tuote_id) VALUE ('"
 							+ osa4 + "','" + tuote_id + "')");
-
+			response.sendRedirect("list?added=true");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			response.sendRedirect("list?error=lisays"); // MITEN LISÄTÄ
 		}
 
 		finally {
 			connection.closeConnection(con);
 			// request.getRequestDispatcher("list?added=true").forward(request,
 			// response);
-			response.sendRedirect("list?added=true"); // MITEN LISÄTÄ
+			
 		}
 
 		// REDIRECT???????

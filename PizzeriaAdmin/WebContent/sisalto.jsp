@@ -52,11 +52,18 @@
 			Aineosa poistettu!
 		</div>
 		<%
-			}
+			}else if (request.getParameter("error") != null){
+				
 		%>
-
-
-
+<div class="alert alert-danger alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert">
+				<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+			</button>
+			Hups ! Aineosaa ei voitu poistaa. Aineosa on tällä hetkellä käytössä jossain tuotteessa.
+		</div>
+	
+<% }
+%>
 
 		<div class="jumbotron">
 			<h1>Lisää uusia aineosia</h1>
