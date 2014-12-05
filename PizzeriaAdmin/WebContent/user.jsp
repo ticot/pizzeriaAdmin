@@ -18,12 +18,14 @@
 <title>Melo e Castello</title>
 </head>
 <body>
+ 
+ 
 <%
-		if (session.getAttribute("currentSessionUser") == null) {
+ if (session.getAttribute("currentSessionUser") == null) {
 			response.sendRedirect("Customer/index.jsp");
-
+ 
 		} 
-	%>
+	%> 
 	<div class="topbar">
 		<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav"
 			role="banner">

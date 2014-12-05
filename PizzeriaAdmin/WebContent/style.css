@@ -27,8 +27,40 @@ body {
 }
 #textarea{
 	max-width:400px !important;
-	
 }
+.panel-body1{
+padding:10px;
+}
+.panel-body2{
+padding:10px;
+}
+.panel-body3{
+padding:10px;
+}
+.panel-body4{
+padding:10px;
+}
+.panel-body5{
+padding:10px;
+}
+.panel-body6{
+padding:10px;
+}
+.panel-body7{
+padding:10px;
+}
+.panel-body8{
+padding:10px;
+}
+
+.panel-body9{
+padding:10px;
+}
+
+.panel-body10{
+padding:10px;
+}
+
 #back{
 		width: 290px;
 		min-height: 279px;

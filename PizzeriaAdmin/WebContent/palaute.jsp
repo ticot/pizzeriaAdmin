@@ -110,12 +110,13 @@ function refresh() {
 					</p>
 					
 					
-					 
+					 <!-- 
 							<p>
 						<a class="specialbtn" data-toggle="collapse"
 							data-target="#viewdetails<c:out value="${i.id}" />">
 							Palautteen sisältö&raquo;</a>
 					</p>
+					 -->
 					
 				</div>
 			</div>
