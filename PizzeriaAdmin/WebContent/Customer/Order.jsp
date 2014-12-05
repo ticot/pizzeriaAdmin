@@ -40,10 +40,54 @@
 		<div class="content">
 			<div id="cash">
 				<h2>Vahvista tilauksesi</h2>
-				
+				<div class="panel panel-default" id="cashpizza">
+						<div class="panel-heading">
+							Pizza X &#8364;
+							
+						</div>
+						<div class="panel-body">
+							Herkkusieni, jauheliha
+							
+						</div>
 
+					</div>
+				
+				<h4 class="modal-title" id="myModalLabel">Kirjaudu sisään</h4>
+			
 			</div>
-			 <button type="button" class="btn btn-default" role="button" id="sure-btn">Vahvista</button>
+			<form action="login" class="form-horizontal" role="form">
+
+				<div class="form-group">
+					<label for="inputEmail3" class="col-sm-2 control-label">E-mail</label>
+					<div class="col-sm-10">
+						<input type="email" class="form-control" id="inputEmail3" name="email"
+							placeholder="E-mail" required="">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputPassword3" class="col-sm-2 control-label">Salasana</label>
+					<div class="col-sm-10">
+						<input type="password" class="form-control" id="inputPassword3" name="salasana"
+							placeholder="Salasana" required="">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<div class="checkbox" id="rmb">
+							<label> <input type="checkbox"> Muista minut
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-default">Kirjaudu
+							sisään</button>
+					</div>
+				</div>
+			</form>
+			</div>
+		
 		</div>
 		
 	</div>
