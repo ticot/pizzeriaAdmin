@@ -230,12 +230,13 @@ a:hover {
 	display:inline-block;
 }
 #confirmation{
+	margin-top:20px;
 	margin-left:20px;
 }
 #infotext{
 	margin-left:230px;
 	display:inline-box;
-	margin-top:-330px;
+	margin-top:-390px;
 	word-break:none;
 	width:160px;
 	

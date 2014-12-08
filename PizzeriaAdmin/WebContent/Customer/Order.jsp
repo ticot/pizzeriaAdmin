@@ -90,7 +90,14 @@
     
   </div>
 </div>
-
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label" for="Postinro"><h5>Postinro</h5></label>
+  <div class="controls">
+    <input id="Postinro" name="Postinro" placeholder="" class="input-medium" required="" type="text">
+    
+  </div>
+</div>
 <!-- Text input-->
 <div class="control-group">
   <label class="control-label" for="Postitoimipaikka"><h5>Postitoimipaikka</h5></label>
