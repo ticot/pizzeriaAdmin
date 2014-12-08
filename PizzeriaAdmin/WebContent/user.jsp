@@ -44,6 +44,57 @@
 
 
 	<div id="centercontent">
+	<%
+			if (request.getParameter("removed") != null && request.getParameter("removed").equals("true")) {
+		%>
+		<div class="alert alert-info alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert">
+				<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+			</button>
+			K‰ytt‰j‰ poistettu!
+		</div>
+		<%
+			}
+
+			%>
+			<%
+			if (request.getParameter("removed") != null && request.getParameter("removed").equals("false")) {
+		%>
+		<div class="alert alert-danger alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert">
+				<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+			</button>
+			K‰ytt‰j‰n poistaminen ep‰onnistui!
+		</div>
+		<%
+			}
+
+			if (request.getParameter("added") != null && request.getParameter("added").equals("true")) {
+				%>
+				<div class="alert alert-info alert-dismissible" role="alert">
+					<button type="button" class="close" data-dismiss="alert">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					K‰ytt‰j‰ lis‰tty!
+				</div>
+				<%
+					}
+
+					%>
+					<%
+					if (request.getParameter("added") != null && request.getParameter("added").equals("false")) {
+				%>
+				<div class="alert alert-danger alert-dismissible" role="alert">
+					<button type="button" class="close" data-dismiss="alert">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					K‰ytt‰j‰n lis‰‰minen ep‰onnistui!
+				</div>
+				<%
+					}
+
+					%>
+	
 		<div class="jumbotron">
 			<h1>Lis‰‰ k‰ytt‰j‰</h1>
 			<p>T‰n‰‰n on kaunis p‰iv‰!</p>
@@ -57,6 +108,20 @@
 				<!-- Form Name -->
 				<legend>Lis‰‰ uusi k‰ytt‰j‰</legend>
 
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="etunimi">Etunimi</label>
+					<div class="col-md-4">
+						<input id="etunimi" name="etunimi" placeholder="Etunimi"
+							class="form-control input-md" required="" type="text" required="">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="Sukunimi">Sukunimi</label>
+					<div class="col-md-4">
+						<input id="sukunimi" name="sukunimi" placeholder="Sukunimi"
+							class="form-control input-md" required="" type="text" required="">
+					</div>
+				</div>
 				<!-- Email input -->
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="email">E-mail</label>

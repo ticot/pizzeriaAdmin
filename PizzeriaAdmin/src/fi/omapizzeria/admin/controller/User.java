@@ -79,6 +79,8 @@ public class User extends HttpServlet {
 		System.out.println("toiminto oli" + action + " ja id "+id);
 		if (action.equals("register")){ 
 		String email = request.getParameter("email");
+		String etunimi = request.getParameter("etunimi");
+		String sukunimi = request.getParameter("sukunimi");
 		// String salasana = request.getParameter("salasana");
 		Hash h = new Hash();
 		String salasana = h.getHash(request.getParameter("salasana"));
@@ -106,7 +108,11 @@ public class User extends HttpServlet {
 
 			try {
 				resultSet = statement
-						.executeQuery("INSERT INTO Kayttaja (email, salasana, level) VALUE ('"
+						.executeQuery("INSERT INTO Kayttaja (etunimi, sukunimi, email, salasana, level) VALUE ('"
+								+ etunimi
+								+"','"
+								+sukunimi
+								+"','"
 								+ email
 								+ "','"
 								+ salasana
@@ -123,12 +129,12 @@ public class User extends HttpServlet {
 				connection.closeConnection(con);
 				// request.getRequestDispatcher("list?added=true").forward(request,
 				// response);
-				response.sendRedirect("user?added=true"); // MITEN LISÄTÄ
+				response.sendRedirect("user?added=true"); 
 			}
 		}
 		else {
 			request.setAttribute("error", "Salasanat eivät vastaa toisiaan."); // salasanat ei vastaa
-		    request.getRequestDispatcher("/user.jsp").forward(request, response); // Forward to same page so that you can display error.
+		    request.getRequestDispatcher("/user?added=false").forward(request, response); // Forward to same page so that you can display error.
 		    JOptionPane.showMessageDialog(null, "Salasanat eivät vastaa toisiaan."); //näytetään alert-laatikko jossa virhe selitetään
 		}
 
@@ -136,7 +142,36 @@ public class User extends HttpServlet {
 		}
 		if (action.equals("remove")){
 
-			response.sendRedirect("user?removed=true");
+			if(request.getParameter("id") !=null && !request.getParameter("id").equals("") ){
+				ConnectionManager connection = new ConnectionManager();
+				Connection con = connection.doConnection();
+
+				Statement statement = null;
+				ResultSet resultSet = null;
+
+				try {
+					statement = con.createStatement();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} // Statement olion luonti
+
+				try {
+					resultSet = statement
+							.executeQuery("DELETE FROM Kayttaja WHERE kayttaja_id='" + id +"'");
+					System.out.println("Käyttäjän poistaminen onnistui!");
+					response.sendRedirect("user?removed=true");
+				} catch (SQLException e) {
+					System.out.println("Poistaminen ei onnistunut");
+					response.sendRedirect("user?removed=false");
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				finally {
+						connection.closeConnection(con);
+				}
+			}
+			
 		}
 	}
 
