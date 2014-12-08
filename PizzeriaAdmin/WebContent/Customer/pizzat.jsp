@@ -61,7 +61,7 @@
 						<c:out value="${p.nimi}" />
 					</h2>
 					<h2 id="price">
-						<c:out value="${p.hinta}" />
+						<c:out value="${p.hinta}" />&#8364;
 					</h2>
 					<p>
 						<c:out value="${p.sisalto}" />
