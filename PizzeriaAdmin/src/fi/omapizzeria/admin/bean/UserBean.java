@@ -26,9 +26,7 @@ public class UserBean {
 		valid=false;
 	}
 
-	public UserBean(String etunimi, String sukunimi,
-			String katuosoite, String postinumero, String postitoimipaikka,
-			String puhelinnumero, String email, int level) {
+	public UserBean(String etunimi, String sukunimi, String katuosoite, String postinumero, String postitoimipaikka, String puhelinnumero, String email, int level, int id) {
 		super();
 		
 		this.etunimi = etunimi;
@@ -40,6 +38,8 @@ public class UserBean {
 		this.email = email;
 		this.level = level;
 		valid = true;
+		this.id = id;
+		
 	}
 
 	public String getSalasana() {
@@ -120,6 +120,14 @@ public class UserBean {
 
 	public void setValid(boolean newValid) {
 		valid = newValid;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	

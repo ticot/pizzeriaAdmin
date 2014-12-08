@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE>
 <html>
 <head>
@@ -18,14 +19,14 @@
 <title>Melo e Castello</title>
 </head>
 <body>
- 
- 
-<%
- if (session.getAttribute("currentSessionUser") == null) {
+
+
+	<%
+		if (session.getAttribute("currentSessionUser") == null) {
 			response.sendRedirect("Customer/index.jsp");
- 
-		} 
-	%> 
+
+		}
+	%>
 	<div class="topbar">
 		<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav"
 			role="banner">
@@ -62,7 +63,6 @@
 					<div class="col-md-4">
 						<input id="email" name="email" placeholder="E-mail"
 							class="form-control input-md" required="" type="text" required="">
-
 					</div>
 				</div>
 
@@ -71,19 +71,22 @@
 					<label class="col-md-4 control-label" for="salasana">Salasana</label>
 					<div class="col-md-4">
 						<input id="salasana" name="salasana" placeholder="Salasana"
-							class="form-control input-md" required="" type="password" required="">
+							class="form-control input-md" required="" type="password"
+							required="">
 
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-md-4 control-label" for="salasana">Salasana uudelleen</label>
+					<label class="col-md-4 control-label" for="salasana">Salasana
+						uudelleen</label>
 					<div class="col-md-4">
-						<input id="salasana2" name="salasana2" placeholder="Salasana uudelleen"
-							class="form-control input-md" required="" type="password" required="">
+						<input id="salasana2" name="salasana2"
+							placeholder="Salasana uudelleen" class="form-control input-md"
+							required="" type="password" required="">
 
 					</div>
 				</div>
-				
+
 				<!-- User level input -->
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="userlevel">K‰ytt‰j‰taso</label>
@@ -98,12 +101,61 @@
 				</div>
 
 				<button type="submit" class="btn btn-primary" id="ybtn"
-					value="Submit">Lis‰‰ K‰ytt‰j‰</button>
+					value="register" name="button">Lis‰‰ K‰ytt‰j‰</button>
 				<button type="button" data-dismiss="modal" class="btn btn-default"
 					id="nbtn">Peruuta</button>
 
 			</fieldset>
 		</form>
+
+		<legend>Olemassa olevat k‰ytt‰j‰t</legend>
+		<table class = "table table-hover" id="usertable">
+			<thead>
+			<tr>
+				<th>Etunimi</th>
+				<th>Sukunimi</th>
+				<th>Email</th>
+				<th>Poista</th>
+			</tr>
+			</thead>
+			<tbody>
+			<c:forEach items="${users}" var="u">
+			<tr>
+				<td><c:out value="${u.etunimi}" /></td>
+				<td><c:out value="${u.sukunimi}" /></td>
+				<td><c:out value="${u.email}" /></td>
+				<td><button class="glyphicon glyphicon-remove" id="rmv2"
+						data-toggle="modal"
+						data-target=".bs-example-modal-sm-<c:out value="${u.id}"/>"></button>
+					<div class="modal fade bs-example-modal-sm-<c:out value="${u.id}"/>"
+						tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"	aria-hidden="true">
+						<div class="modal-dialog modal-sm">
+							<div class="modal-content" id="del">
+								<h1>Poista tuote</h1>
+								<p>
+									Oletko varma ett‰ haluat poistaa k‰ytt‰j‰n <b><c:out value="${u.etunimi}" /></b> ?
+								</p>
+								<div id="btnwrap2">
+									<form name="input" action="user?id=<c:out value="${u.id}"/>"
+										method="POST">
+
+										<button type="submit" class="btn btn-primary" id="ybtn" name="button"
+											value="remove">Poista k‰ytt‰j‰</button>
+										<button type="button" data-dismiss="modal"
+											class="btn btn-default" id="nbtn">Peruuta</button>
+									</form>
+									
+								
+								</div>
+							</div>
+						</div>
+					</div></td>
+			</tr>	
+			</c:forEach>
+			</tbody>
+		</table>
+		
+		
 
 	</div>
 	<div class="leftnavigation">

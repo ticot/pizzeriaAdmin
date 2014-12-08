@@ -9,7 +9,7 @@ public class UserDao {
 		
 		ConnectionManager connection = new ConnectionManager();
 
-		List<UserBean> lista = new ArrayList<UserBean>();
+		List<UserBean> uList = new ArrayList<UserBean>();
 
 		Connection con = connection.doConnection();
 
@@ -18,7 +18,7 @@ public class UserDao {
 
 		statement = con.createStatement(); // Statement olion luonti
 
-		resultSet = statement.executeQuery("SELECT * FROM Kayttaja"); // Result
+		resultSet = statement.executeQuery("select * from Kayttaja"); // Result
 																	// setin
 																	// luonti
 		try {
@@ -31,7 +31,7 @@ public class UserDao {
 				 * + "\nNimi: " + nimi + "\nHinta: " + hinta);
 				 */
 
-				int id = resultSet.getInt("id");
+				int id = resultSet.getInt("kayttaja_id");
 				int level = resultSet.getInt("level");
 				String etunimi = resultSet.getString("etunimi");
 				String sukunimi = resultSet.getString("sukunimi");
@@ -43,8 +43,8 @@ public class UserDao {
 				
 				String email = resultSet.getString("email");
 				
-				UserBean u = new UserBean(etunimi, sukunimi, katuosoite, postinumero, postitoimipaikka, puhelinnumero, email, level);
-				lista.add(u);
+				UserBean u = new UserBean(etunimi, sukunimi, katuosoite, postinumero, postitoimipaikka, puhelinnumero, email, level, id);
+				uList.add(u);
 			}
 
 		} catch (Exception e) {
@@ -54,8 +54,8 @@ public class UserDao {
 			// SULJETAAN YHTEYS
 			connection.closeConnection(con);
 		}
-		System.out.println(lista);
-		return lista;
+		System.out.println(uList);
+		return uList;
 	}
 	public static UserBean login(UserBean bean){
 		ConnectionManager connection = new ConnectionManager();

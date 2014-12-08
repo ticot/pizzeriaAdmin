@@ -19,7 +19,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.swing.JOptionPane;
 
 import fi.omapizzeria.admin.bean.Tuote;
+import fi.omapizzeria.admin.bean.UserBean;
 import fi.omapizzeria.admin.dao.TuoteDao;
+import fi.omapizzeria.admin.dao.UserDao;
 
 /**
  * Servlet implementation class User
@@ -43,8 +45,26 @@ public class User extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
+		//Tee t‰h‰n lista. 
+		//M‰‰rittele ensin lista jossa userbean k‰ytt‰j‰. 
+		//Sitten m‰‰rittele int joka m‰‰r‰‰ listan pituuden 
+		//jotta voidaan n‰ytt‰‰ monta k‰ytt‰j‰‰ yhteens‰.
+		//kato esimerkki Java Resources/ fi.omapizzeria.admin.controller/AdminServlet
 		
-		request.getRequestDispatcher("user.jsp").forward(request, response);
+		UserDao uDao = new UserDao();
+		List<UserBean> uList = null;
+		
+		try {
+			uList = uDao.getUsers();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		int yhteensa = uList.size();
+		request.setAttribute("users", uList);
+		request.setAttribute("yht", yhteensa);
+		
+		request.getRequestDispatcher("user.jsp").forward(request, response); //t‰‰ rivi l‰hett‰‰ selaimen user.jsp sivulle, mukanaan lista
 	}
 
 	/**
@@ -53,8 +73,11 @@ public class User extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		String action = request.getParameter("button");
+		String id = request.getParameter("id");
 		
-
+		System.out.println("toiminto oli" + action + " ja id "+id);
+		if (action.equals("register")){ 
 		String email = request.getParameter("email");
 		// String salasana = request.getParameter("salasana");
 		Hash h = new Hash();
@@ -110,7 +133,11 @@ public class User extends HttpServlet {
 		}
 
 		// REDIRECT???????
+		}
+		if (action.equals("remove")){
 
+			response.sendRedirect("user?removed=true");
+		}
 	}
 
 }

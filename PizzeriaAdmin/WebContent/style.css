@@ -138,7 +138,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', e
 #centercontent p {
 color:black;
 }
-
+#usertable {
+	color:black;
+}
 
 #centercontent li {
 	list-style-type: none;
