@@ -40,56 +40,86 @@
 		<div class="content">
 			<div id="cash">
 				<h2>Vahvista tilauksesi</h2>
-				<div class="panel panel-default" id="cashpizza">
-						<div class="panel-heading">
-							Pizza X &#8364;
-							
-						</div>
-						<div class="panel-body">
-							Herkkusieni, jauheliha
-							
-						</div>
-
-					</div>
 				
-				<h4 class="modal-title" id="myModalLabel">Kirjaudu sisään</h4>
-			
+				<div class="pricepanel">
+				
+					<h4>Pizza X , gluteiiniton</h4>
+					
+					<br>
+					<h4>Hinta: 49 &#8364;</h4>
+					<br><br>
+				</div>
+				
 			</div>
-			<form action="login" class="form-horizontal" role="form">
+			  
+			 <div id="formwrapper">
+			 	
+			 	<form class="form-horizontal">
+			 	
+<fieldset>
 
-				<div class="form-group">
-					<label for="inputEmail3" class="col-sm-2 control-label">E-mail</label>
-					<div class="col-sm-10">
-						<input type="email" class="form-control" id="inputEmail3" name="email"
-							placeholder="E-mail" required="">
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="inputPassword3" class="col-sm-2 control-label">Salasana</label>
-					<div class="col-sm-10">
-						<input type="password" class="form-control" id="inputPassword3" name="salasana"
-							placeholder="Salasana" required="">
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
-						<div class="checkbox" id="rmb">
-							<label> <input type="checkbox"> Muista minut
-							</label>
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-default">Kirjaudu
-							sisään</button>
-					</div>
-				</div>
-			</form>
-			</div>
-		
+<!-- Form Name -->
+<h3>Yhteystiedot</h3>
+
+<!-- Text input-->
+<button class="btn btn-primary" data-toggle="modal"
+		data-target=".bs-example-modal-sm" data-keyboard="true" id="sign">Kirjaudu sisään</button>
+
+<div class="control-group">
+  <label class="control-label" for="Etunimi"><h5>Etunimi</h5></label>
+  <div class="controls">
+    <input id="Etunimi" name="Etunimi" placeholder="" class="input-medium" required="" type="text">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label" for="Sukunimi"><h5>Sukunimi</h5></label>
+  <div class="controls">
+    <input id="Sukunimi" name="Sukunimi" placeholder="" class="input-medium" required="" type="text">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label" for="Osoite"><h5>Osoite</h5></label>
+  <div class="controls">
+    <input id="Osoite" name="Osoite" placeholder="" class="input-medium" required="" type="text">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label" for="Postitoimipaikka"><h5>Postitoimipaikka</h5></label>
+  <div class="controls">
+    <input id="Postitoimipaikka" name="Postitoimipaikka" placeholder="" class="input-medium" required="" type="text">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label" for="Puhelin.nro"><h5>Puhelin.nro</h5></label>
+  <div class="controls">
+    <input id="Puhelin.nro" name="Puhelin.nro" placeholder="" class="input-medium" type="text">
+    
+  </div>
+</div>
+
+</fieldset>
+</form>
+				<div id="infotext"><p>Kirjautumalla sisään<br>
+				 lomake hakee tietosi, jotka olet tallentanut kirjautuessasi ja täyttää ne automaattisesti.<br><br>
+				Jos sinulla ei vielä ole tiliä Melo e Castelloon, voit rekisteröityä kohdasta rekisteröidy, sivun ylälaidassa.
+				Rekisteröinminen on maksutonta eikä Melo e Castello oy myy asiakkaan tietoja mainostajille</p> </div>
+				
+			 	<button type="button" class="btn btn-default" id="confirmation">Vahvista tilaus</button>
+			 </div>
 		</div>
-		
+
 	</div>
 
 
