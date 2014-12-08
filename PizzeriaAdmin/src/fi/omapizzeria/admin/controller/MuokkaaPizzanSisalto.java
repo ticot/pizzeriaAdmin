@@ -58,11 +58,11 @@ public class MuokkaaPizzanSisalto extends HttpServlet {
 		System.out.println("Tilattavissa: " + tilattavissa);
 		if(tilattavissa == null){
 			tilattavissa = "0";
-			System.out.println(tilattavissa);
+			System.out.println("Lol" +tilattavissa);
 		}
-		if(tilattavissa != null){
+		else{
 			tilattavissa = "1";
-			System.out.println(tilattavissa);
+			System.out.println("lol2" +tilattavissa);
 		}
 		
 		
