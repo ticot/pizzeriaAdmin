@@ -373,7 +373,7 @@
 									<div class="modal-content" id="del">
 
 
-										<form class="form-horizontal" name="input" action="muokkaasisalto"
+										<form class="form-horizontal" name="input" action="muokkaasisalto?id=<c:out value="${p.id}"/>"
 											method="POST">
 											<fieldset>
 
@@ -431,22 +431,38 @@
 															pageContext.setAttribute("osa4", part4);
 															
 															
-															
-															
-															
-															
 															%>
 															
-															
+															<!-- 
 																<option value="<c:out value="${osa1}"/>"><c:out
 																		value="${osa1}" /></option>
-																		
+																 -->		
+																 
 															<c:forEach items="${pizzatSisalto}" var="pSisalto">
-														
+															
+														<c:if test="${pSisalto.nimi == osa1}">
+													
+																<option selected value="<c:out value="${pSisalto.tuote_id}"/>"><c:out
+																		value="${pSisalto.nimi}" /></option>
+																		
+																	
+																	
+															</c:if>			
+																	<c:if test="${pSisalto.nimi != osa1}">
 																<option value="<c:out value="${pSisalto.tuote_id}"/>"><c:out
 																		value="${pSisalto.nimi}" /></option>
+															</c:if>				
+																		
+																		
+															
 															</c:forEach>
 														</select>
+														
+														<c:forEach items="${pizzatSisalto}" var="pSisalto">
+														<c:if test="${pSisalto.nimi == osa1}">
+															<input type="hidden" name="osa1w" value="${pSisalto.tuote_id}" />
+															</c:if>
+															</c:forEach>
 													</div>
 												</div>
 
@@ -457,13 +473,24 @@
 													<div class="col-md-6">
 														<select id="selectbasic" name="selectpicker2"
 															class="form-control">
-															<option value="<c:out value="${osa2}"/>"><c:out
-																		value="${osa2}" /></option>
 															<c:forEach items="${pizzatSisalto}" var="pSisalto">
+																<c:if test="${pSisalto.nimi == osa2}">
+																<option selected value="<c:out value="${pSisalto.tuote_id}"/>"><c:out
+																		value="${pSisalto.nimi}" /></option>
+															</c:if>			
+																	<c:if test="${pSisalto.nimi != osa2}">
 																<option value="<c:out value="${pSisalto.tuote_id}"/>"><c:out
 																		value="${pSisalto.nimi}" /></option>
+															</c:if>				
+																		
 															</c:forEach>
 														</select>
+														
+														<c:forEach items="${pizzatSisalto}" var="pSisalto">
+														<c:if test="${pSisalto.nimi == osa2}">
+															<input type="hidden" name="osa2w" value="${pSisalto.tuote_id}" />
+															</c:if>
+															</c:forEach>
 													</div>
 												</div>
 
@@ -474,13 +501,24 @@
 													<div class="col-md-6">
 														<select id="selectbasic" name="selectpicker3"
 															class="form-control">
-															<option value="<c:out value="${osa3}"/>"><c:out
-																		value="${osa3}" /></option>
+															
 															<c:forEach items="${pizzatSisalto}" var="pSisalto">
+																<c:if test="${pSisalto.nimi == osa3}">
+																<option selected value="<c:out value="${pSisalto.tuote_id}"/>"><c:out
+																		value="${pSisalto.nimi}" /></option>
+															</c:if>			
+																	<c:if test="${pSisalto.nimi != osa3}">
 																<option value="<c:out value="${pSisalto.tuote_id}"/>"><c:out
 																		value="${pSisalto.nimi}" /></option>
+															</c:if>				
 															</c:forEach>
 														</select>
+														
+														<c:forEach items="${pizzatSisalto}" var="pSisalto">
+														<c:if test="${pSisalto.nimi == osa3}">
+															<input type="hidden" name="osa3w" value="${pSisalto.tuote_id}" />
+															</c:if>
+															</c:forEach>
 													</div>
 												</div>
 
@@ -491,13 +529,23 @@
 													<div class="col-md-6">
 														<select id="selectbasic" name="selectpicker4"
 															class="form-control">
-															<option value="<c:out value="${osa4}"/>"><c:out
-																		value="${osa4}" /></option>
 															<c:forEach items="${pizzatSisalto}" var="pSisalto">
+																<c:if test="${pSisalto.nimi == osa4}">
+																<option selected value="<c:out value="${pSisalto.tuote_id}"/>"><c:out
+																		value="${pSisalto.nimi}" /></option>
+															</c:if>			
+																	<c:if test="${pSisalto.nimi != osa4}">
 																<option value="<c:out value="${pSisalto.tuote_id}"/>"><c:out
 																		value="${pSisalto.nimi}" /></option>
+															</c:if>				
 															</c:forEach>
 														</select>
+														
+														<c:forEach items="${pizzatSisalto}" var="pSisalto">
+														<c:if test="${pSisalto.nimi == osa4}">
+															<input type="hidden" name="osa4w" value="${pSisalto.tuote_id}" />
+															</c:if>
+															</c:forEach>
 													</div>
 												</div>
 
@@ -536,7 +584,7 @@
 											</fieldset>
 											<div class="btnwrapper">
 												<button type="submit" class="btn btn-primary" id="ybtn"
-													value="Submit">Tallenna</button>
+													value="Submit">Päivitä</button>
 												<button type="button" data-dismiss="modal"
 													class="btn btn-default" id="nbtn">Peruuta</button>
 
