@@ -151,7 +151,8 @@ a:hover {
 }
 .contentlink{
 	float:right;
-	margin-right:110px;    
+	margin-right:90px;    
+	margin-top:-40px;
 }
 .pricepanel{
 	width:400px;

@@ -67,30 +67,7 @@
 							</div>
 						</div>
 
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							Pizza X &#8364;
-							<button class="glyphicon glyphicon-remove" id="rmv"></button>
-						</div>
-						<div class="panel-body">
-							Herkkusieni, jauheliha
-							<div class="btn-group">
-								<button class="btn btn-default btn-xs dropdown-toggle"
-									id="dpbtn" type="button" data-toggle="dropdown"
-									aria-expanded="false">
-									jotain<span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu" role="menu">
-									<li>Gluteiiniton</li>
-									<li>Ei</li>
-
-								</ul>
-							</div>
-						</div>
-
-					</div>
-					
+					</div>				
 				</div>
 				<div class="contentlink">
 					<h2>Ostosten hinta x &#8364;</h2>
