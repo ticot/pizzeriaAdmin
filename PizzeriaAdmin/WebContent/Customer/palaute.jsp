@@ -15,21 +15,24 @@
 		       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 <meta charset="UTF-8">
-<title>Melo e Castello</title><!--  pohjan kommentit index.jsp -->
+<title>Melo e Castello</title>
+<!--  pohjan kommentit index.jsp -->
 </head>
 <body>
-<jsp:include page="login.jsp"/>
-<jsp:include page="register.jsp"/>
+	<jsp:include page="login.jsp" />
+	<jsp:include page="register.jsp" />
 	<div id="navigation">
-	<ul>
-		<li><a href="index.jsp">Etusivu</a></li>
-		<li><a href="pizzat">Pizzat</a></li>
-		<li><a href="yhteystiedot.jsp">Yhteystiedot</a></li>
-		<li class="active"><a href="palaute">Palaute</a></li>
-	</ul>
-	
-	<jsp:include page="navigation.jsp" />
-	
+		<ul>
+			<li><a href="index.jsp">Etusivu</a></li>
+			<li><a href="pizzat">Pizzat</a></li>
+			<li><a href="yhteystiedot.jsp">Yhteystiedot</a></li>
+			<li class="active"><a href="palaute">Palaute</a></li>
+		</ul>
+		
+		<jsp:include page="navigation.jsp" />
+		<a href="shoppingcart.jsp"><img src="img/shopping.png" width="35"
+			height="30" id="cartimg"></a>
+
 	</div>
 
 	<div id="center">
@@ -39,22 +42,24 @@
 		<div class="content">
 			<h1 class="feedback">Anna Palautetta</h1>
 			<div class="mvm">
-			<form class="form-horizontal" name="input" action="palaute" method="POST">
-			<!-- Palautelomake fi/omapizzeria/admin/controller/PalauteServletAdmin.java -->
-			<input type="text" class="form-control" placeholder="Nimi" id="name" name="nimi" required="">
-			<input type="text" class="form-control" placeholder="Sähköposti"
-				id="name" name="email">
-			<input type="text" class="form-control" placeholder="Otsikko" id="name" name="otsikko" required="">	
+				<form class="form-horizontal" name="input" action="palaute"
+					method="POST">
+					<!-- Palautelomake fi/omapizzeria/admin/controller/PalauteServletAdmin.java -->
+					<input type="text" class="form-control" placeholder="Nimi"
+						id="name" name="nimi" required=""> <input type="text"
+						class="form-control" placeholder="Sähköposti" id="name"
+						name="email"> <input type="text" class="form-control"
+						placeholder="Otsikko" id="name" name="otsikko" required="">
 			</div>
-			<textarea class="form-control" rows="1" id="textarea" name="palaute" required="">
+			<textarea class="form-control" rows="1" id="textarea" name="palaute"
+				required="">
 			
 				</textarea>
-			<p class="infofield">
-			Sähköposti tai nimi eivät ole pakollisia. Laita sähköposti
-				osoitteesi vain siinä tapauksessa, jos haluat meiltä paluupostia
-				palautteestasi tai hyvitystä. Muussa tapauksessa voit jättää kentät
-				tyhjiksi ja palautteesi tulee meille nimettömänä
-			Arvostamme kaikkea meille saapuvaa palautetta!</p>
+			<p class="infofield">Sähköposti- tai nimikentät eivät ole pakollisia.
+				Laita sähköpostiosoitteesi vain, jos haluat
+				meiltä vastauksen palautteestasi tai hyvityksen. Muussa tapauksessa
+				voit jättää kentät tyhjiksi ja palautteesi tulee meille nimettömänä
+				Arvostamme kaikkea meille saapuvaa palautetta!</p>
 			<button type="submit" class="btn btn-primary">Lähetä</button>
 			</form>
 		</div>

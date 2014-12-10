@@ -18,12 +18,13 @@
 		       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 <meta charset="UTF-8">
-<title>Melo e Castello</title><!-- pohjan kommentit index.jsp -->
+<title>Melo e Castello</title>
+<!-- pohjan kommentit index.jsp -->
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="login.jsp"/>
-<jsp:include page="register.jsp"/>
+	<jsp:include page="login.jsp" />
+	<jsp:include page="register.jsp" />
 	<div id="navigation">
 		<ul>
 			<li><a href="index.jsp">Etusivu</a></li>
@@ -33,6 +34,8 @@
 		</ul>
 		
 		<jsp:include page="navigation.jsp" />
+		<a href="shoppingcart.jsp"><img src="img/shopping.png" width="35"
+			height="30" id="cartimg"></a>
 
 	</div>
 
@@ -55,13 +58,15 @@
 		</div>
 		<div class="content">
 
-			<c:forEach items="${pizzat}" var="p">	<!-- Listataan valikoimasta löytyvät tilattavissa olevat tuotteet -->
+			<c:forEach items="${pizzat}" var="p">
+				<!-- Listataan valikoimasta löytyvät tilattavissa olevat tuotteet -->
 				<div class="pizzawrapper">
 					<h2>
 						<c:out value="${p.nimi}" />
 					</h2>
 					<h2 id="price">
-						<c:out value="${p.hinta}" />&#8364;
+						<c:out value="${p.hinta}" />
+						&#8364;
 					</h2>
 					<p>
 						<c:out value="${p.sisalto}" />
@@ -71,8 +76,9 @@
 						ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
 						massa justo sit amet risus. Etiam porta sem malesuada magna mollis
 						euismod. Donec sed odio dui.</p>
-					<p>											nappi joka laajentaa pizzan alta löytyvän kuvauksen
-						<a class="btn" data-toggle="collapse"
+					<p>
+						nappi joka laajentaa pizzan alta löytyvän kuvauksen <a class="btn"
+							data-toggle="collapse"
 							data-target="#viewdetails<c:out value="${p.id}" />">Tuotekuvaus
 							&raquo;</a>
 					</p>
