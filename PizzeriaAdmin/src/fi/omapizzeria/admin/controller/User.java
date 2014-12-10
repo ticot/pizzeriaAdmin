@@ -82,80 +82,47 @@ public class User extends HttpServlet {
 		// sivulla, menn‰‰n t‰h‰n funktioon
 		String action = request.getParameter("button");
 		String id = request.getParameter("id");
-
-		System.out.println("toiminto oli" + action + " ja id " + id);
+		UserDao uDao = new UserDao();
 		if (action.equals("register")) { // jos painettu nappula oli
 											// "lis‰‰ k‰ytt‰j‰" k‰yd‰‰n t‰m‰
 											// funktio l‰pi
+			
+			
 			String email = request.getParameter("email");
 			String etunimi = request.getParameter("etunimi");
 			String sukunimi = request.getParameter("sukunimi");
-			// String salasana = request.getParameter("salasana");
+			String katuosoite = request.getParameter("katuosoite");
+			String postinumero = request.getParameter("postinumero");
+			String postitoimipaikka = request.getParameter("postitoimipaikka");
+			String puhelinnumero = request.getParameter("puhelinnumero");
+			int level = Integer.parseInt(request.getParameter("level"));
 			Hash h = new Hash();
 			String salasana = h.getHash(request.getParameter("salasana"));
+
+			// String salasana = request.getParameter("salasana");
+			
+			
 			String salasana2 = h.getHash(request.getParameter("salasana2"));
 			if (salasana2.equals(salasana)) {
+				boolean added=uDao.addUser(etunimi, sukunimi, katuosoite, postinumero, postitoimipaikka, puhelinnumero, email, level, salasana);
 				System.out.println("salasana=" + salasana);
-
-				String level = request.getParameter("level");
-
-				ConnectionManager connection = new ConnectionManager();
-
-				Connection con = connection.doConnection();
-
-				Statement statement = null;
-				ResultSet resultSet = null;
-
-				try {
-					statement = con.createStatement();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} // Statement olion luonti
-
-				try {
-					resultSet = statement
-							.executeQuery("INSERT INTO Kayttaja (etunimi, sukunimi, email, salasana, level) VALUE ('"
-									+ etunimi
-									+ "','"
-									+ sukunimi
-									+ "','"
-									+ email
-									+ "','"
-									+ salasana
-									+ "','"
-									+ level
-									+ "')");
-
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-				finally {
-					connection.closeConnection(con);
-					// request.getRequestDispatcher("list?added=true").forward(request,
-					// response);
+				if (added){
 					response.sendRedirect("user?added=true");
 				}
-			} else {
-				request.setAttribute("error",
-						"Salasanat eiv‰t vastaa toisiaan."); // salasanat ei
-																// vastaa
-				request.getRequestDispatcher("/user?added=false").forward(
-						request, response); // Forward to same page so that you
-											// can display error.
-				JOptionPane.showMessageDialog(null,
-						"Salasanat eiv‰t vastaa toisiaan."); // n‰ytet‰‰n
-																// alert-laatikko
-																// jossa virhe
-																// selitet‰‰n
+				else {
+					response.sendRedirect("user?added=false");
+				}
 			}
-
 		}
 		if (action.equals("remove")) { // Jos sivulla painettiin "poista"
 										// nappulaa k‰ytt‰j‰listauksessa
-
+			boolean removed = uDao.removeUser(Integer.parseInt(id));
+			if (removed){
+				response.sendRedirect("user?removed=true");
+			}
+			else{
+				response.sendRedirect("user?removed=false");
+			}
 			if (request.getParameter("id") != null
 					&& !request.getParameter("id").equals("")) {
 				ConnectionManager connection = new ConnectionManager();

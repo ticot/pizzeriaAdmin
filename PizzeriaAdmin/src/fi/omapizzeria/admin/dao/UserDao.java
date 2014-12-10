@@ -57,6 +57,83 @@ public class UserDao {
 		System.out.println(uList);
 		return uList;
 	}
+	@SuppressWarnings("finally")
+	public boolean addUser(String etunimi, String sukunimi, String katuosoite, String postinumero, String postitoimipaikka, String puhelinnumero, String email, int level, String salasana){
+	boolean added=false;
+	
+	ConnectionManager connection = new ConnectionManager();
+	Connection con = connection.doConnection();
+	Statement statement = null;
+	ResultSet resultSet = null;
+	try {
+		statement = con.createStatement();
+	} catch (SQLException e){
+		e.printStackTrace();
+	}
+	try {
+		resultSet = statement
+				.executeQuery("INSERT INTO Kayttaja (etunimi, sukunimi, katuosoite, postinumero, postitoimipaikka, email, puhelinnro, salasana, level) VALUE ('"
+						+ etunimi
+						+ "','"
+						+ sukunimi
+						+ "','"
+						+ katuosoite
+						+ "','"
+						+ postinumero
+						+ "','"
+						+ postitoimipaikka
+						+ "','"
+						+ email
+						+ "','"
+						+ puhelinnumero
+						+ "','"
+						+ salasana
+						+ "','"
+						+ level
+						+ "')");
+added=true;
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+
+	finally {
+		connection.closeConnection(con);
+
+		// request.getRequestDispatcher("list?added=true").forward(request,
+		// response);
+		return added;
+	}
+	
+	}
+	@SuppressWarnings("finally")
+	public boolean removeUser(int id){
+		boolean removed=false;
+		ConnectionManager connection = new ConnectionManager();
+		Connection con = connection.doConnection();
+
+		Statement statement = null;
+		ResultSet resultSet = null;
+
+		try {
+			statement = con.createStatement();
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} // Statement olion luonti
+
+		try {
+			resultSet = statement
+					.executeQuery("DELETE FROM Kayttaja WHERE kayttaja_id='"
+							+ id + "'");
+			removed = true;
+		} catch (SQLException e) {
+			removed = false;
+			e.printStackTrace();
+		} finally {
+			connection.closeConnection(con);
+			return removed;
+		}
+	}
 	public static UserBean login(UserBean bean){
 		ConnectionManager connection = new ConnectionManager();
 		Statement stmt = null; 
