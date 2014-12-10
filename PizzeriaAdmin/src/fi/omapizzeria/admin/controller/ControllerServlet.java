@@ -151,11 +151,9 @@ public class ControllerServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		//t‰m‰n sivun dogetiss‰ lis‰t‰‰n tuote. Kun k‰ytt‰j‰ painaa list.jsp sivulla "lis‰‰ tuote" ja t‰ytt‰‰ lomakkeen onnistuneesti, l‰hetet‰‰n lomakkeen tiedot t‰h‰n funktioon
+		//t‰m‰n sivun dopostissa listataan tuotteet. Kun k‰ytt‰j‰ painaa list.jsp sivulla "lis‰‰ tuote" ja t‰ytt‰‰ lomakkeen onnistuneesti, l‰hetet‰‰n lomakkeen tiedot t‰h‰n funktioon
 		
 		TuoteDao pDao = new TuoteDao();
-		
-		
 		int tuote_id = 0;
 		try {
 			tuote_id = pDao.haeUusinID();
@@ -185,58 +183,64 @@ public class ControllerServlet extends HttpServlet {
 		System.out.println("Nimi: " + pnimi + "\nHinta: " + phinta
 				+ "Tilattavissa:" + tilattavissa + " Osa1: " + osa1);
 		System.out.println("Tuote id on !!!! " + tuote_id);
-
-		ConnectionManager connection = new ConnectionManager();
-
-		List<Tuote> lista = new ArrayList<Tuote>();
-
-		Connection con = connection.doConnection();
-
-		Statement statement = null;
-		ResultSet resultSet = null;
-
-		try {
-			statement = con.createStatement();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} // Statement olion luonti
-		//varsinkin n‰‰ vissii daoo
-		try {
-			resultSet = statement
-					.executeQuery("INSERT INTO Tuote(nimi, hinta, tilattavissa) VALUE ('"
-							+ pnimi
-							+ "', '"
-							+ phintas
-							+ "', '"
-							+ tilattavissa
-							+ "')");
-
-			resultSet = statement
-					.executeQuery("INSERT INTO Tuotteen_sisalto (sisalto_id, tuote_id) VALUE ('"
-							+ osa1 + "','" + tuote_id + "')");
-			resultSet = statement
-					.executeQuery("INSERT INTO Tuotteen_sisalto (sisalto_id, tuote_id) VALUE ('"
-							+ osa2 + "','" + tuote_id + "')");
-			resultSet = statement
-					.executeQuery("INSERT INTO Tuotteen_sisalto (sisalto_id, tuote_id) VALUE ('"
-							+ osa3 + "','" + tuote_id + "')");
-			resultSet = statement
-					.executeQuery("INSERT INTO Tuotteen_sisalto (sisalto_id, tuote_id) VALUE ('"
-							+ osa4 + "','" + tuote_id + "')");
-			response.sendRedirect("list?added=true");		//tuotteen lis‰yksen j‰lkeen menn‰‰n taikaisin list.jsp ja vied‰‰n tieto ett‰ lis‰ys onnistui
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			response.sendRedirect("list?error=lisays"); // MITEN LISƒTƒ
+		boolean lisatty = pDao.lisaaTuote(tuote_id, pnimi, phinta, tilattavissa, osa1, osa2, osa3, osa4);
+		if (lisatty){
+			response.sendRedirect("list?added=true");
 		}
-
-		finally {
-			connection.closeConnection(con);
-			// request.getRequestDispatcher("list?added=true").forward(request,
-			// response);
-
+		else{
+			response.sendRedirect("list?error=lisays");
 		}
+//		ConnectionManager connection = new ConnectionManager();
+//
+//		List<Tuote> lista = new ArrayList<Tuote>();
+//
+//		Connection con = connection.doConnection();
+//
+//		Statement statement = null;
+//		ResultSet resultSet = null;
+//
+//		try {
+//			statement = con.createStatement();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} // Statement olion luonti
+//		//varsinkin n‰‰ vissii daoo
+//		try {
+//			resultSet = statement
+//					.executeQuery("INSERT INTO Tuote(nimi, hinta, tilattavissa) VALUE ('"
+//							+ pnimi
+//							+ "', '"
+//							+ phintas
+//							+ "', '"
+//							+ tilattavissa
+//							+ "')");
+//
+//			resultSet = statement
+//					.executeQuery("INSERT INTO Tuotteen_sisalto (sisalto_id, tuote_id) VALUE ('"
+//							+ osa1 + "','" + tuote_id + "')");
+//			resultSet = statement
+//					.executeQuery("INSERT INTO Tuotteen_sisalto (sisalto_id, tuote_id) VALUE ('"
+//							+ osa2 + "','" + tuote_id + "')");
+//			resultSet = statement
+//					.executeQuery("INSERT INTO Tuotteen_sisalto (sisalto_id, tuote_id) VALUE ('"
+//							+ osa3 + "','" + tuote_id + "')");
+//			resultSet = statement
+//					.executeQuery("INSERT INTO Tuotteen_sisalto (sisalto_id, tuote_id) VALUE ('"
+//							+ osa4 + "','" + tuote_id + "')");
+//			response.sendRedirect("list?added=true");		//tuotteen lis‰yksen j‰lkeen menn‰‰n taikaisin list.jsp ja vied‰‰n tieto ett‰ lis‰ys onnistui
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			response.sendRedirect("list?error=lisays"); // MITEN LISƒTƒ
+//		}
+//
+//		finally {
+//			connection.closeConnection(con);
+//			// request.getRequestDispatcher("list?added=true").forward(request,
+//			// response);
+//
+//		}
 
 		// REDIRECT???????
 

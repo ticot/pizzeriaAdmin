@@ -77,7 +77,7 @@
 						massa justo sit amet risus. Etiam porta sem malesuada magna mollis
 						euismod. Donec sed odio dui.</p>
 					<p>
-						nappi joka laajentaa pizzan alta löytyvän kuvauksen <a class="btn"
+						<!-- nappi joka laajentaa pizzan alta löytyvän kuvauksen --> <a class="btn"
 							data-toggle="collapse"
 							data-target="#viewdetails<c:out value="${p.id}" />">Tuotekuvaus
 							&raquo;</a>

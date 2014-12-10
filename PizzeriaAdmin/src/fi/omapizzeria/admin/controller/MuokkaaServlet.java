@@ -1,5 +1,7 @@
 package fi.omapizzeria.admin.controller;
 
+import fi.omapizzeria.admin.dao.TuoteDao;
+import fi.omapizzeria.admin.dao.UserDao;
 import include.ConnectionManager;
 
 import java.io.IOException;
@@ -44,56 +46,73 @@ public class MuokkaaServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		TuoteDao tDao = new TuoteDao();
 		// Jos käyttäjä painaa list.jsp löytyvästä tuotelistauksesta jonkun
 		// tuotteen vierestä nappulaa "tilattavissa", mennään tänne, ja
 		// tilattavuus muutetaan.
 		String id = request.getParameter("id");
 		String action = request.getParameter("action");
-
-		if (request.getParameter("id") != null
-				&& !request.getParameter("id").equals("")) {
-			ConnectionManager connection = new ConnectionManager();
-			Connection con = connection.doConnection();
-
-			Statement statement = null;
-			ResultSet resultSet = null;
-
-			try {
-				statement = con.createStatement();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} // Statement olion luonti
+		System.out.println(id);
+		if (request.getParameter("id") != null && !request.getParameter("id").equals("")) {
+//			ConnectionManager connection = new ConnectionManager();
+//			Connection con = connection.doConnection();
+//
+//			Statement statement = null;
+//			ResultSet resultSet = null;
+//
+//			try {
+//				statement = con.createStatement();
+//			} catch (SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			} // Statement olion luonti
 
 			if (action.equals("0")) {
-				try {
-					resultSet = statement
-							.executeQuery("UPDATE Tuote SET tilattavissa=0 WHERE tuote_id='"
-									+ id + "'");
-				} catch (SQLException e) {
-					System.out.println("Ei");
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} finally {
+				boolean piilotettu = tDao.piilotaTuote(id);
+				if(piilotettu){
 					System.out.println("Poistettu pizza id:" + id);
 					response.sendRedirect("list?muokattu=true");
-					connection.closeConnection(con);
 				}
+				else{
+					System.out.println("Ei toiminut, tuotetta ei piilotettu.");
+				}
+//				try {
+//					resultSet = statement
+//							.executeQuery("UPDATE Tuote SET tilattavissa=0 WHERE tuote_id='"
+//									+ id + "'");
+//				} catch (SQLException e) {
+//					System.out.println("Ei");
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				} finally {
+//					System.out.println("Poistettu pizza id:" + id);
+//					response.sendRedirect("list?muokattu=true");
+//					connection.closeConnection(con);
+//				}
 
 			} else if (action.equals("1")) {
-				try {
-					resultSet = statement
-							.executeQuery("UPDATE Tuote SET tilattavissa=1 WHERE tuote_id='"
-									+ id + "'");
-				} catch (SQLException e) {
-					System.out.println("Ei");
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} finally {
-					System.out.println("Poistettu pizza id:" + id);
+				boolean palautettu = tDao.palautaTuote(id);
+				if(palautettu){
+					System.out.println("Palautettu pizza id:" + id);
 					response.sendRedirect("list?muokattu=true");
-					connection.closeConnection(con);
 				}
+				else{
+					System.out.println("Ei toiminut, tuotetta ei palautettu.");
+					response.sendRedirect("list?muokattu=false");
+				}
+//				try {
+//					resultSet = statement
+//							.executeQuery("UPDATE Tuote SET tilattavissa=1 WHERE tuote_id='"
+//									+ id + "'");
+//				} catch (SQLException e) {
+//					System.out.println("Ei");
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				} finally {
+//					System.out.println("Poistettu pizza id:" + id);
+//					response.sendRedirect("list?muokattu=true");
+//					connection.closeConnection(con);
+//				}
 			}
 		}
 	}

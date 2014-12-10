@@ -1,5 +1,6 @@
 package fi.omapizzeria.admin.controller;
 
+import fi.omapizzeria.admin.dao.TuoteDao;
 import include.ConnectionManager;
 
 import java.io.IOException;
@@ -42,41 +43,49 @@ public class poistaServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Jos k‰ytt‰j‰ poistaa tuotteen list.jsp sivulla niin tullaan t‰nne. Mukana tulee tieto sen tuotteen id:st‰ mik‰ pit‰‰ poistaa.
 		String id = request.getParameter("id");
-		
+		TuoteDao tDao = new TuoteDao();
 		if(request.getParameter("id") !=null && !request.getParameter("id").equals("") ){
-			ConnectionManager connection = new ConnectionManager();
-			Connection con = connection.doConnection();
-
-			Statement statement = null;
-			ResultSet resultSet = null;
-
-			try {
-				statement = con.createStatement();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} // Statement olion luonti
-			//T‰‰ allaoleva tuotedaoo
-			try {
-				resultSet = statement
-						.executeQuery("DELETE FROM Tuotteen_sisalto WHERE tuote_id='" + id +"'");
-			} catch (SQLException e) {
-				System.out.println("Ei");
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
-				resultSet = statement
-						.executeQuery("DELETE FROM Tuote WHERE tuote_id='" + id +"'");
-			} catch (SQLException e) {
-				System.out.println("Ei");
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} finally {
+			boolean poistettu = tDao.poistaTuote(id);
+			if (poistettu){
 				System.out.println("Poistettu pizza id:"+id);
-				response.sendRedirect("list?poistettu=true"); //vied‰‰n k‰ytt‰j‰ takaisin list.jsp ja otetaan mukaan tieto onnistuneesta poistosta
-				connection.closeConnection(con);
+				response.sendRedirect("list?poistettu=true");
 			}
+			else{
+				response.sendRedirect("list");
+			}
+//			ConnectionManager connection = new ConnectionManager();
+//			Connection con = connection.doConnection();
+//
+//			Statement statement = null;
+//			ResultSet resultSet = null;
+//
+//			try {
+//				statement = con.createStatement();
+//			} catch (SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			} // Statement olion luonti
+//			//T‰‰ allaoleva tuotedaoo
+//			try {
+//				resultSet = statement
+//						.executeQuery("DELETE FROM Tuotteen_sisalto WHERE tuote_id='" + id +"'");
+//			} catch (SQLException e) {
+//				System.out.println("Ei");
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			try {
+//				resultSet = statement
+//						.executeQuery("DELETE FROM Tuote WHERE tuote_id='" + id +"'");
+//			} catch (SQLException e) {
+//				System.out.println("Ei");
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			} finally {
+//				System.out.println("Poistettu pizza id:"+id);
+//				response.sendRedirect("list?poistettu=true"); //vied‰‰n k‰ytt‰j‰ takaisin list.jsp ja otetaan mukaan tieto onnistuneesta poistosta
+//				connection.closeConnection(con);
+//			}
 		}
 	}
 

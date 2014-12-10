@@ -13,7 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import fi.omapizzeria.admin.dao.*;
 /**
  * Servlet implementation class poistaServlet
  */
@@ -47,36 +47,17 @@ public class SisaltoPoisto extends HttpServlet {
 		// Käyttäjä klikaa sisältösivulla ainesosalistasta löytyvän ainesosan
 		// vierestä ruksia, tullaan tänne, mukana tieto poistettavan ainesosan
 		// id:stä
+		TuoteDao tDao = new TuoteDao();
 		String id = request.getParameter("id");
 
 		if (request.getParameter("id") != null
 				&& !request.getParameter("id").equals("")) {
-			ConnectionManager connection = new ConnectionManager();
-			Connection con = connection.doConnection();
-
-			Statement statement = null;
-			ResultSet resultSet = null;
-
-			try {
-				statement = con.createStatement();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} // Statement olion luonti
-
-			try {
-				resultSet = statement
-						.executeQuery("DELETE FROM Sisalto WHERE sisalto_id='"
-								+ id + "'");
+			boolean poistettu = tDao.poistaSisalto(id);
+			if (poistettu){
 				response.sendRedirect("sisalto?poistettu=true");
-			} catch (SQLException e) {
-				System.out.println("Ei");
+			}
+			else{
 				response.sendRedirect("sisalto?error=aineosa_jo_olemassa");
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} finally {
-				// System.out.println("Poistettu pizza id:"+id);
-				connection.closeConnection(con);
 			}
 		}
 	}

@@ -123,36 +123,7 @@ public class User extends HttpServlet {
 			else{
 				response.sendRedirect("user?removed=false");
 			}
-			if (request.getParameter("id") != null
-					&& !request.getParameter("id").equals("")) {
-				ConnectionManager connection = new ConnectionManager();
-				Connection con = connection.doConnection();
-
-				Statement statement = null;
-				ResultSet resultSet = null;
-
-				try {
-					statement = con.createStatement();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} // Statement olion luonti
-
-				try {
-					resultSet = statement
-							.executeQuery("DELETE FROM Kayttaja WHERE kayttaja_id='"
-									+ id + "'");
-					System.out.println("Käyttäjän poistaminen onnistui!");
-					response.sendRedirect("user?removed=true");
-				} catch (SQLException e) {
-					System.out.println("Poistaminen ei onnistunut");
-					response.sendRedirect("user?removed=false");
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} finally {
-					connection.closeConnection(con);
-				}
-			}
+			
 
 		}
 	}
