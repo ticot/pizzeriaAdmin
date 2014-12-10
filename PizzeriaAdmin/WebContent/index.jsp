@@ -22,7 +22,7 @@
 <body>
 	<%
 		
-		if (session.getAttribute("currentSessionUser") == null) {
+		if (session.getAttribute("currentSessionUser") == null) {		/* tarkistetaan onko k‰ytt‰j‰ kirjautunut sis‰‰n */
 			response.sendRedirect("Customer/index.jsp");
 
 		} 
@@ -35,7 +35,7 @@
 			<nav class="collapse navbar-collapse bs-navbar-collapse"
 				role="navigation">
 				<a class="navbar-brand" href="#">Melo e Castello Admin</a>
-				<jsp:include page="currentuser.jsp" />
+				<jsp:include page="currentuser.jsp" />		<!-- kirjautuneen k‰ytt‰j‰n tiedot katso currentuser.jsp-->
 			</nav>
 
 		</header>
@@ -47,7 +47,7 @@
 	<div id="centercontent">
 		<div class="jumbotron">
 			<h1>Tervetuloa</h1>
-			<p>T‰n‰‰n on kaunis p‰iv‰!</p>
+			<p>T‰n‰‰n on kaunis p‰iv‰!</p>				<!-- T‰h‰n p‰iv‰m‰‰r‰ -->
 		</div>
 		<div class="row">
 			<div class="col-sm-6 col-md-4" id="back">
@@ -57,7 +57,7 @@
 						<h3>Palaute</h3>
 						<ul>
 						
-							<c:forEach items="${palautteet}" var="i">
+							<c:forEach items="${palautteet}" var="i">		<!-- Listataan palautteet -->
 							<li><a href="palaute?id=<c:out value="${i.id}"/>"><c:out value="${i.otsikko}" /></a></li>
 							</c:forEach>
 						</ul>
@@ -78,7 +78,7 @@
 					<div class="caption">
 						<h3>Tilaukset</h3>
 						<ul>
-							<li>object1</li>
+							<li>object1</li>	 <!--  Listataan tilaukset -->
 							<li>object1</li>
 							<li>object1</li>
 							<li>object1</li>
@@ -96,7 +96,7 @@
 				<div class="thumbnail" id="color3">
 					<img src="img/products.png" alt="Moi">
 					<div class="caption">
-						<h3>Tuotteet</h3>
+						<h3>Tuotteet</h3>	<!--  listataan tuotteet -->
 						<p>Sinulla <c:out value="${yht}"></c:out> tuotetta tilattavissa</p>
 						<p>
 							<a href="#" class="btn btn-info" role="button" id="btn4">N‰yt‰
@@ -107,7 +107,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="leftnavigation">
+	<div class="leftnavigation"> <!-- Vasemmalta puolelta sivua lˆytyv‰ navigointi -->
 		<div id="leftwrap">
 			<ul class="nav nav-pills nav-stacked">
 				<li class="active"><a href="index">Etusivu</a></li>

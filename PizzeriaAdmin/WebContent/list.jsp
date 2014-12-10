@@ -16,7 +16,7 @@
 		       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 <meta charset="UTF-8">
-<title>Melo e Castello</title>
+<title>Melo e Castello</title> <!-- Katso pohjaan kuuluvat kommentit index.jsp -->
 </head>
 <body>
 	<%
@@ -49,9 +49,9 @@
 
 
 	<div id="centercontent">
-
+								<!--  ilmoitusikkunat onnistuneille lis‰yksille, poistoille tai muokkauksille -->
 		<%
-			if (request.getParameter("added") != null) {
+			if (request.getParameter("added") != null) { 
 		%>
 		<div class="alert alert-success alert-dismissible" role="alert">
 			<button type="button" class="close" data-dismiss="alert">
@@ -95,7 +95,7 @@
 			<c:out value="${yhtTil}" />
 			niist‰ on tilattavissa <br> <br>
 			<button class="btn btn-success" data-toggle="modal"
-				data-target=".bs-example-modal-lg" id="addbtn">Lis‰‰ tuote</button>
+				data-target=".bs-example-modal-lg" id="addbtn">Lis‰‰ tuote</button> <!--  Tuotteen lis‰yspainike -->
 		</div>
 
 
@@ -170,11 +170,11 @@
 					-->
 
 					<form class="form-horizontal" name="input" action="list"
-						method="POST">
+						method="POST"> <!--  /list lˆytyy omapizzeria.admin.controller.ControllerServlet -->
 						<fieldset>
 
 							<!-- Form Name -->
-							<legend>Lis‰‰ uusi tuote</legend>
+							<legend>Lis‰‰ uusi tuote</legend>		<!-- Tuotteen lis‰ykseen t‰ytett‰v‰ lomake -->
 
 							<!-- Text input-->
 							<div class="form-group">
@@ -294,7 +294,7 @@
 		</div>
 
 		<br> <br>
-		<c:forEach items="${pizzat}" var="p">
+		<c:forEach items="${pizzat}" var="p"> <!--  listataan olemassa olevat tuotteet -->
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">
@@ -344,10 +344,10 @@
 
 
 				<c:if test="${p.tilattavissa}">
-
-					<form name="input"
+ <!-- Tuotteen muokkaus ja tilattavissa muokkaus -->
+					<form name="input"  
 						action="muokkaa?id=<c:out value="${p.id}"/>&action=0"
-						method="POST">
+						method="POST"> <!--  /muokkaa lˆytyy omapizzeria.admin.controller.MuokkaaServlet -->
 						<div class="btn-group" role="group" aria-label="..." id="mod">
 							<!--  <button type="submit" class="btn btn-success" name="action"
 								value="Muokkaa">Muokkaa</button>-->
@@ -364,8 +364,8 @@
 
 
 					</form>
-					
-					<div
+					<!--  Tuotteen muokkausta varten t‰yttett‰v‰ lomake -->
+					<div 
 								class="modal fade bs-example-modal-sm-muokkaa<c:out value="${p.id}"/>"
 								tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
 								aria-hidden="true">
@@ -374,7 +374,7 @@
 
 
 										<form class="form-horizontal" name="input" action="muokkaasisalto?id=<c:out value="${p.id}"/>"
-											method="POST">
+											method="POST"> <!-- /muokkaa sis‰ltˆ lˆytyy omapizzeria/admin/controller/MuokkaaPizzanSisalto.java -->
 											<fieldset>
 
 												<!-- Form Name -->
@@ -611,7 +611,7 @@
 						method="POST">
 						<button type="submit" class="btn btn-warning" id="mod">Ei
 							tilattavissa</button>
-					</form>
+					</form><!-- fi/omapizzeria/admin/controller/MuokkaaServlet.java- -->
 				</c:if>
 
 

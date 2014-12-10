@@ -44,7 +44,7 @@
 			<p class="cent">sinulla on x m‰‰r‰ tuotteita ostoskorissa</p>
 			<div class="contentwhite">
 				<h3>Tuotteet</h3>
-				<div class="cartwrap">
+				<div class="cartwrap">		<!-- Listataan tuotteet -->
 				
 					<div class="panel panel-default">
 						<div class="panel-heading">

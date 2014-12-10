@@ -16,7 +16,7 @@
 		       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 <meta charset="UTF-8">
-<title>Melo e Castello</title>
+<title>Melo e Castello</title><!-- Katso pohjaan kuuluvat kommentit index.jsp -->
 </head>
 <body>
 <%
@@ -41,6 +41,7 @@
 	<!-- Small modal -->
 
 	<div id="centercontent">
+	<!-- Näytetään ilmoituslaatikko jos sisältö poistettiin onnistuneesti tai tuli virhe -->
 <%
 		
 				if (request.getParameter("poistettu") != null) {
@@ -72,7 +73,8 @@
 
 
 
-		<form class="form-horizontal" name="input" action="sisalto" method="POST">
+		<form class="form-horizontal" name="input" action="sisalto" method="POST"> <!-- lomake ainesosan lisäystä varten
+		fi/omapizzeria/admin/controller/SisaltoLisays.java -->
 			<fieldset>
 
 				<!-- Form Name -->
@@ -96,7 +98,7 @@
 			</fieldset>
 		</form>
 <legend>Olemassa olevat aineosat</legend>
-<ul class="list-group">
+<ul class="list-group"> <!-- Listataan ainesosat -->
 <c:forEach items="${pizzatSisalto}" var="pSisalto">
 							  <li class="list-group-item"><c:out
 									value="${pSisalto.nimi}" /><button class="glyphicon glyphicon-remove" id="rmv2"
@@ -104,8 +106,8 @@
 						data-target=".bs-example-modal-sm-<c:out value="${pSisalto.tuote_id}"/>"></button>
 					<div class="modal fade bs-example-modal-sm-<c:out value="${pSisalto.tuote_id}"/>"
 						tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
-						aria-hidden="true">
-						<div class="modal-dialog modal-sm">
+						aria-hidden="true"> 
+						<div class="modal-dialog modal-sm"> <!-- Varmistava kysymys ainesosan poistoon -->
 							<div class="modal-content" id="del">
 								<h1>Poista tuote</h1>
 								<p>

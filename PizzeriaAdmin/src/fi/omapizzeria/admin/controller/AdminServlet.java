@@ -46,15 +46,16 @@ public class AdminServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		//Lyhyesti: kun admin-sivun etusivulle saavutaan, käydään hakemassa neljään listaan tuotteet, tilattavat tuotteet, palautteet ja sisältö
 		
-		TuoteDao pDao = new TuoteDao();
-		List<Tuote> pList = null;
-		List<Palaute> palauteList = null;
-		List<Tuote> pTilattavissa = null;
-		List<Sisalto> pSisaltoList = null;
+		TuoteDao pDao = new TuoteDao();		//Alustetaan tuotedao
+		List<Tuote> pList = null;			//alustetaan tuotelista(kaikki tuotteet)
+		List<Palaute> palauteList = null;	//alustetaan palautelista
+		List<Tuote> pTilattavissa = null;	//alustetaan tilattavien tuotteiden lista
+		List<Sisalto> pSisaltoList = null;	//alusteaan sisältölista
 
 		try {
-			pTilattavissa = pDao.haeKaikkiTuotteetTilattavissa();
+			pTilattavissa = pDao.haeKaikkiTuotteetTilattavissa();	//haetaan tilattavat tuotteet listaan
 		} catch (SQLException e1) {
 			System.out
 					.println("Tilattavissa olevien tuotteiden haku epäonnistui");
@@ -62,21 +63,21 @@ public class AdminServlet extends HttpServlet {
 		}
 
 		try {
-			palauteList = pDao.haeKaikkiPalautteetRajattu();
+			palauteList = pDao.haeKaikkiPalautteetRajattu();		//haetaan kaikki palautteet listaan
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
 		try {
-			pList = pDao.haeKaikkiTuotteet();
+			pList = pDao.haeKaikkiTuotteet();						//haetaan kaikki tuotteet listaan
 			pSisaltoList = pDao.haeTuoteSisalto();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		int yhteensa = pTilattavissa.size();
+		int yhteensa = pTilattavissa.size();						//määritellään requestille listojen nimet
 		request.setAttribute("pizzat", pList);
 		request.setAttribute("pizzatSisalto", pSisaltoList);
 		request.setAttribute("pizzatTilattavissa", pTilattavissa);
@@ -84,7 +85,7 @@ public class AdminServlet extends HttpServlet {
 		request.setAttribute("yht", yhteensa);
 
 	
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		request.getRequestDispatcher("index.jsp").forward(request, response);	//lähetetään uudelleen määritelty requesti takaisin etusivulle (admin sivu)
 		//request.getRequestDispatcher("dummy.jsp").forward(request, response);
 		// request.getRequestDispatcher("PETER_TEST_INGORE.jsp").forward(request,
 		// response); // IGNORE
@@ -119,73 +120,8 @@ public class AdminServlet extends HttpServlet {
 	 * connection.closeConnection(con); } } }
 	 */
 	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		TuoteDao pDao = new TuoteDao();
-		int tuote_id = 0;
-		try {
-			tuote_id = pDao.haeUusinID();
-			if(tuote_id == 0){
-				tuote_id = 1; 
-			}
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-		String pnimi = request.getParameter("nimi");
-		String phintas = request.getParameter("hinta");
-
-		double phinta = Double.parseDouble(phintas);
-		String tilattavissa = request.getParameter("tilattavissa");
-		if(tilattavissa == null){
-			tilattavissa = "0";
-		}
-		String osa1 = request.getParameter("selectpicker2");
-
-		System.out.println("Nimi: " + pnimi + "\nHinta: " + phinta
-				+ "Tilattavissa:" + tilattavissa + " Osa1: " + osa1);
-		System.out.println("Tuote id on !!!! " +tuote_id);
-
-		ConnectionManager connection = new ConnectionManager();
-
-		List<Tuote> lista = new ArrayList<Tuote>();
-
-		Connection con = connection.doConnection();
-
-		Statement statement = null;
-		ResultSet resultSet = null;
-
-		try {
-			statement = con.createStatement();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} // Statement olion luonti
-
-		try {
-			resultSet = statement
-					.executeQuery("INSERT INTO Tuote(nimi, hinta, tilattavissa) VALUE ('"
-							+ pnimi
-							+ "', '"
-							+ phintas
-							+ "', '"
-							+ tilattavissa
-							+ "')");
-			resultSet = statement
-					.executeQuery("INSERT INTO Tuotteen_sisalto (sisalto_id, tuote_id) VALUE ('"
-							+ osa1 + "','" + tuote_id + "')");
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		finally {
-			connection.closeConnection(con);
-			// request.getRequestDispatcher("list?added=true").forward(request,
-			// response);
-			response.sendRedirect("list?added=true"); // MITEN LISÄTÄ
-		}
+			HttpServletResponse response) throws ServletException, IOException {		
+		
 
 		// REDIRECT???????
 

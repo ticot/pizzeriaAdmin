@@ -20,44 +20,55 @@ import fi.omapizzeria.admin.dao.TuoteDao;
 @WebServlet("/palaute")
 public class PalauteServletAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public PalauteServletAdmin() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public PalauteServletAdmin() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		// kun tullaan palaute.jsp sivulle niin tarkistetaan et onko käyttäjä
+		// tullut tänne etusivulta klikkaamalla jotain palautetta siitä keskeltä
+		// löytyvästä laatikosta
 		String highlight = request.getParameter("id");
-		
+
 		TuoteDao pDao = new TuoteDao();
 		List<Palaute> palauteList = null;
-		
+
 		try {
 			palauteList = pDao.haeKaikkiPalautteet();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		int yhteensa = palauteList.size();
-		
+
 		request.setAttribute("yht", yhteensa);
-		request.setAttribute("highlight", highlight);
+		request.setAttribute("highlight", highlight); // jos etusivulla oli
+														// klikattu tiettyä
+														// palautetta niin sen
+														// klikatun palautteen
+														// id otetaa taltee
 		request.setAttribute("palautteet", palauteList);
 		request.getRequestDispatcher("palaute.jsp").forward(request, response);
-		
+
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
 

@@ -20,29 +20,37 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/sisaltopoisto")
 public class SisaltoPoisto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public SisaltoPoisto() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public SisaltoPoisto() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		// Käyttäjä klikaa sisältösivulla ainesosalistasta löytyvän ainesosan
+		// vierestä ruksia, tullaan tänne, mukana tieto poistettavan ainesosan
+		// id:stä
 		String id = request.getParameter("id");
-		
-		if(request.getParameter("id") !=null && !request.getParameter("id").equals("") ){
+
+		if (request.getParameter("id") != null
+				&& !request.getParameter("id").equals("")) {
 			ConnectionManager connection = new ConnectionManager();
 			Connection con = connection.doConnection();
 
@@ -58,16 +66,16 @@ public class SisaltoPoisto extends HttpServlet {
 
 			try {
 				resultSet = statement
-						.executeQuery("DELETE FROM Sisalto WHERE sisalto_id='" + id +"'");
+						.executeQuery("DELETE FROM Sisalto WHERE sisalto_id='"
+								+ id + "'");
 				response.sendRedirect("sisalto?poistettu=true");
 			} catch (SQLException e) {
 				System.out.println("Ei");
 				response.sendRedirect("sisalto?error=aineosa_jo_olemassa");
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-			finally {
-				//System.out.println("Poistettu pizza id:"+id);
+			} finally {
+				// System.out.println("Poistettu pizza id:"+id);
 				connection.closeConnection(con);
 			}
 		}

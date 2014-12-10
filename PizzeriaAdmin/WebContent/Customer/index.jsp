@@ -18,29 +18,29 @@
 <title>Melo e Castello</title>
 </head>
 <body>
-<jsp:include page="login.jsp"/>
+<jsp:include page="login.jsp"/>		<!-- Katso login.jsp ja register.jsp -->
 <jsp:include page="register.jsp"/>
 <div id="navigation">
 
 	<ul>
-		<li class="active"><a href="index.jsp">Etusivu</a></li>
+		<li class="active"><a href="index.jsp">Etusivu</a></li>		<!-- Yläpalkin navidgointinappulat -->
 		<li><a href="pizzat">Pizzat</a></li>
 		<li><a href="yhteystiedot.jsp">Yhteystiedot</a></li>
 		<li><a href="palaute">Palaute</a></li>
 	</ul>
 		
-	<jsp:include page="navigation.jsp" />
+	<jsp:include page="navigation.jsp" /> 	<!-- "kirjudu|rekisteröidy" napit. Katso navigation.jsp -->
 	
 	</div>
 	<div id="center">
 		<div class="menu"></div>
 		<div class="banner">
-			<img src="img/logo.png" class="imglogo">
+			<img src="img/logo.png" class="imglogo"> <!-- Ravintolan logo ja bannerit -->
 		</div>
 		<div class="ornament">
 			<img src="img/hello.png" align="middle">
 		</div>
-		<div class="content">
+		<div class="content">		<!-- Sivun keskeltä löytyvä leipäteksti, vaatii oikean tekstin -->
 			<p>Tämä on täytetekstiä ettei kenellekkään tulisi paha mieli niin
 				tässä ei lue mitään tärkeää.Päinvastoin tämä on vain turhaa löpinää,
 				jotta tämä div olisi sen näköinen niinkuin asiakas julkaissessaan

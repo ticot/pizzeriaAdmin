@@ -29,7 +29,7 @@ public class OstoskoriServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Ostoskori ostoskori = new Ostoskori();
+		Ostoskori ostoskori = new Ostoskori();							//t‰‰l tapahtuu taikaa
 		ostoskori.setTuote_id(2);
 		ostoskori.setExtra("blaaaablaa");
 		request.getSession().setAttribute("ostoskori", ostoskori);

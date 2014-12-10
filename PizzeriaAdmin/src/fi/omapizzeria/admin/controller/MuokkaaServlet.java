@@ -44,6 +44,9 @@ public class MuokkaaServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		// Jos käyttäjä painaa list.jsp löytyvästä tuotelistauksesta jonkun
+		// tuotteen vierestä nappulaa "tilattavissa", mennään tänne, ja
+		// tilattavuus muutetaan.
 		String id = request.getParameter("id");
 		String action = request.getParameter("action");
 
@@ -77,7 +80,7 @@ public class MuokkaaServlet extends HttpServlet {
 					connection.closeConnection(con);
 				}
 
-			}else if(action.equals("1")) {
+			} else if (action.equals("1")) {
 				try {
 					resultSet = statement
 							.executeQuery("UPDATE Tuote SET tilattavissa=1 WHERE tuote_id='"

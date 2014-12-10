@@ -18,7 +18,7 @@
 		       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 <meta charset="UTF-8">
-<title>Melo e Castello</title>
+<title>Melo e Castello</title><!-- pohjan kommentit index.jsp -->
 <title>Insert title here</title>
 </head>
 <body>
@@ -55,7 +55,7 @@
 		</div>
 		<div class="content">
 
-			<c:forEach items="${pizzat}" var="p">
+			<c:forEach items="${pizzat}" var="p">	<!-- Listataan valikoimasta löytyvät tilattavissa olevat tuotteet -->
 				<div class="pizzawrapper">
 					<h2>
 						<c:out value="${p.nimi}" />
@@ -71,7 +71,7 @@
 						ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
 						massa justo sit amet risus. Etiam porta sem malesuada magna mollis
 						euismod. Donec sed odio dui.</p>
-					<p>
+					<p>											nappi joka laajentaa pizzan alta löytyvän kuvauksen
 						<a class="btn" data-toggle="collapse"
 							data-target="#viewdetails<c:out value="${p.id}" />">Tuotekuvaus
 							&raquo;</a>

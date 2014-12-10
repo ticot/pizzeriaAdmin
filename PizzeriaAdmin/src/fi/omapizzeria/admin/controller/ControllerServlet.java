@@ -53,7 +53,7 @@ public class ControllerServlet extends HttpServlet {
 		 * 
 		 * java.io.PrintWriter wout = response.getWriter();
 		 * 
-		 *
+		 * 
 		 * 
 		 * request.setAttribute("piz", lista);
 		 * 
@@ -68,7 +68,8 @@ public class ControllerServlet extends HttpServlet {
 		 * 
 		 * request.getSession().setAttribute("aloitusaika", ft.format(now));
 		 */
-
+		// ControllerServletiss‰ tehd‰‰n sama juttu kuin AdminServletiss‰,
+		// paitsi t‰ll‰ kertaa tiedot l‰hetet‰‰n list.jsp sivulle
 		TuoteDao pDao = new TuoteDao();
 		List<Tuote> pList = null;
 		List<Palaute> palauteList = null;
@@ -89,17 +90,17 @@ public class ControllerServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
+
 		try {
 			pList = pDao.haeKaikkiTuotteet();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		try {
 			pSisaltoList = pDao.haeTuoteSisalto();
-		System.out.println(pSisaltoList);
+			System.out.println(pSisaltoList);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -114,9 +115,8 @@ public class ControllerServlet extends HttpServlet {
 		request.setAttribute("yht", yhteensa);
 		request.setAttribute("yhtTil", yhteensaTil);
 
-	
 		request.getRequestDispatcher("list.jsp").forward(request, response);
-		//request.getRequestDispatcher("dummy.jsp").forward(request, response);
+		// request.getRequestDispatcher("dummy.jsp").forward(request, response);
 		// request.getRequestDispatcher("PETER_TEST_INGORE.jsp").forward(request,
 		// response); // IGNORE
 
@@ -151,40 +151,40 @@ public class ControllerServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		//t‰m‰n sivun dogetiss‰ lis‰t‰‰n tuote. Kun k‰ytt‰j‰ painaa list.jsp sivulla "lis‰‰ tuote" ja t‰ytt‰‰ lomakkeen onnistuneesti, l‰hetet‰‰n lomakkeen tiedot t‰h‰n funktioon
+		
 		TuoteDao pDao = new TuoteDao();
+		
+		
 		int tuote_id = 0;
 		try {
 			tuote_id = pDao.haeUusinID();
-			if(tuote_id == 0){
-				tuote_id = 1; 
+			if (tuote_id == 0) {
+				tuote_id = 1;
 			}
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-
+		//T‰st‰ alasp‰in pit‰is tehd‰ oma funktio tuotedaoon.
 		String pnimi = request.getParameter("nimi");
 		String phintas = request.getParameter("hinta");
 
 		double phinta = Double.parseDouble(phintas);
 		String tilattavissa = request.getParameter("tilattavissa");
-		if(tilattavissa == null){
+		if (tilattavissa == null) {
 			tilattavissa = "0";
 		}
-		
+
 		int osia = 0;
 		String osa1 = request.getParameter("selectpicker1");
 		String osa2 = request.getParameter("selectpicker2");
 		String osa3 = request.getParameter("selectpicker3");
 		String osa4 = request.getParameter("selectpicker4");
-		
-		
-		
-		
 
 		System.out.println("Nimi: " + pnimi + "\nHinta: " + phinta
 				+ "Tilattavissa:" + tilattavissa + " Osa1: " + osa1);
-		System.out.println("Tuote id on !!!! " +tuote_id);
+		System.out.println("Tuote id on !!!! " + tuote_id);
 
 		ConnectionManager connection = new ConnectionManager();
 
@@ -201,7 +201,7 @@ public class ControllerServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} // Statement olion luonti
-
+		//varsinkin n‰‰ vissii daoo
 		try {
 			resultSet = statement
 					.executeQuery("INSERT INTO Tuote(nimi, hinta, tilattavissa) VALUE ('"
@@ -211,8 +211,7 @@ public class ControllerServlet extends HttpServlet {
 							+ "', '"
 							+ tilattavissa
 							+ "')");
-			
-			
+
 			resultSet = statement
 					.executeQuery("INSERT INTO Tuotteen_sisalto (sisalto_id, tuote_id) VALUE ('"
 							+ osa1 + "','" + tuote_id + "')");
@@ -225,7 +224,7 @@ public class ControllerServlet extends HttpServlet {
 			resultSet = statement
 					.executeQuery("INSERT INTO Tuotteen_sisalto (sisalto_id, tuote_id) VALUE ('"
 							+ osa4 + "','" + tuote_id + "')");
-			response.sendRedirect("list?added=true");
+			response.sendRedirect("list?added=true");		//tuotteen lis‰yksen j‰lkeen menn‰‰n taikaisin list.jsp ja vied‰‰n tieto ett‰ lis‰ys onnistui
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -236,7 +235,7 @@ public class ControllerServlet extends HttpServlet {
 			connection.closeConnection(con);
 			// request.getRequestDispatcher("list?added=true").forward(request,
 			// response);
-			
+
 		}
 
 		// REDIRECT???????

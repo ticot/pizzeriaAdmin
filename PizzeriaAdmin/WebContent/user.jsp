@@ -16,7 +16,7 @@
 		       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 <meta charset="UTF-8">
-<title>Melo e Castello</title>
+<title>Melo e Castello</title> <!-- Katso pohjan kommentit index.jsp -->
 </head>
 <body>
 
@@ -44,6 +44,7 @@
 
 
 	<div id="centercontent">
+	<!-- N‰ytet‰‰n ilmoituslaatikko onnistuneesta k‰ytt‰j‰n lis‰yksest‰ ja poistosta -->
 	<%
 			if (request.getParameter("removed") != null && request.getParameter("removed").equals("true")) {
 		%>
@@ -103,7 +104,8 @@
 
 
 		<form class="form-horizontal" name="input" action="user" method="POST">
-			<fieldset>
+			<fieldset>			<!--	Lomake k‰ytt‰j‰n lis‰ykseen.
+			 fi/omapizzeria/admin/controller/User.java -->
 
 				<!-- Form Name -->
 				<legend>Lis‰‰ uusi k‰ytt‰j‰</legend>
@@ -184,7 +186,7 @@
 			</tr>
 			</thead>
 			<tbody>
-			<c:forEach items="${users}" var="u">
+			<c:forEach items="${users}" var="u">	<!-- Listataan olemassa olevat k‰ytt‰j‰t -->
 			<tr>
 				<td><c:out value="${u.etunimi}" /></td>
 				<td><c:out value="${u.sukunimi}" /></td>

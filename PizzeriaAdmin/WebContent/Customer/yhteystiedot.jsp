@@ -15,7 +15,7 @@
 		       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 <meta charset="UTF-8">
-<title>Melo e Castello</title>
+<title>Melo e Castello</title><!-- Katso pohjan kommentit index.jsp -->
 </head>
 <body>
 <jsp:include page="login.jsp"/>
@@ -52,7 +52,7 @@
 				<p>Lämpimästi tervetuloa!</p>
 				<iframe
 					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7310.432972733255!2d29.80535900046709!3d62.73748848654653!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x469c7ed0b92b17e3%3A0xa0146d8a395ed80!2s80790+Kontioranta!5e0!3m2!1sfi!2sfi!4v1412670547722"
-					width="600" height="450" frameborder="0" style="border: 0"></iframe>
+					width="600" height="450" frameborder="0" style="border: 0"></iframe>	<!-- Iframe joka näyttää ravintolan sijainnin kartalla -->
 			</div>
 		</div>
 

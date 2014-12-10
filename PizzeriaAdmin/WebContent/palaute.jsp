@@ -20,21 +20,21 @@
     <![endif]-->
 <meta charset="UTF-8">
 <title>Melo e Castello</title>
+<!-- Katso pohjaan kuuluvat kommentit index.jsp -->
 </head>
 <body>
-<%
+	<%
 		if (session.getAttribute("currentSessionUser") == null) {
 			response.sendRedirect("Customer/index.jsp");
 
-		} 
+		}
 	%>
 	<div class="topbar">
 		<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav"
 			role="banner"> <nav
 			class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-		<a class="navbar-brand" href="#">Melo e Castello Admin</a>
-		<jsp:include page="currentuser.jsp" />
-		</nav> </header>
+		<a class="navbar-brand" href="#">Melo e Castello Admin</a> <jsp:include
+			page="currentuser.jsp" /> </nav> </header>
 
 	</div>
 	<!-- Small modal -->
@@ -43,84 +43,92 @@
 	<div id="centercontent">
 		<div class="jumbotron">
 			<h1>Palautteet</h1>
-			<p>Sinulla on yhteensä <c:out value="${yht}" />  saapunutta palautetta</p>
 			<p>
-			
-					<button class="btn btn-primary btn-lg" onclick="refresh()">Päivitä sivu</button>
-					
-					<script>
-function refresh() {
-    location.reload();
-}
-</script>
+				Sinulla on yhteensä
+				<c:out value="${yht}" />
+				saapunutta palautetta
+			</p>
+			<p>
+
+				<button class="btn btn-primary btn-lg" onclick="refresh()">Päivitä
+					sivu</button>
+
+				<script>
+					function refresh() {
+						location.reload();
+					}
+				</script>
 			</p>
 		</div>
-		<c:forEach items="${palautteet}" var="i">
+		<c:forEach items="${palautteet}" var="i"><!-- Listataan palautteet -->
 
 
-			<div class="panel panel-primary">
-			<c:set var="h" value="${highlight}"/>
-<c:choose>
-<c:when test="${i.id == h}">
-<div class="panel-heading">
-<a data-toggle="collapse"
-							data-target=".panel-body<c:out value="${i.id}" />"><span class="collapsespan"> 
-	<div class="ribbon-wrapper"><div class="glow">&nbsp;</div>
-		<div class="ribbon-front">
-			
-		</div>
-		
-	</div>
-	</span></a>
-	
-</c:when>
-<c:otherwise>
-<div class="panel-heading"><a data-toggle="collapse"
-							data-target=".panel-body<c:out value="${i.id}" />"><span class="collapsespan"> </span></a>
-</c:otherwise>
-</c:choose>
-				
-
-		
-					<a name="palaute<c:out value="${i.id}" />"></a><c:out value="${i.id}" />
-					.&nbsp;
-					<c:out value="${i.otsikko}" />
-					
-				
-				</div>
-				<!-- 
-				<div class="panel-body<c:out value="${i.id}" /> collapse">
- -->
+			<div class="panel panel-primary"> <!-- Jos käyttäjä klikkasi etusivulta löytyvää jotain palautetta, niin korostetaan klikatun palautteen otsikko ja avataan se --> 
+				<c:set var="h" value="${highlight}" />
 				<c:choose>
 					<c:when test="${i.id == h}">
-							<div class="panel-body<c:out value="${i.id}" /> collapse in"><c:out value="${i.sisalto}" />
+						<div class="panel-heading">
+							<a data-toggle="collapse"
+								data-target=".panel-body<c:out value="${i.id}" />"><span
+								class="collapsespan">
+									<div class="ribbon-wrapper">
+										<div class="glow">&nbsp;</div>
+										<div class="ribbon-front"></div>
+
+									</div>
+							</span></a>
 					</c:when>
 					<c:otherwise>
-							<div class="panel-body<c:out value="${i.id}" /> collapse"><c:out value="${i.sisalto}" />
+						<div class="panel-heading">
+							<a data-toggle="collapse"
+								data-target=".panel-body<c:out value="${i.id}" />"><span
+								class="collapsespan"> </span></a>
 					</c:otherwise>
 				</c:choose>
-			
-			 
-					<br>
-					<br>
+
+
+
+				<a name="palaute<c:out value="${i.id}" />"></a>
+				<c:out value="${i.id}" />
+				.&nbsp;
+				<c:out value="${i.otsikko}" />
+
+
+			</div>
+			<!-- 
+				<div class="panel-body<c:out value="${i.id}" /> collapse">
+ -->
+			<c:choose>
+				<c:when test="${i.id == h}">
+					<div class="panel-body<c:out value="${i.id}" /> collapse in">
+						<c:out value="${i.sisalto}" />
+				</c:when>
+				<c:otherwise>
+					<div class="panel-body<c:out value="${i.id}" /> collapse">
+						<c:out value="${i.sisalto}" />
+				</c:otherwise>
+			</c:choose>
+
+
+			<br>
+			<br>
 					Lähettäjä:<c:out value="${i.nimi}" />
-					<br>
+			<br>
 					Sähköposti:<c:out value="${i.email}" />
-					
-					</p>
-					
-					
-					 <!-- 
+
+			</p>
+
+
+			<!-- 
 							<p>
 						<a class="specialbtn" data-toggle="collapse"
 							data-target="#viewdetails<c:out value="${i.id}" />">
 							Palautteen sisältö&raquo;</a>
 					</p>
 					 -->
-					
-				</div>
-			</div>
-		</c:forEach>
+	</div>
+	</div>
+	</c:forEach>
 	</div>
 	<div class="leftnavigation">
 		<div id="leftwrap">

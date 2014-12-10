@@ -15,7 +15,7 @@
 		       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 <meta charset="UTF-8">
-<title>Melo e Castello</title>
+<title>Melo e Castello</title><!--  pohjan kommentit index.jsp -->
 </head>
 <body>
 <jsp:include page="login.jsp"/>
@@ -40,6 +40,7 @@
 			<h1 class="feedback">Anna Palautetta</h1>
 			<div class="mvm">
 			<form class="form-horizontal" name="input" action="palaute" method="POST">
+			<!-- Palautelomake fi/omapizzeria/admin/controller/PalauteServletAdmin.java -->
 			<input type="text" class="form-control" placeholder="Nimi" id="name" name="nimi" required="">
 			<input type="text" class="form-control" placeholder="Sähköposti"
 				id="name" name="email">

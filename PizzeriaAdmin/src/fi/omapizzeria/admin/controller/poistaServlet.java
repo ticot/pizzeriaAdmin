@@ -40,6 +40,7 @@ public class poistaServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Jos k‰ytt‰j‰ poistaa tuotteen list.jsp sivulla niin tullaan t‰nne. Mukana tulee tieto sen tuotteen id:st‰ mik‰ pit‰‰ poistaa.
 		String id = request.getParameter("id");
 		
 		if(request.getParameter("id") !=null && !request.getParameter("id").equals("") ){
@@ -55,7 +56,7 @@ public class poistaServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} // Statement olion luonti
-
+			//T‰‰ allaoleva tuotedaoo
 			try {
 				resultSet = statement
 						.executeQuery("DELETE FROM Tuotteen_sisalto WHERE tuote_id='" + id +"'");
@@ -73,7 +74,7 @@ public class poistaServlet extends HttpServlet {
 				e.printStackTrace();
 			} finally {
 				System.out.println("Poistettu pizza id:"+id);
-				response.sendRedirect("list?poistettu=true");
+				response.sendRedirect("list?poistettu=true"); //vied‰‰n k‰ytt‰j‰ takaisin list.jsp ja otetaan mukaan tieto onnistuneesta poistosta
 				connection.closeConnection(con);
 			}
 		}

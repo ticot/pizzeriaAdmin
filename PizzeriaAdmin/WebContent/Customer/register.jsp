@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Insert title here</title>	<!-- Sivujen yläreunasta "rekisteröidy"-nappia painamalla aukeaa tämä ikkuna -->
 </head>
 <body>
 <div class="modal fade bs-example-modal-sm2" tabindex="-1" role="dialog"
@@ -19,7 +19,8 @@
 					data-dismiss="modal" id="close">
 					<span class="glyphicon glyphicon-remove"></span>
 			</div>
-			<form action="register" class="form-horizontal" role="form" method="POST">
+			<form action="register" class="form-horizontal" role="form" method="POST"><!-- Rekisteröitymistä varten täytettävä formi
+																						fi/omapizzeria/customer/controller/Register.java -->
 
 				<div class="form-group">
 					<label for="email" class="col-sm-2 control-label">E-mail</label>

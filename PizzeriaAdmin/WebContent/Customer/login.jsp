@@ -8,7 +8,7 @@
 	
 	
 <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog"
-	aria-labelledby="mySmallModalLabel" aria-hidden="true">
+	aria-labelledby="mySmallModalLabel" aria-hidden="true">	<!-- Sivujen yläreunasta "kirjaudu"-nappia painamalla aukeaa tämä ikkuna -->
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -19,7 +19,8 @@
 					data-dismiss="modal" id="close">
 					<span class="glyphicon glyphicon-remove"></span>
 			</div>
-			<form action="login" class="form-horizontal" role="form">
+			<form action="login" class="form-horizontal" role="form"> <!-- 	Kirjautumista varten täytettävä lomake
+																			fi/omapizzeria/customer/controller/Login.java -->
 
 				<div class="form-group">
 					<label for="inputEmail3" class="col-sm-2 control-label">E-mail</label>

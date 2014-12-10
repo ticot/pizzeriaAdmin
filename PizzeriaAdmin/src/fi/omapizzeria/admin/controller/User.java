@@ -44,16 +44,13 @@ public class User extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
-		//Tee t‰h‰n lista. 
-		//M‰‰rittele ensin lista jossa userbean k‰ytt‰j‰. 
-		//Sitten m‰‰rittele int joka m‰‰r‰‰ listan pituuden 
-		//jotta voidaan n‰ytt‰‰ monta k‰ytt‰j‰‰ yhteens‰.
-		//kato esimerkki Java Resources/ fi.omapizzeria.admin.controller/AdminServlet
-		
+
+		// Kun k‰ytt‰j‰ saapuu user.jsp sivulle, haetaan kaikki olemassa olevat
+		// k‰ytt‰j‰t tietokannasta
+
 		UserDao uDao = new UserDao();
 		List<UserBean> uList = null;
-		
+
 		try {
 			uList = uDao.getUsers();
 		} catch (SQLException e1) {
@@ -63,8 +60,16 @@ public class User extends HttpServlet {
 		int yhteensa = uList.size();
 		request.setAttribute("users", uList);
 		request.setAttribute("yht", yhteensa);
-		
-		request.getRequestDispatcher("user.jsp").forward(request, response); //t‰‰ rivi l‰hett‰‰ selaimen user.jsp sivulle, mukanaan lista
+
+		request.getRequestDispatcher("user.jsp").forward(request, response); // t‰‰
+																				// rivi
+																				// l‰hett‰‰
+																				// selaimen
+																				// user.jsp
+																				// sivulle,
+																				// mukanaan
+																				// lista
+																				// k‰ytt‰jist‰
 	}
 
 	/**
@@ -73,76 +78,86 @@ public class User extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		// jos k‰ytt‰j‰ painaa "poista" tai "lis‰‰ k‰ytt‰j‰" nappulaa t‰ll‰
+		// sivulla, menn‰‰n t‰h‰n funktioon
 		String action = request.getParameter("button");
 		String id = request.getParameter("id");
-		
-		System.out.println("toiminto oli" + action + " ja id "+id);
-		if (action.equals("register")){ 
-		String email = request.getParameter("email");
-		String etunimi = request.getParameter("etunimi");
-		String sukunimi = request.getParameter("sukunimi");
-		// String salasana = request.getParameter("salasana");
-		Hash h = new Hash();
-		String salasana = h.getHash(request.getParameter("salasana"));
-		String salasana2 = h.getHash(request.getParameter("salasana2"));
-		if (salasana2.equals(salasana)) {
-			System.out.println("salasana=" + salasana);
 
-			String level = request.getParameter("level");
+		System.out.println("toiminto oli" + action + " ja id " + id);
+		if (action.equals("register")) { // jos painettu nappula oli
+											// "lis‰‰ k‰ytt‰j‰" k‰yd‰‰n t‰m‰
+											// funktio l‰pi
+			String email = request.getParameter("email");
+			String etunimi = request.getParameter("etunimi");
+			String sukunimi = request.getParameter("sukunimi");
+			// String salasana = request.getParameter("salasana");
+			Hash h = new Hash();
+			String salasana = h.getHash(request.getParameter("salasana"));
+			String salasana2 = h.getHash(request.getParameter("salasana2"));
+			if (salasana2.equals(salasana)) {
+				System.out.println("salasana=" + salasana);
 
-			ConnectionManager connection = new ConnectionManager();
+				String level = request.getParameter("level");
 
-		
+				ConnectionManager connection = new ConnectionManager();
 
-			Connection con = connection.doConnection();
+				Connection con = connection.doConnection();
 
-			Statement statement = null;
-			ResultSet resultSet = null;
+				Statement statement = null;
+				ResultSet resultSet = null;
 
-			try {
-				statement = con.createStatement();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} // Statement olion luonti
+				try {
+					statement = con.createStatement();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} // Statement olion luonti
 
-			try {
-				resultSet = statement
-						.executeQuery("INSERT INTO Kayttaja (etunimi, sukunimi, email, salasana, level) VALUE ('"
-								+ etunimi
-								+"','"
-								+sukunimi
-								+"','"
-								+ email
-								+ "','"
-								+ salasana
-								+ "','"
-								+ level
-								+ "')");
+				try {
+					resultSet = statement
+							.executeQuery("INSERT INTO Kayttaja (etunimi, sukunimi, email, salasana, level) VALUE ('"
+									+ etunimi
+									+ "','"
+									+ sukunimi
+									+ "','"
+									+ email
+									+ "','"
+									+ salasana
+									+ "','"
+									+ level
+									+ "')");
 
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				finally {
+					connection.closeConnection(con);
+					// request.getRequestDispatcher("list?added=true").forward(request,
+					// response);
+					response.sendRedirect("user?added=true");
+				}
+			} else {
+				request.setAttribute("error",
+						"Salasanat eiv‰t vastaa toisiaan."); // salasanat ei
+																// vastaa
+				request.getRequestDispatcher("/user?added=false").forward(
+						request, response); // Forward to same page so that you
+											// can display error.
+				JOptionPane.showMessageDialog(null,
+						"Salasanat eiv‰t vastaa toisiaan."); // n‰ytet‰‰n
+																// alert-laatikko
+																// jossa virhe
+																// selitet‰‰n
 			}
 
-			finally {
-				connection.closeConnection(con);
-				// request.getRequestDispatcher("list?added=true").forward(request,
-				// response);
-				response.sendRedirect("user?added=true"); 
-			}
 		}
-		else {
-			request.setAttribute("error", "Salasanat eiv‰t vastaa toisiaan."); // salasanat ei vastaa
-		    request.getRequestDispatcher("/user?added=false").forward(request, response); // Forward to same page so that you can display error.
-		    JOptionPane.showMessageDialog(null, "Salasanat eiv‰t vastaa toisiaan."); //n‰ytet‰‰n alert-laatikko jossa virhe selitet‰‰n
-		}
+		if (action.equals("remove")) { // Jos sivulla painettiin "poista"
+										// nappulaa k‰ytt‰j‰listauksessa
 
-		// REDIRECT???????
-		}
-		if (action.equals("remove")){
-
-			if(request.getParameter("id") !=null && !request.getParameter("id").equals("") ){
+			if (request.getParameter("id") != null
+					&& !request.getParameter("id").equals("")) {
 				ConnectionManager connection = new ConnectionManager();
 				Connection con = connection.doConnection();
 
@@ -158,7 +173,8 @@ public class User extends HttpServlet {
 
 				try {
 					resultSet = statement
-							.executeQuery("DELETE FROM Kayttaja WHERE kayttaja_id='" + id +"'");
+							.executeQuery("DELETE FROM Kayttaja WHERE kayttaja_id='"
+									+ id + "'");
 					System.out.println("K‰ytt‰j‰n poistaminen onnistui!");
 					response.sendRedirect("user?removed=true");
 				} catch (SQLException e) {
@@ -166,12 +182,11 @@ public class User extends HttpServlet {
 					response.sendRedirect("user?removed=false");
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
-				finally {
-						connection.closeConnection(con);
+				} finally {
+					connection.closeConnection(con);
 				}
 			}
-			
+
 		}
 	}
 
