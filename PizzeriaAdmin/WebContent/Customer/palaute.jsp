@@ -30,8 +30,7 @@
 		</ul>
 		
 		<jsp:include page="navigation.jsp" />
-		<a href="shoppingcart.jsp"><img src="img/shopping.png" width="35"
-			height="30" id="cartimg"></a>
+	
 
 	</div>
 

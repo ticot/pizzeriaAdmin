@@ -9,6 +9,7 @@
 </head>
 <body><!-- Poistetaan käyttäjä sessiosta -->
 <%
+session.removeAttribute("currrentUser");
 session.invalidate(); 
 response.sendRedirect("Customer/index.jsp");
 %>

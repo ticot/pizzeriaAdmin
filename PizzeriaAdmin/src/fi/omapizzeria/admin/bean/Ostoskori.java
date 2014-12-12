@@ -5,30 +5,22 @@ import java.util.Date;
 public class Ostoskori {
 	private int tuote_id;
 	private int kayttaja_id;
-	private int lkm;
+	private String tuote_nimi;
 	private boolean glu;
 	private boolean lakt;
-
-	private Date toimitusaika;
-	private String fantasia;
-	private String extra;
 	private double hinta;
 
-	public Ostoskori(){
-		
+	public Ostoskori() {
+
 	}
-	public Ostoskori(int tuote_id, int kayttaja_id, int lkm, boolean glu,
-			boolean lakt, Date toimitusaika,
-			String fantasia, String extra, double hinta) {
+
+	public Ostoskori(int tuote_id, int kayttaja_id, boolean glu, boolean lakt,
+			double hinta) {
 		super();
 		this.tuote_id = tuote_id;
 		this.kayttaja_id = kayttaja_id;
-		this.lkm = lkm;
 		this.glu = glu;
 		this.lakt = lakt;
-		this.toimitusaika = toimitusaika;
-		this.fantasia = fantasia;
-		this.extra = extra;
 		this.hinta = hinta;
 	}
 
@@ -48,14 +40,6 @@ public class Ostoskori {
 		this.kayttaja_id = kayttaja_id;
 	}
 
-	public int getLkm() {
-		return lkm;
-	}
-
-	public void setLkm(int lkm) {
-		this.lkm = lkm;
-	}
-
 	public boolean isGlu() {
 		return glu;
 	}
@@ -72,30 +56,6 @@ public class Ostoskori {
 		this.lakt = lakt;
 	}
 
-	public Date getToimitusaika() {
-		return toimitusaika;
-	}
-
-	public void setToimitusaika(Date toimitusaika) {
-		this.toimitusaika = toimitusaika;
-	}
-
-	public String getFantasia() {
-		return fantasia;
-	}
-
-	public void setFantasia(String fantasia) {
-		this.fantasia = fantasia;
-	}
-
-	public String getExtra() {
-		return extra;
-	}
-
-	public void setExtra(String extra) {
-		this.extra = extra;
-	}
-
 	public double getHinta() {
 		return hinta;
 	}
@@ -104,13 +64,19 @@ public class Ostoskori {
 		this.hinta = hinta;
 	}
 
+	public String getTuote_nimi() {
+		return tuote_nimi;
+	}
+
+	public void setTuote_nimi(String tuote_nimi) {
+		this.tuote_nimi = tuote_nimi;
+	}
+
 	@Override
 	public String toString() {
-		return "Ostoskori [tuote_id=" + tuote_id + ", kayttaja_id="
-				+ kayttaja_id + ", lkm=" + lkm + ", glu=" + glu + ", lakt="
-				+ lakt + ", toimitusaika="
-				+ toimitusaika + ", fantasia=" + fantasia + ", extra=" + extra
-				+ ", hinta=" + hinta + "]";
+		return "Ostoskori tuote_id=" + tuote_id + ", kayttaja_id="
+				+ kayttaja_id + ", tuote_nimi=" + tuote_nimi + ", glu=" + glu
+				+ ", lakt=" + lakt + ", hinta=" + hinta;
 	}
 
 }

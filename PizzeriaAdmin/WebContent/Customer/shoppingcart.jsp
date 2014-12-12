@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE>
 <html>
 <head>
@@ -19,20 +20,19 @@
 <title>Melo e Castello</title>
 </head>
 <body>
-<jsp:include page="login.jsp"/>
-<jsp:include page="register.jsp"/>
+	<jsp:include page="login.jsp" />
+	<jsp:include page="register.jsp" />
 	<div id="navigation">
-	
-	<ul>
-		<li><a href="index.jsp">Etusivu</a></li>
-		<li><a href="pizzat">Pizzat</a></li>
-		<li><a href="yhteystiedot.jsp">Yhteystiedot</a></li>
-		<li><a href="palaute">Palaute</a></li>
-	</ul>
-	<jsp:include page="navigation.jsp" />
-	<a href="shoppingcart.jsp"><img src="img/shopping.png" width="35" height="30" id="cartimg"></a>
-	
-	
+
+		<ul>
+			<li><a href="index.jsp">Etusivu</a></li>
+			<li><a href="pizzat">Pizzat</a></li>
+			<li><a href="yhteystiedot.jsp">Yhteystiedot</a></li>
+			<li><a href="palaute">Palaute</a></li>
+		</ul>
+		<jsp:include page="navigation.jsp" />
+
+
 	</div>
 
 	<div id="center">
@@ -40,39 +40,52 @@
 		<div class="banner2"></div>
 
 		<div class="content">
+
+			<h1>Debug</h1>
+			<c:out value="${ostosKoriLista}"></c:out>
+			<c:forEach items="${ostosKoriLista}" var="okl">
+				<c:out value="${okl.tuote_nimi}" />
+				<c:out value="${okl.tuote_id}" />
+				<c:out value="${okl.glu}" />
+				<c:out value="${okl.lakt}" />
+				<c:out value="${okl.hinta}" />
+			</c:forEach>
+
 			<h1 class="cent">Ostoskori</h1>
 			<p class="cent">sinulla on x m‰‰r‰ tuotteita ostoskorissa</p>
 			<div class="contentwhite">
 				<h3>Tuotteet</h3>
-				<div class="cartwrap">		<!-- Listataan tuotteet -->
-				
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							Pizza X &#8364;
-							<button type="button" class="glyphicon glyphicon-remove" style="float:right;">
-						</div>
-						<div class="panel-body">
-							Herkkusieni, jauheliha
-							<div class="btn-group">
-								<button class="btn btn-default btn-xs dropdown-toggle"
-									id="dpbtn" type="button" data-toggle="dropdown"
-									aria-expanded="false">
-									jotain<span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu" role="menu">
-									<li>Gluteiiniton</li>
-									<li>Ei</li>
+				<div class="cartwrap">
+					<!-- Listataan tuotteet -->
+					<c:forEach items="${ostosKoriLista}" var="okl">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<c:out value="${okl.tuote_nimi}" />
+								<c:out value="${okl.hinta}" />
+								&#8364;
+								<form name="input" action="ostoskori?id=<c:out value="${okl.tuote_id}"/>&action=1"
+									method="POST">
+									<button type="submit" class="glyphicon glyphicon-remove"
+										style="float: right;"/>
+								</form>
 
-								</ul>
 							</div>
-						</div>
+							<div class="panel-body">
+								Gluteeniton:
+								<c:out value="${okl.glu}" />
+								Laktoositon:
+								<c:out value="${okl.lakt}" />
 
-					</div>				
+							</div>
+
+						</div>
+					</c:forEach>
 				</div>
 				<div class="contentlink">
-					<h2>Ostosten hinta x &#8364;</h2>
+					<h2>Ostosten hinta <c:out value="${yht}"/>  &#8364;</h2>
 
-					<a href="Order.jsp"><button type="button" class="btn btn-default" id="cashout">Kassalle</button></a>
+					<a href="Order.jsp"><button type="button"
+							class="btn btn-default" id="cashout">Kassalle</button></a>
 				</div>
 			</div>
 

@@ -9,12 +9,14 @@
 
 <!-- Sivuston oikealta ylhäältä löytyy kirjautumis- ja rekisteröitymisnapit -->
 <!-- Small modal -->
+
 <button class="btn btn-primary" data-toggle="modal"
 	data-target=".bs-example-modal-sm2" data-keyboard="true" id="regbtn">Rekisteröidy</button>
 <!-- Kaksi nappulaa jotka avaavat kirjautumis- tai rekisteröitymismodaalin -->
 <button class="btn btn-primary" data-toggle="modal"
 	data-target=".bs-example-modal-sm" data-keyboard="true" id="loginbtn">Kirjaudu</button>
-
+<a href="ostoskori"><img src="img/shopping.png" width="35"
+			height="30" id="cartimg"></a>
 
 
 

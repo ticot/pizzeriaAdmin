@@ -34,8 +34,7 @@
 		</ul>
 		
 		<jsp:include page="navigation.jsp" />
-		<a href="shoppingcart.jsp"><img src="img/shopping.png" width="35"
-			height="30" id="cartimg"></a>
+	
 
 	</div>
 
@@ -57,15 +56,31 @@
 			<img src="img/pizzat.png" align="middle">
 		</div>
 		<div class="content">
+	<%
+			if (request.getParameter("added") != null) { 
+		%>
+		<div class="alert alert-success alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert">
+				<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+			</button>
+			Pitsa <c:out value="${p.nimi}" /> lis‰tty! Mene <a href="ostoskori" class="alert-link">kassalle</a>
+		</div>
 
+		<%
+			}
+			
+		%>
 			<c:forEach items="${pizzat}" var="p">
+			<form method="post" class="form-horizontal" name="input" action="ostoskori?id=<c:out value="${p.id}"/>">
 				<!-- Listataan valikoimasta lˆytyv‰t tilattavissa olevat tuotteet -->
 				<div class="pizzawrapper">
 					<h2>
 						<c:out value="${p.nimi}" />
+						<input name="nimi" value="<c:out value="${p.nimi}" />" type="hidden"/>
 					</h2>
 					<h2 id="price">
 						<c:out value="${p.hinta}" />
+						<input name="hinta" value="<c:out value="${p.hinta}" />" type="hidden"/>
 						&#8364;
 					</h2>
 					<p>
@@ -82,13 +97,13 @@
 							data-target="#viewdetails<c:out value="${p.id}" />">Tuotekuvaus
 							&raquo;</a>
 					</p>
-						<form class="form-horizontal" name="input" action="ostoskori?id=<c:out value="${p.id}"/>">
-						<input type="checkbox" name="glutein-free"> Gluteiiniton <input
-							type="checkbox" name="lactose-free"> Laktoositon
+						
+						<input type="checkbox" name="glutein-free" value="true"> Gluteiiniton <input
+							type="checkbox" name="lactose-free" value="true"> Laktoositon
 				
 					<div class="buttonwrapper">
 					
-							<button type="button" class="btn btn-default">Lis‰‰
+							<button type="submit" class="btn btn-default">Lis‰‰
 								ostoskoriin</button>
 									</form>
 					
