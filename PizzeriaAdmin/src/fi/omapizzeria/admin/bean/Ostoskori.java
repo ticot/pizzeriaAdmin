@@ -8,7 +8,6 @@ public class Ostoskori {
 	private int lkm;
 	private boolean glu;
 	private boolean lakt;
-	private double hintayhteensa;
 
 	private Date toimitusaika;
 	private String fantasia;
@@ -19,7 +18,7 @@ public class Ostoskori {
 		
 	}
 	public Ostoskori(int tuote_id, int kayttaja_id, int lkm, boolean glu,
-			boolean lakt, double hintayhteensa, Date toimitusaika,
+			boolean lakt, Date toimitusaika,
 			String fantasia, String extra, double hinta) {
 		super();
 		this.tuote_id = tuote_id;
@@ -27,7 +26,6 @@ public class Ostoskori {
 		this.lkm = lkm;
 		this.glu = glu;
 		this.lakt = lakt;
-		this.hintayhteensa = hintayhteensa;
 		this.toimitusaika = toimitusaika;
 		this.fantasia = fantasia;
 		this.extra = extra;
@@ -74,14 +72,6 @@ public class Ostoskori {
 		this.lakt = lakt;
 	}
 
-	public double getHintayhteensa() {
-		return hintayhteensa;
-	}
-
-	public void setHintayhteensa(double hintayhteensa) {
-		this.hintayhteensa = hintayhteensa;
-	}
-
 	public Date getToimitusaika() {
 		return toimitusaika;
 	}
@@ -118,7 +108,7 @@ public class Ostoskori {
 	public String toString() {
 		return "Ostoskori [tuote_id=" + tuote_id + ", kayttaja_id="
 				+ kayttaja_id + ", lkm=" + lkm + ", glu=" + glu + ", lakt="
-				+ lakt + ", hintayhteensa=" + hintayhteensa + ", toimitusaika="
+				+ lakt + ", toimitusaika="
 				+ toimitusaika + ", fantasia=" + fantasia + ", extra=" + extra
 				+ ", hinta=" + hinta + "]";
 	}

@@ -60,7 +60,12 @@
 				meiltä vastauksen palautteestasi tai hyvityksen. Muussa tapauksessa
 				voit jättää kentät tyhjiksi ja palautteesi tulee meille nimettömänä
 				Arvostamme kaikkea meille saapuvaa palautetta!</p>
-			<button type="submit" class="btn btn-primary">Lähetä</button>
+			 <div class="col-xs-2"></div>
+    <div class="col-xs-8 content"><button type="submit" class="btn btn-primary btn-block">Lähetä</button>
+    </div>
+    <div class="col-xs-2"></div>
+			
+		
 			</form>
 		</div>
 

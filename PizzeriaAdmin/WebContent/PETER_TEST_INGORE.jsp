@@ -11,7 +11,8 @@
 
 
 	<p id="kirjoitettu">
-		<c:out value="${ostoskori.extra}" />
+		<h1>Extra</h1><c:out value="${ostoskori.extra}" />
+		<h1>Tostring</h1><c:out value="${ostoskori}" />
 	</p>
 
 

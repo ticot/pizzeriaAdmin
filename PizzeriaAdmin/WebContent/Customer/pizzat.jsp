@@ -82,15 +82,16 @@
 							data-target="#viewdetails<c:out value="${p.id}" />">Tuotekuvaus
 							&raquo;</a>
 					</p>
-					<form class="form">
+						<form class="form-horizontal" name="input" action="ostoskori?id=<c:out value="${p.id}"/>">
 						<input type="checkbox" name="glutein-free"> Gluteiiniton <input
 							type="checkbox" name="lactose-free"> Laktoositon
-					</form>
+				
 					<div class="buttonwrapper">
-						<div class="btn-group">
+					
 							<button type="button" class="btn btn-default">Lis‰‰
 								ostoskoriin</button>
-						</div>
+									</form>
+					
 					</div>
 
 
