@@ -49,7 +49,7 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							Pizza X &#8364;
-							
+							<button type="button" class="glyphicon glyphicon-remove" style="float:right;">
 						</div>
 						<div class="panel-body">
 							Herkkusieni, jauheliha
