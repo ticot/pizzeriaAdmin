@@ -70,6 +70,7 @@ public class ControllerServlet extends HttpServlet {
 		 */
 		// ControllerServletiss‰ tehd‰‰n sama juttu kuin AdminServletiss‰,
 		// paitsi t‰ll‰ kertaa tiedot l‰hetet‰‰n list.jsp sivulle
+		
 		TuoteDao pDao = new TuoteDao();
 		List<Tuote> pList = null;
 		List<Palaute> palauteList = null;
@@ -190,6 +191,7 @@ public class ControllerServlet extends HttpServlet {
 		else{
 			response.sendRedirect("list?error=lisays");
 		}
+		
 //		ConnectionManager connection = new ConnectionManager();
 //
 //		List<Tuote> lista = new ArrayList<Tuote>();

@@ -182,6 +182,7 @@
 				<th>Etunimi</th>
 				<th>Sukunimi</th>
 				<th>Email</th>
+				<th>Level</th>
 				<th>Poista</th>
 			</tr>
 			</thead>
@@ -191,6 +192,7 @@
 				<td><c:out value="${u.etunimi}" /></td>
 				<td><c:out value="${u.sukunimi}" /></td>
 				<td><c:out value="${u.email}" /></td>
+				<td><c:out value="${u.level}" /></td>
 				<td><button class="glyphicon glyphicon-remove" id="rmv2"
 						data-toggle="modal"
 						data-target=".bs-example-modal-sm-<c:out value="${u.id}"/>"></button>
