@@ -115,6 +115,7 @@ public class OstoskoriServlet extends HttpServlet {
 			  request.setAttribute("yht", hintayhteensa); }
 			  System.out.println(hintayhteensa);
 			request.getSession().setAttribute("ostosKoriLista", ostoslista);
+			request.getSession().setAttribute("yht", hintayhteensa);
 			response.sendRedirect("pizzat?added=true");
 		}
 

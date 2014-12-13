@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE>
 <html>
 <head>
@@ -42,11 +43,13 @@
 				<h2>Vahvista tilauksesi</h2>
 				
 				<div class="pricepanel">
-				
-					<h4>Pizza X , gluteiiniton</h4>
-					
+				<c:forEach items="${ostosKoriLista}" var="okl">
+
+			
+					<h4><c:out value="${okl.tuote_nimi}" />, <c:out value="${okl.glu}" />, <c:out value="${okl.lakt}" />, <c:out value="${okl.hinta}" /><br></h4>
+					</c:forEach>
 					<br>
-					<h4>Hinta: 49 &#8364;</h4>
+					<h4>Hinta yhteensä: <c:out value="${yht}"/> &#8364;</h4>
 					<br><br>
 				</div>
 				
@@ -68,7 +71,7 @@
 <div class="control-group">
   <label class="control-label" for="Etunimi"><h5>Etunimi</h5></label>
   <div class="controls">
-    <input id="Etunimi" name="Etunimi" placeholder="" class="input-medium" required="" type="text">
+    <input value="<c:out value="${currentSessionUser.etunimi}" />" id="Etunimi" name="Etunimi" placeholder="" class="input-medium" required="" type="text">
     
   </div>
 </div>
@@ -77,7 +80,7 @@
 <div class="control-group">
   <label class="control-label" for="Sukunimi"><h5>Sukunimi</h5></label>
   <div class="controls">
-    <input id="Sukunimi" name="Sukunimi" placeholder="" class="input-medium" required="" type="text">
+    <input value="<c:out value="${currentSessionUser.sukunimi}" />" id="Sukunimi" name="Sukunimi" placeholder="" class="input-medium" required="" type="text">
     
   </div>
 </div>
@@ -86,7 +89,7 @@
 <div class="control-group">
   <label class="control-label" for="Osoite"><h5>Osoite</h5></label>
   <div class="controls">
-    <input id="Osoite" name="Osoite" placeholder="" class="input-medium" required="" type="text">
+    <input value="<c:out value="${currentSessionUser.katuosoite}" />" id="Osoite" name="Osoite" placeholder="" class="input-medium" required="" type="text">
     
   </div>
 </div>
@@ -94,7 +97,7 @@
 <div class="control-group">
   <label class="control-label" for="Postinro"><h5>Postinro</h5></label>
   <div class="controls">
-    <input id="Postinro" name="Postinro" placeholder="" class="input-medium" required="" type="text">
+    <input value="<c:out value="${currentSessionUser.postinumero}" />" id="Postinro" name="Postinro" placeholder="" class="input-medium" required="" type="text">
     
   </div>
 </div>
@@ -102,7 +105,7 @@
 <div class="control-group">
   <label class="control-label" for="Postitoimipaikka"><h5>Postitoimipaikka</h5></label>
   <div class="controls">
-    <input id="Postitoimipaikka" name="Postitoimipaikka" placeholder="" class="input-medium" required="" type="text">
+    <input value="<c:out value="${currentSessionUser.postitoimipaikka}" />" id="Postitoimipaikka" name="Postitoimipaikka" placeholder="" class="input-medium" required="" type="text">
     
   </div>
 </div>
@@ -111,7 +114,7 @@
 <div class="control-group">
   <label class="control-label" for="Puhelin.nro"><h5>Puhelin.nro</h5></label>
   <div class="controls">
-    <input id="Puhelin.nro" name="Puhelin.nro" placeholder="" class="input-medium" type="text">
+    <input value="<c:out value="${currentSessionUser.puhelinnumero}" />" id="Puhelin.nro" name="Puhelin.nro" placeholder="" class="input-medium" type="text">
     
   </div>
 </div>
