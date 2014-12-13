@@ -56,7 +56,7 @@ public class OstoskoriServlet extends HttpServlet {
 		if (action == null) {
 			action = "0";
 		}
-		if (action.equals("1")) {
+		if (action.equals("1")) {//jos poistetaan
 			// ostoslista.clear();
 			for (Iterator<Ostoskori> iter = ostoslista.listIterator(); iter
 					.hasNext();) {
@@ -76,26 +76,22 @@ public class OstoskoriServlet extends HttpServlet {
 					response);
 		}
 
-		if (action.equals("0")) {
-			/*
-			 * for(int i = 0; i < ostoslista.size(); i++){ hintayhteensa =
-			 * hintayhteensa + ostoslista.get(i).getTuote_id();
-			 * request.setAttribute("yht", hintayhteensa); }
-			 * System.out.println(hintayhteensa);
-			 */
-			System.out.println("sisallla" + id);
-			for (Iterator<Ostoskori> iter = ostoslista.listIterator(); iter
-					.hasNext();) {
-				System.out.println(iter);
-				Ostoskori a = iter.next();
-				if (a.getTuote_id() == Integer.parseInt(id)) {
-					hintayhteensa += a.getHinta();
-					System.out.println("Löytyi: " + hintayhteensa);
-					request.setAttribute("yht", hintayhteensa);
-				}
+		if (action.equals("0")) { //lisätään 
 			
-
-			}
+			 
+			System.out.println("sisallla" + id);
+//			for (Iterator<Ostoskori> iter = ostoslista.listIterator(); iter
+//					.hasNext();) {
+//				System.out.println(iter);
+//				Ostoskori a = iter.next();
+//				if (a.getTuote_id() == Integer.parseInt(id)) {
+//					hintayhteensa += a.getHinta();
+//					System.out.println("Löytyi: " + hintayhteensa);
+//					request.setAttribute("yht", hintayhteensa);
+//				}
+//			
+//
+//			}
 
 			String tuote_nimi = request.getParameter("nimi");
 			String glu = request.getParameter("glutein-free");
@@ -113,6 +109,11 @@ public class OstoskoriServlet extends HttpServlet {
 			ostoskori.setHinta(hinta);
 			ostoskori.setTuote_nimi(tuote_nimi);
 			ostoslista.add(ostoskori);
+			hintayhteensa = 0.0;
+			  for(int i = 0; i <ostoslista.size(); i++){ 
+			  hintayhteensa = hintayhteensa + ostoslista.get(i).getHinta();
+			  request.setAttribute("yht", hintayhteensa); }
+			  System.out.println(hintayhteensa);
 			request.getSession().setAttribute("ostosKoriLista", ostoslista);
 			response.sendRedirect("pizzat?added=true");
 		}
