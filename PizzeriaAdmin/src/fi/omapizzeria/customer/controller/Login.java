@@ -37,7 +37,15 @@ public class Login extends HttpServlet {
 				HttpSession session = request.getSession(true);
 				session.setAttribute("currentSessionUser", user);
 				
-				response.sendRedirect("../index");
+				
+				if (user.getLevel() == 2) {		/* tarkistetaan onko k‰ytt‰j‰ kirjautunut sis‰‰n */
+					response.sendRedirect("../index.jsp");
+
+				}
+				else if (user.getLevel() == 1)
+					response.sendRedirect("Customer/index.jsp");
+				
+			
 			} else {
 				response.sendRedirect("index.jsp");
 				JOptionPane.showMessageDialog(null,

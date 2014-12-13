@@ -57,7 +57,7 @@
 			  
 			 <div id="formwrapper">
 			 	
-			 	<form class="form-horizontal">
+			 	<form class="form-horizontal" action="order" method="post" >
 			 	
 <fieldset>
 
@@ -65,13 +65,12 @@
 <h3>Yhteystiedot</h3>
 
 <!-- Text input-->
-<button class="btn btn-primary" data-toggle="modal"
-		data-target=".bs-example-modal-sm" data-keyboard="true" id="sign">Kirjaudu sisään</button>
+
 
 <div class="control-group">
   <label class="control-label" for="Etunimi"><h5>Etunimi</h5></label>
   <div class="controls">
-    <input value="<c:out value="${currentSessionUser.etunimi}" />" id="Etunimi" name="Etunimi" placeholder="" class="input-medium" required="" type="text">
+    <input value="<c:out value="${currentSessionUser.etunimi}" />" id="Etunimi" name="Etunimi" placeholder="" class="input-medium" required="" type="text" autofocus>
     
   </div>
 </div>
@@ -120,14 +119,26 @@
 </div>
 
 </fieldset>
+<button type="button" class="btn btn-success" id="confirmation" >Vahvista tilaus</button>
 </form>
-				<div id="infotext"><p>Kirjautumalla sisään<br>
+<%
+		
+		if (session.getAttribute("currentSessionUser") == null) {		/* tarkistetaan onko käyttäjä kirjautunut sisään */
+		
+
+%>
+				<div id="infotext">
+				<button class="btn btn-primary" data-toggle="modal"
+		data-target=".bs-example-modal-sm" data-keyboard="true" id="sign">Kirjaudu sisään</button>
+				<p>Kirjautumalla sisään<br>
 				 lomake hakee tietosi, jotka olet tallentanut kirjautuessasi ja täyttää ne automaattisesti.<br><br>
 				Jos sinulla ei vielä ole tiliä Melo e Castelloon, voit rekisteröityä kohdasta rekisteröidy, sivun ylälaidassa.
 				Rekisteröinminen on maksutonta eikä Melo e Castello oy myy asiakkaan tietoja mainostajille</p> </div>
-				
-			 	<button type="button" class="btn btn-default" id="confirmation">Vahvista tilaus</button>
+				<%		} 
+		 %>
+			 	
 			 </div>
+			 
 		</div>
 
 	</div>

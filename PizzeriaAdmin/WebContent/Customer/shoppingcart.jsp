@@ -41,18 +41,10 @@
 
 		<div class="content">
 
-			<h1>Debug</h1>
-			<c:out value="${ostosKoriLista}"></c:out>
-			<c:forEach items="${ostosKoriLista}" var="okl">
-				<c:out value="${okl.tuote_nimi}" />
-				<c:out value="${okl.tuote_id}" />
-				<c:out value="${okl.glu}" />
-				<c:out value="${okl.lakt}" />
-				<c:out value="${okl.hinta}" />
-			</c:forEach>
+			
 
 			<h1 class="cent">Ostoskori</h1>
-			<p class="cent">sinulla on x m‰‰r‰ tuotteita ostoskorissa</p>
+			<p class="cent">Sinulla on <c:out value="${tyht}" /> kpl tuotteita ostoskorissa!</p>
 			<div class="contentwhite">
 				<h3>Tuotteet</h3>
 				<div class="cartwrap">
@@ -74,7 +66,7 @@
 								Gluteeniton:
 								<c:out value="${okl.glu}" />
 								Laktoositon:
-								<c:out value="${okl.lakt}" />
+								<c:out value="${okl.lakt}" />s
 
 							</div>
 
