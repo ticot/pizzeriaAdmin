@@ -44,6 +44,7 @@ public class UserDao {
 				String email = resultSet.getString("email");
 				
 				UserBean u = new UserBean(etunimi, sukunimi, katuosoite, postinumero, postitoimipaikka, puhelinnumero, email, level, id);
+				
 				uList.add(u);
 			}
 
@@ -178,7 +179,9 @@ added=true;
 				String postitoimipaikka = rs.getString("postitoimipaikka");
 				String puhelinnumero = rs.getString("puhelinnro");
 				int level = rs.getInt("level");
+				int id = rs.getInt("kayttaja_id");
 
+				bean.setId(id);
 				bean.setEtunimi(etunimi);
 				bean.setSukunimi(sukunimi);
 				bean.setKatuosoite(katuosoite);

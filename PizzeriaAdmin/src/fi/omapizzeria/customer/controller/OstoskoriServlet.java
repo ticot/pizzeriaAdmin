@@ -38,7 +38,8 @@ public class OstoskoriServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// request.getSession().invalidate();
-		request.setAttribute("yht", hintayhteensa);
+		request.getSession().setAttribute("yht", hintayhteensa);
+		//request.setAttribute("yht", hintayhteensa);
 		request.setAttribute("tyht", ostoslista.size());
 		request.getRequestDispatcher("shoppingcart.jsp").forward(request,
 				response);

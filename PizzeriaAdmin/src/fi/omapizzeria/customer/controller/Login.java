@@ -39,12 +39,12 @@ public class Login extends HttpServlet {
 				
 				
 				if (user.getLevel() == 2) {		/* tarkistetaan onko käyttäjä kirjautunut sisään */
-					response.sendRedirect("../index.jsp");
+					response.sendRedirect("index.jsp");
 
 				}
 				else if (user.getLevel() == 1)
-					response.sendRedirect("Customer/index.jsp");
-				
+					
+				response.sendRedirect("../index.jsp");
 			
 			} else {
 				response.sendRedirect("index.jsp");

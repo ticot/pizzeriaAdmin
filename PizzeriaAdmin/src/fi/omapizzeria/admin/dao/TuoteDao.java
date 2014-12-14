@@ -575,6 +575,7 @@ public class TuoteDao {
 					.executeQuery("INSERT INTO Tuotteen_sisalto (sisalto_id, tuote_id) VALUE ('"
 							+ osa4 + "','" + tuote_id + "')");
 					//tuotteen lis‰yksen j‰lkeen menn‰‰n taikaisin list.jsp ja vied‰‰n tieto ett‰ lis‰ys onnistui
+			lisatty=true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -583,7 +584,7 @@ public class TuoteDao {
 
 		finally {
 			connection.closeConnection(con);
-			lisatty=true;
+		
 			// request.getRequestDispatcher("list?added=true").forward(request,
 			// response);
 

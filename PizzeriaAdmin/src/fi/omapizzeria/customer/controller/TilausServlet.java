@@ -1,16 +1,22 @@
 package fi.omapizzeria.customer.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fi.omapizzeria.admin.bean.Tilaus;
+import fi.omapizzeria.admin.dao.TilausDao;
+import fi.omapizzeria.admin.dao.TuoteDao;
+
 /**
  * Servlet implementation class TilausServlet
  */
-@WebServlet("/order")
+@WebServlet("/Customer/order")
 public class TilausServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -26,6 +32,8 @@ public class TilausServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+
 		request.getRequestDispatcher("Order.jsp").forward(request,
 				response);
 	}
@@ -34,8 +42,54 @@ public class TilausServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String toimitustapa = request.getParameter("toimitustapa");
+		String maksutapa = request.getParameter("maksutapa");
+		String osoite = request.getParameter("Osoite");
+		String postinumero = request.getParameter("Postinro");
+		String postitoimipaikka = request.getParameter("Postitoimipaikka");
+		String puhelinnumero = request.getParameter("Puhelinnro");
+		String kayttaja_id = request.getParameter("kayttaja_id");
+		System.out.println(toimitustapa);
+		System.out.println(maksutapa);
+		boolean lisatty=false;
+		TilausDao tilausDao = new TilausDao();
+		System.out.println(kayttaja_id);
+		int tilaus_id = 0;
+		try {
+			tilaus_id = tilausDao.haeUusinTilausID();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		double yhteensa = (double) request.getSession().getAttribute("yht");
+		System.out.println("yht "+yhteensa);
+		Tilaus tilaus = new Tilaus();
+		tilaus.setTilaus_id(tilaus_id);
+		//System.out.println("Kayttaja_id " + request.getSession().getAttribute("currentSessionUser.etunimi"));
+		//tilaus.setKayttaja_id((int) request.getSession().getAttribute("currentSessionUser.etunimi"));
+		tilaus.setKayttaja_id(Integer.parseInt(kayttaja_id));
+		tilaus.setYhteensa(yhteensa);
+		tilaus.setMaksutapa(maksutapa);
+		tilaus.setToimitustapa(toimitustapa);
+		tilaus.setPuhelinnumero(puhelinnumero);
+		tilaus.setKatuosoite(osoite);
+		tilaus.setPostinumero(postinumero);
+		tilaus.setPostitoimipaikka(postitoimipaikka);
 		
 		
+		System.out.println("Tilaus_id: " + tilaus_id);
+		try {
+			lisatty = tilausDao.lisaaTilaus(tilaus);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (lisatty){
+			System.out.println("Uusi Tilaus taulun rivi lis‰tty");
+		}
+		else{
+			System.out.println("Uuden rivin lis‰‰minen ei onnistunut tauluun Tilaus");
+		}
 		request.getRequestDispatcher("Order.jsp?ordered=true").forward(request,
 				response);
 	}
