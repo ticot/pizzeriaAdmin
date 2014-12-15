@@ -66,7 +66,7 @@
 								Gluteeniton:
 								<c:out value="${okl.glu}" />
 								Laktoositon:
-								<c:out value="${okl.lakt}" />s
+								<c:out value="${okl.lakt}" />
 
 							</div>
 

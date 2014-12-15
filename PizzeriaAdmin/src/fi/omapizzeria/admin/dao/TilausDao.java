@@ -1,5 +1,6 @@
 package fi.omapizzeria.admin.dao;
 
+import fi.omapizzeria.admin.bean.Palaute;
 import fi.omapizzeria.admin.bean.Tuote;
 import include.ConnectionManager;
 
@@ -21,17 +22,64 @@ public class TilausDao {
 
 	public List<Tilaus> haeKaikkiTilaukset() throws SQLException {
 
-		List<Tilaus> lista = new ArrayList<Tilaus>();
+		List<Tilaus> tilausLista = new ArrayList<Tilaus>();
 
-		return lista;
+		Statement statement = null;
+		ResultSet resultSet = null;
+
+		statement = con.createStatement();
+
+		resultSet = statement
+				.executeQuery("SELECT Tilaus.tilaus_id, Tilaus.kayttaja_id, Tilaus.maksutapa, Tilaus.toimitustapa ,		Tilaus.katuosoite, Tilaus.postinumero, Tilaus.postitoimipaikka, Tilaus.puhelinnumero, Tilaus.yhteensa, Tilaus.tilaus_pvm, Tilaus.status,GROUP_CONCAT(DISTINCT Tuote.nimi ORDER BY Tuote.nimi SEPARATOR ', ') AS Tuotteet FROM Tilaus INNER JOIN Tilauksen_tuote ON Tilaus.tilaus_id = Tilauksen_tuote.tilaus_id INNER JOIN Tuote ON Tilauksen_tuote.tuote_id = Tuote.tuote_id GROUP BY tilaus_id ORDER BY Tilauksen_tuote.tuote_id ASC;");
+
+		try {
+			while (resultSet.next()) { // Iteroidaan läpi
+
+				/*
+				 * int id = resultSet.getInt("id"); String nimi =
+				 * resultSet.getString("nimi"); double hinta =
+				 * resultSet.getDouble("hinta"); System.out.println("ID : " + id
+				 * + "\nNimi: " + nimi + "\nHinta: " + hinta);
+				 */
+
+				int tilaus_id = resultSet.getInt("tilaus_id");
+				int kayttaja_id = resultSet.getInt("kayttaja_id");
+				String maksutapa = resultSet.getString("maksutapa");
+				String toimitustapa = resultSet.getString("toimitustapa");
+				String katuosoite = resultSet.getString("katuosoite");
+				String postinumero = resultSet.getString("postinumero");
+				String postitoimipaikka = resultSet.getString("postitoimipaikka");
+				String puhelinnumero = resultSet.getString("puhelinnumero");
+				double yhteensa = resultSet.getDouble("yhteensa");
+				String tilaus_pvm = resultSet.getString("tilaus_pvm");
+				int status = resultSet.getInt("status");
+				String tuotteet = resultSet.getString("tuotteet");
+				
+				
+				// boolean luettu = false;
+
+				
+				Tilaus tilaus = new Tilaus(tilaus_id, kayttaja_id, tuotteet, maksutapa, toimitustapa, tilaus_pvm, null, katuosoite, postinumero, postitoimipaikka, puhelinnumero, status, yhteensa);
+				tilausLista.add(tilaus);
+			}
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			// LOPULTA AINA SULJETAAN YHTEYS
+			connection.closeConnection(con);
+		}
+		return tilausLista;
 	}
 
-	public boolean lisaaTilaus(Tilaus tilaus) throws SQLException {
+	public boolean lisaaTilaus(Tilaus tilaus, List<Ostoskori> ostoslista)
+			throws SQLException {
 		boolean lisatty = false;
 
 		// List<Tuote> lista = new ArrayList<Tuote>();
 
-		Connection con = connection.doConnection();
+		// Connection con = connection.doConnection();
 
 		Statement statement = null;
 		ResultSet resultSet = null;
@@ -72,14 +120,22 @@ public class TilausDao {
 																	// 3=peruttu)
 							+ tilaus.getYhteensa() + "')");
 
-			resultSet = statement //
-					.executeQuery("INSERT INTO Tilauksen_tuote (tilaus_id, tuote_id, gluteeniton, laktoositon)"
-							+ "VALUES ('"
-							+ haeUusinTilausID()
-							+ "', '"
-							
-							+ "', '"
-							+ "')");
+			for (int i = 0; i < ostoslista.size(); i++) {
+				// System.out.println(ostoslista.get(i));
+
+				resultSet = statement //
+						.executeQuery("INSERT INTO Tilauksen_tuote (tilaus_id, tuote_id, gluteeniton, laktoositon)"
+								+ "VALUES ('"
+								+ haeUusinTilausID()
+								+ "', '"
+								+ ostoslista.get(i).getTuote_id()
+								+ "', '"
+								+ ostoslista.get(i).isGlu()
+								+ "', '"
+								+ ostoslista.get(i).isLakt() + "')");
+
+			}
+
 			// resultSet = statement
 			// .executeQuery("INSERT INTO Tuotteen_sisalto (sisalto_id, tuote_id) VALUE ('"
 			// + osa2 + "','" + tuote_id + "')");
@@ -138,7 +194,7 @@ public class TilausDao {
 			e.printStackTrace();
 		} finally {
 			// LOPULTA AINA SULJETAAN YHTEYS
-			connection.closeConnection(con);
+			// connection.closeConnection(con);
 		}
 
 		return tilaus_id;

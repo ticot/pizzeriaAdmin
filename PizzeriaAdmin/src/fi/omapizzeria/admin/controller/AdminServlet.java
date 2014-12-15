@@ -24,6 +24,7 @@ import javax.servlet.http.HttpSession;
 import javax.xml.bind.ParseConversionEvent;
 
 import fi.omapizzeria.admin.bean.*;
+import fi.omapizzeria.admin.dao.TilausDao;
 import fi.omapizzeria.admin.dao.TuoteDao;
 
 /**
@@ -49,10 +50,12 @@ public class AdminServlet extends HttpServlet {
 		//Lyhyesti: kun admin-sivun etusivulle saavutaan, käydään hakemassa neljään listaan tuotteet, tilattavat tuotteet, palautteet ja sisältö
 		
 		TuoteDao pDao = new TuoteDao();		//Alustetaan tuotedao
+		TilausDao tDao = new TilausDao();   //Alustetaan TilausDao
 		List<Tuote> pList = null;			//alustetaan tuotelista(kaikki tuotteet)
 		List<Palaute> palauteList = null;	//alustetaan palautelista
 		List<Tuote> pTilattavissa = null;	//alustetaan tilattavien tuotteiden lista
 		List<Sisalto> pSisaltoList = null;	//alusteaan sisältölista
+		List<Tilaus> tilausList = null;
 
 		try {
 			pTilattavissa = pDao.haeKaikkiTuotteetTilattavissa();	//haetaan tilattavat tuotteet listaan
@@ -77,6 +80,13 @@ public class AdminServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
+		try {
+			tilausList = tDao.haeKaikkiTilaukset();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		request.setAttribute("tilaukset", tilausList);
 		int yhteensa = pTilattavissa.size();						//määritellään requestille listojen nimet
 		request.setAttribute("pizzat", pList);
 		request.setAttribute("pizzatSisalto", pSisaltoList);

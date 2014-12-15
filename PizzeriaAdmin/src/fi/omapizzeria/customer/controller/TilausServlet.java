@@ -2,6 +2,8 @@ package fi.omapizzeria.customer.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fi.omapizzeria.admin.bean.Ostoskori;
 import fi.omapizzeria.admin.bean.Tilaus;
 import fi.omapizzeria.admin.dao.TilausDao;
 import fi.omapizzeria.admin.dao.TuoteDao;
@@ -77,15 +80,20 @@ public class TilausServlet extends HttpServlet {
 		tilaus.setPostitoimipaikka(postitoimipaikka);
 		
 		
+		List<Ostoskori> ostoslista = (List<Ostoskori>) request.getSession().getAttribute("ostosKoriLista");
+		
 		System.out.println("Tilaus_id: " + tilaus_id);
 		try {
-			lisatty = tilausDao.lisaaTilaus(tilaus);
+			lisatty = tilausDao.lisaaTilaus(tilaus, ostoslista);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (lisatty){
 			System.out.println("Uusi Tilaus taulun rivi lis‰tty");
+			request.getSession().invalidate();
+			ostoslista.clear();
+			
 		}
 		else{
 			System.out.println("Uuden rivin lis‰‰minen ei onnistunut tauluun Tilaus");

@@ -44,7 +44,7 @@ public class Login extends HttpServlet {
 				}
 				else if (user.getLevel() == 1)
 					
-				response.sendRedirect("../index.jsp");
+				response.sendRedirect("../index");
 			
 			} else {
 				response.sendRedirect("index.jsp");

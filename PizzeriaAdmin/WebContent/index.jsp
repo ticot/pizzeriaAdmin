@@ -78,10 +78,9 @@
 					<div class="caption">
 						<h3>Tilaukset</h3>
 						<ul>
-							<li>object1</li>	 <!--  Listataan tilaukset -->
-							<li>object1</li>
-							<li>object1</li>
-							<li>object1</li>
+						<c:forEach items="${tilaukset}" var="t">		<!-- Listataan palautteet -->
+							<li><a href="palaute?id=<c:out value="${t.tilaus_id}"/>"><c:out value="${t.tilaus_pvm}" /></a></li>
+							</c:forEach>
 						</ul>
 						<p>
 							<a href="#" class="btn btn-info" role="button" id="btn3">Näytä

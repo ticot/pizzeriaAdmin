@@ -24,6 +24,7 @@ import javax.servlet.http.HttpSession;
 import javax.xml.bind.ParseConversionEvent;
 
 import fi.omapizzeria.admin.bean.*;
+import fi.omapizzeria.admin.dao.TilausDao;
 import fi.omapizzeria.admin.dao.TuoteDao;
 
 /**
@@ -72,10 +73,12 @@ public class ControllerServlet extends HttpServlet {
 		// paitsi t‰ll‰ kertaa tiedot l‰hetet‰‰n list.jsp sivulle
 		
 		TuoteDao pDao = new TuoteDao();
+		
 		List<Tuote> pList = null;
 		List<Palaute> palauteList = null;
 		List<Tuote> pTilattavissa = null;
 		List<Sisalto> pSisaltoList = null;
+	
 
 		try {
 			pTilattavissa = pDao.haeKaikkiTuotteetTilattavissa();
@@ -106,6 +109,8 @@ public class ControllerServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+	
 
 		int yhteensa = pList.size();
 		int yhteensaTil = pTilattavissa.size();
