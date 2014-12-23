@@ -3,6 +3,20 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE>
 <html>
+<!-- 
+████████╗██╗ ██████╗ ██████╗ ██╗     ██╗ ██████╗██╗ ██████╗ ██╗   ██╗███████╗
+╚══██╔══╝██║██╔════╝██╔═══██╗██║     ██║██╔════╝██║██╔═══██╗██║   ██║██╔════╝
+   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║███████╗
+   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║╚════██║
+   ██║   ██║╚██████╗╚██████╔╝███████╗██║╚██████╗██║╚██████╔╝╚██████╔╝███████║
+   ╚═╝   ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝ ╚═════╝╚═╝ ╚═════╝  ╚═════╝ ╚══════╝
+   Antti Eloranta, Heini Haatanen, Tanja Partanen, Péter Takács, Samu Tapanen
+   2014
+   
+ Ostoskorin sisältöä voi tarkastella tällä sivulla. Myös tuotteiden poistaminen tapahtuu täällä.
+   
+   pohjan kommentit index.jsp
+   -->
 <head>
 <link href="css/bootstrap.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="style.css">
@@ -74,7 +88,7 @@
 					</c:forEach>
 				</div>
 				<div class="contentlink">
-					<h2>Ostosten hinta <c:out value="${yht}"/>  &#8364;</h2>
+					<h2>Ostosten hinta <c:out value="${yht}"/>  &#8364;</h2>	<!-- Lopuksi vielä näytetään paljon tuotteet maksoi yhteensä. -->
 
 					<a href="Order.jsp"><button type="button"
 							class="btn btn-default" id="cashout">Kassalle</button></a>

@@ -8,21 +8,13 @@
 						data-toggle="dropdown"><span class="step size-21"> <i
 								class="icon ion-ios7-bell"></i>
 						</span><b class="caret"></b></a>
-						<ul class="dropdown-menu dropdown-menu-right">
-							<li><a href="#">Ilmoitus</a></li>
-							<li><a href="#">Ilmoitus</a></li>
-							<li><a href="#">Ilmoitus <span
-									class="label label-danger">Tärkeä</span></a></li>
-							<li><a href="#">Ilmoitus</a></li>
-
-
-						</ul></li>
+						</li>
 
 
 
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>
-							<c:out value="${currentSessionUser.email}" /> <b class="caret"></b></a>
+							<c:out value="${currentSessionUser.email}" /> <b class="caret"></b></a><!-- käyttäjän sähköposti otetaan sessioon tallenetusta user-oliosta -->
 						<ul class="dropdown-menu dropdown-menu-right">
 							<li><a href="#"><span class="glyphicon glyphicon-user"></span>
 									Profiili</a></li>

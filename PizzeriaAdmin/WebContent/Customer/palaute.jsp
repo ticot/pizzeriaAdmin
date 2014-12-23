@@ -2,6 +2,19 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE>
 <html>
+<!-- 
+████████╗██╗ ██████╗ ██████╗ ██╗     ██╗ ██████╗██╗ ██████╗ ██╗   ██╗███████╗
+╚══██╔══╝██║██╔════╝██╔═══██╗██║     ██║██╔════╝██║██╔═══██╗██║   ██║██╔════╝
+   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║███████╗
+   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║╚════██║
+   ██║   ██║╚██████╗╚██████╔╝███████╗██║╚██████╗██║╚██████╔╝╚██████╔╝███████║
+   ╚═╝   ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝ ╚═════╝╚═╝ ╚═════╝  ╚═════╝ ╚══════╝
+   Antti Eloranta, Heini Haatanen, Tanja Partanen, Péter Takács, Samu Tapanen
+   2014
+   
+   Palaute-sivu, jossa käyttäjä voi täyttää palautelomakkeen antaakseen sitä. Sähköpostin voi sisällyttää jos haluaa, mutta otsikko on pakollinen.
+   
+   -->
 <head>
 <link href="css/bootstrap.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="style.css">
@@ -46,7 +59,7 @@
 					<!-- Palautelomake fi/omapizzeria/admin/controller/PalauteServletAdmin.java -->
 					<input type="text" class="form-control" placeholder="Nimi"
 						id="name" name="nimi" required=""> <input type="text"
-						class="form-control" placeholder="S�hk�posti" id="name"
+						class="form-control" placeholder="Sähköposti" id="name"
 						name="email"> <input type="text" class="form-control"
 						placeholder="Otsikko" id="name" name="otsikko" required="">
 			</div>
@@ -54,13 +67,13 @@
 				required="">
 			
 				</textarea>
-			<p class="infofield">S�hk�posti- tai nimikent�t eiv�t ole pakollisia.
-				Laita s�hk�postiosoitteesi vain, jos haluat
-				meilt� vastauksen palautteestasi tai hyvityksen. Muussa tapauksessa
-				voit j�tt�� kent�t tyhjiksi ja palautteesi tulee meille nimett�m�n�
+			<p class="infofield">Sähköposti- tai nimikentät eivät ole pakollisia.
+				Laita sähköpostiosoitteesi vain, jos haluat
+				meiltä vastauksen palautteestasi tai hyvityksen. Muussa tapauksessa
+				voit jättää kentät tyhjiksi ja palautteesi tulee meille nimettömänä
 				Arvostamme kaikkea meille saapuvaa palautetta!</p>
 			 <div class="col-xs-2"></div>
-    <div class="col-xs-8 content"><button type="submit" class="btn btn-primary btn-block">L�het�</button>
+    <div class="col-xs-8 content"><button type="submit" class="btn btn-primary btn-block">Lähetä</button>
     </div>
     <div class="col-xs-2"></div>
 			

@@ -3,6 +3,20 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<!-- 
+████████╗██╗ ██████╗ ██████╗ ██╗     ██╗ ██████╗██╗ ██████╗ ██╗   ██╗███████╗
+╚══██╔══╝██║██╔════╝██╔═══██╗██║     ██║██╔════╝██║██╔═══██╗██║   ██║██╔════╝
+   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║███████╗
+   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║╚════██║
+   ██║   ██║╚██████╗╚██████╔╝███████╗██║╚██████╗██║╚██████╔╝╚██████╔╝███████║
+   ╚═╝   ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝ ╚═════╝╚═╝ ╚═════╝  ╚═════╝ ╚══════╝
+   Antti Eloranta, Heini Haatanen, Tanja Partanen, Péter Takács, Samu Tapanen
+   2014
+   
+   Tuotteiden listaus asiakkaille tapahtuu tällä sivulla.
+   
+   pohjan kommentit index.jsp
+   -->
 <head>
 <link href="css/bootstrap.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="style.css">
@@ -19,7 +33,7 @@
     <![endif]-->
 <meta charset="UTF-8">
 <title>Melo e Castello</title>
-<!-- pohjan kommentit index.jsp -->
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -63,7 +77,7 @@
 			<button type="button" class="close" data-dismiss="alert">
 				<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 			</button>
-			Pitsa <c:out value="${p.nimi}" /> lis�tty! Mene <a href="ostoskori" class="alert-link">kassalle</a>
+			Pitsa <c:out value="${p.nimi}" /> lisätty! Mene <a href="ostoskori" class="alert-link">kassalle</a>
 		</div>
 
 		<%
@@ -72,7 +86,7 @@
 		%>
 			<c:forEach items="${pizzat}" var="p">
 			<form method="post" class="form-horizontal" name="input" action="ostoskori?id=<c:out value="${p.id}"/>">
-				<!-- Listataan valikoimasta l�ytyv�t tilattavissa olevat tuotteet -->
+				<!-- Listataan valikoimasta löytyvät tilattavissa olevat tuotteet -->
 				<div class="pizzawrapper">
 					<h2>
 						<c:out value="${p.nimi}" />
@@ -92,7 +106,7 @@
 						massa justo sit amet risus. Etiam porta sem malesuada magna mollis
 						euismod. Donec sed odio dui.</p>
 					<p>
-						<!-- nappi joka laajentaa pizzan alta l�ytyv�n kuvauksen --> <a class="btn"
+						<!-- nappi joka laajentaa pizzan alta löytyvän kuvauksen --> <a class="btn"
 							data-toggle="collapse"
 							data-target="#viewdetails<c:out value="${p.id}" />">Tuotekuvaus
 							&raquo;</a>
@@ -103,7 +117,7 @@
 				
 					<div class="buttonwrapper">
 					
-							<button type="submit" class="btn btn-default">Lis��
+							<button type="submit" class="btn btn-default">Lisää
 								ostoskoriin</button>
 									</form>
 					

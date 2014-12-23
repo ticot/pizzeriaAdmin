@@ -14,12 +14,22 @@ import fi.omapizzeria.admin.dao.*;
 
 
 @WebServlet("/Customer/register")
+//████████╗██╗ ██████╗ ██████╗ ██╗     ██╗ ██████╗██╗ ██████╗ ██╗   ██╗███████╗
+//╚══██╔══╝██║██╔════╝██╔═══██╗██║     ██║██╔════╝██║██╔═══██╗██║   ██║██╔════╝
+//	 ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║███████╗
+//   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║╚════██║
+//   ██║   ██║╚██████╗╚██████╔╝███████╗██║╚██████╗██║╚██████╔╝╚██████╔╝███████║
+//   ╚═╝   ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝ ╚═════╝╚═╝ ╚═════╝  ╚═════╝ ╚══════╝
+//Antti Eloranta, Heini Haatanen, Tanja Partanen, Péter Takács, Samu Tapanen
+//2014
+//
+//Kun käyttäjä painaa rekisteröidy-nappia asiakas-puolella ja täyttää tiedot tai lisää käyttäjän admin-puolella, lisätäänn uusi käyttäjä tietokantaan.
 public class Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public Register() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 
@@ -31,8 +41,7 @@ public class Register extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		UserDao uDao = new UserDao();
-		// TODO Auto-generated method stub
+		UserDao uDao = new UserDao();		//tehdään uusi dao, josta otetaan metodit käyttäjän lisäykseen
 		String etunimi = request.getParameter("etunimi");
 		String sukunimi = request.getParameter("sukunimi");
 		String katuosoite = request.getParameter("katuosoite");
@@ -41,7 +50,6 @@ public class Register extends HttpServlet {
 		String email = request.getParameter("email");
 		String puhelinnumero = request.getParameter("puhelinnumero");
 
-		// String salasana = request.getParameter("salasana");
 		Hash h = new Hash();
 		String salasana = h.getHash(request.getParameter("salasana"));
 		String salasana2 = h.getHash(request.getParameter("salasana2"));
@@ -53,34 +61,33 @@ public class Register extends HttpServlet {
 			if (added) {
 				response.sendRedirect("index.jsp");
 				JOptionPane.showMessageDialog(null,
-						"K�ytt�j� lis�ttiin onnistuneesti.");
+						"Käyttäjä lisättiin onnistuneesti.");
 			} else {
 				request.setAttribute("error",
-						"Salasanat eiv�t vastaa toisiaan."); // salasanat ei
+						"Salasanat eivät vastaa toisiaan."); // salasanat ei
 																// vastaa
 				request.getRequestDispatcher("index.jsp").forward(request,
-						response); // Forward to same page so that you can
-									// display error.
+						response); 
 				JOptionPane
 						.showMessageDialog(null,
-								"Rekister�itymisess� tapahtui virhe, kokeile my�hemmin uudestaan."); // n�ytet��n
+								"Rekisteröitymisessä tapahtui virhe, kokeile myöhemmin uudestaan."); // näytetään
 																										// alert-laatikko
 																										// jossa
 																										// virhe
-																										// selitet��n
+																										// selitetään
 
 			}
 		} else {
-			request.setAttribute("error", "Salasanat eiv�t vastaa toisiaan."); // salasanat
+			request.setAttribute("error", "Salasanat eivät vastaa toisiaan."); // salasanat
 																				// ei
 																				// vastaa
 			request.getRequestDispatcher("index.jsp")
 					.forward(request, response); 
 			JOptionPane.showMessageDialog(null,
-					"Salasanat eiv�t vastaa toisiaan."); // n�ytet��n
+					"Salasanat eivät vastaa toisiaan."); // näytetään
 															// alert-laatikko
 															// jossa virhe
-															// selitet��n
+															// selitetään
 		}
 
 	

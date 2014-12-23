@@ -1,7 +1,6 @@
 package fi.omapizzeria.admin.dao;
 
-import fi.omapizzeria.admin.bean.Palaute;
-import fi.omapizzeria.admin.bean.Tuote;
+
 import include.ConnectionManager;
 
 import java.sql.Connection;
@@ -12,7 +11,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fi.omapizzeria.admin.bean.*;
-
+//████████╗██╗ ██████╗ ██████╗ ██╗     ██╗ ██████╗██╗ ██████╗ ██╗   ██╗███████╗
+//╚══██╔══╝██║██╔════╝██╔═══██╗██║     ██║██╔════╝██║██╔═══██╗██║   ██║██╔════╝
+//	 ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║███████╗
+//   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║╚════██║
+//   ██║   ██║╚██████╗╚██████╔╝███████╗██║╚██████╗██║╚██████╔╝╚██████╔╝███████║
+//   ╚═╝   ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝ ╚═════╝╚═╝ ╚═════╝  ╚═════╝ ╚══════╝
+//Antti Eloranta, Heini Haatanen, Tanja Partanen, Péter Takács, Samu Tapanen
+//2014
+//
+//Tästä Daosta löytyy kaikki metodit tilauksien listaukseen sekä tilausten lisäämiseen.
 public class TilausDao {
 	ConnectionManager connection = new ConnectionManager();
 	Connection con = connection.doConnection();
@@ -33,7 +41,7 @@ public class TilausDao {
 				.executeQuery("SELECT Tilaus.tilaus_id, Tilaus.kayttaja_id, Tilaus.maksutapa, Tilaus.toimitustapa ,		Tilaus.katuosoite, Tilaus.postinumero, Tilaus.postitoimipaikka, Tilaus.puhelinnumero, Tilaus.yhteensa, Tilaus.tilaus_pvm, Tilaus.status,GROUP_CONCAT(DISTINCT Tuote.nimi ORDER BY Tuote.nimi SEPARATOR ', ') AS Tuotteet FROM Tilaus INNER JOIN Tilauksen_tuote ON Tilaus.tilaus_id = Tilauksen_tuote.tilaus_id INNER JOIN Tuote ON Tilauksen_tuote.tuote_id = Tuote.tuote_id GROUP BY tilaus_id ORDER BY Tilauksen_tuote.tuote_id ASC;");
 
 		try {
-			while (resultSet.next()) { // Iteroidaan l�pi
+			while (resultSet.next()) { // Iteroidaan läpi
 
 				/*
 				 * int id = resultSet.getInt("id"); String nimi =
@@ -64,10 +72,8 @@ public class TilausDao {
 			}
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			// LOPULTA AINA SULJETAAN YHTEYS
 			connection.closeConnection(con);
 		}
 		return tilausLista;
@@ -77,12 +83,9 @@ public class TilausDao {
 			throws SQLException {
 		boolean lisatty = false;
 
-		// List<Tuote> lista = new ArrayList<Tuote>();
-
-		// Connection con = connection.doConnection();
 
 		Statement statement = null;
-		ResultSet resultSet = null;
+
 
 		try {
 			statement = con.createStatement();
@@ -90,7 +93,7 @@ public class TilausDao {
 
 			e.printStackTrace();
 		} // Statement olion luonti
-			// varsinkin n�� vissii daoo
+
 		try {
 			resultSet = statement // luodaan uus tilaus
 					.executeQuery("INSERT INTO Tilaus(kayttaja_id, maksutapa, toimitustapa, katuosoite, postinumero, postitoimipaikka, puhelinnumero, status, yhteensa)"
@@ -109,11 +112,11 @@ public class TilausDao {
 							+ "', '"
 							+ tilaus.getPuhelinnumero() + "', 1, '" // kun
 																	// tilaus
-																	// tehd��n
+																	// tehdään
 																	// ekan
 																	// kerran
 																	// nii
-																	// merkit��n
+																	// merkitään
 																	// 1 -
 																	// kesken
 																	// (2=toimitettu,
@@ -121,7 +124,7 @@ public class TilausDao {
 							+ tilaus.getYhteensa() + "')");
 
 			for (int i = 0; i < ostoslista.size(); i++) {
-				// System.out.println(ostoslista.get(i));
+				
 
 				resultSet = statement //
 						.executeQuery("INSERT INTO Tilauksen_tuote (tilaus_id, tuote_id, gluteeniton, laktoositon)"
@@ -136,30 +139,17 @@ public class TilausDao {
 
 			}
 
-			// resultSet = statement
-			// .executeQuery("INSERT INTO Tuotteen_sisalto (sisalto_id, tuote_id) VALUE ('"
-			// + osa2 + "','" + tuote_id + "')");
-			// resultSet = statement
-			// .executeQuery("INSERT INTO Tuotteen_sisalto (sisalto_id, tuote_id) VALUE ('"
-			// + osa3 + "','" + tuote_id + "')");
-			// resultSet = statement
-			// .executeQuery("INSERT INTO Tuotteen_sisalto (sisalto_id, tuote_id) VALUE ('"
-			// + osa4 + "','" + tuote_id + "')");
-			// tuotteen lis�yksen j�lkeen menn��n taikaisin list.jsp ja vied��n
-			// tieto ett� lis�ys onnistui
+
+			
 			lisatty = true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 
 		}
 
 		finally {
 			connection.closeConnection(con);
-
-			// request.getRequestDispatcher("list?added=true").forward(request,
-			// response);
-
 		}
 		return lisatty;
 	}
@@ -170,20 +160,15 @@ public class TilausDao {
 
 		statement = con.createStatement(); // Statement olion luonti
 
-		// T�T� EI EN�� K�YTET�� !!=?!?!!=?!=!=!=!=
+
 
 		resultSet = statement
 				.executeQuery("SELECT tilaus_id FROM Tilaus ORDER BY tilaus_id DESC LIMIT 1;");
 
 		try {
-			while (resultSet.next()) { // Iteroidaan l�pi
+			while (resultSet.next()) { // Iteroidaan läpi
 
-				/*
-				 * int id = resultSet.getInt("id"); String nimi =
-				 * resultSet.getString("nimi"); double hinta =
-				 * resultSet.getDouble("hinta"); System.out.println("ID : " + id
-				 * + "\nNimi: " + nimi + "\nHinta: " + hinta);
-				 */
+
 
 				tilaus_id = resultSet.getInt("tilaus_id");
 

@@ -1,29 +1,25 @@
 package fi.omapizzeria.admin.controller;
-
-import include.ConnectionManager;
-
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import fi.omapizzeria.admin.dao.*;
-/**
- * Servlet implementation class poistaServlet
- */
+
 @WebServlet("/sisaltopoisto")
+//████████╗██╗ ██████╗ ██████╗ ██╗     ██╗ ██████╗██╗ ██████╗ ██╗   ██╗███████╗
+//╚══██╔══╝██║██╔════╝██╔═══██╗██║     ██║██╔════╝██║██╔═══██╗██║   ██║██╔════╝
+//   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║███████╗
+//   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║╚════██║
+//   ██║   ██║╚██████╗╚██████╔╝███████╗██║╚██████╗██║╚██████╔╝╚██████╔╝███████║
+//   ╚═╝   ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝ ╚═════╝╚═╝ ╚═════╝  ╚═════╝ ╚══════╝
+//   Antti Eloranta, Heini Haatanen, Tanja Partanen, Péter Takács, Samu Tapanen
+//   2014
+//   
 public class SisaltoPoisto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public SisaltoPoisto() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -44,9 +40,9 @@ public class SisaltoPoisto extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// K�ytt�j� klikaa sis�lt�sivulla ainesosalistasta l�ytyv�n ainesosan
-		// vierest� ruksia, tullaan t�nne, mukana tieto poistettavan ainesosan
-		// id:st�
+		// Käyttäjä klikaa sisältösivulla ainesosalistasta löytyvän ainesosan
+		// vierestä ruksia, tullaan tänne, mukana tieto poistettavan ainesosan
+		// id:stä
 		TuoteDao tDao = new TuoteDao();
 		String id = request.getParameter("id");
 

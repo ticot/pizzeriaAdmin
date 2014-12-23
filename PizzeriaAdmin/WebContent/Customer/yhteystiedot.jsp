@@ -2,6 +2,20 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE>
 <html>
+<!-- 
+████████╗██╗ ██████╗ ██████╗ ██╗     ██╗ ██████╗██╗ ██████╗ ██╗   ██╗███████╗
+╚══██╔══╝██║██╔════╝██╔═══██╗██║     ██║██╔════╝██║██╔═══██╗██║   ██║██╔════╝
+   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║███████╗
+   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║╚════██║
+   ██║   ██║╚██████╗╚██████╔╝███████╗██║╚██████╗██║╚██████╔╝╚██████╔╝███████║
+   ╚═╝   ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝ ╚═════╝╚═╝ ╚═════╝  ╚═════╝ ╚══════╝
+   Antti Eloranta, Heini Haatanen, Tanja Partanen, Péter Takács, Samu Tapanen
+   2014
+   
+   Yrityksen yhteystiedot ja osoite, joka näytetään google-maps iframella. 
+   
+   pohjan kommentit index.jsp
+   -->
 <head>
 <link href="css/bootstrap.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="style.css">
@@ -43,19 +57,19 @@
 		<div class="content">
 			<div class="contactwrapper">
 				<h1>Yhteystiedot</h1>
-				<p>Meid�t l�yd�t osoitteesta Raivolankatu 666. Omenapuun j�lkeen
-					vasemmalle ja Linnan vierest� oikella.Meid�t l�yd�t osoitteesta
-					Raivolankatu 666. Omenapuun j�lkeen vasemmalle ja Linnan vierest�
-					oikella.Meid�t l�yd�t osoitteesta Raivolankatu 666. Omenapuun
-					j�lkeen vasemmalle ja Linnan vierest� oikella.</p>
-				<p>Meid�t l�yd�t osoitteesta Raivolankatu 666. Omenapuun j�lkeen
-					vasemmalle ja Linnan vierest� oikella.</p>
+				<p>Meidät löydät osoitteesta Raivolankatu 666. Omenapuun jälkeen
+					vasemmalle ja Linnan vierestä oikella.Meidät löydät osoitteesta
+					Raivolankatu 666. Omenapuun jälkeen vasemmalle ja Linnan vierestä
+					oikella.Meidät löydät osoitteesta Raivolankatu 666. Omenapuun
+					jälkeen vasemmalle ja Linnan vierestä oikella.</p>
+				<p>Meidät löydät osoitteesta Raivolankatu 666. Omenapuun jälkeen
+					vasemmalle ja Linnan vierestä oikella.</p>
 				<br>
-				<p>L�mpim�sti tervetuloa!</p>
+				<p>Lämpimästi tervetuloa!</p>
 				<iframe
 					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7310.432972733255!2d29.80535900046709!3d62.73748848654653!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x469c7ed0b92b17e3%3A0xa0146d8a395ed80!2s80790+Kontioranta!5e0!3m2!1sfi!2sfi!4v1412670547722"
 					width="600" height="450" frameborder="0" style="border: 0"></iframe>
-				<!-- Iframe joka n�ytt�� ravintolan sijainnin kartalla -->
+				<!-- Iframe joka näyttää ravintolan sijainnin kartalla -->
 			</div>
 		</div>
 

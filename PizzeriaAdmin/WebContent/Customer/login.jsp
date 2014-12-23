@@ -5,21 +5,32 @@
 <link href="img/title.png" rel="shortcut icon" type="image/x-icon" />
 <link href='http://fonts.googleapis.com/css?family=Lora:400,400italic'
 	rel='stylesheet' type='text/css'>
-	
+<!-- 
+████████╗██╗ ██████╗ ██████╗ ██╗     ██╗ ██████╗██╗ ██████╗ ██╗   ██╗███████╗
+╚══██╔══╝██║██╔════╝██╔═══██╗██║     ██║██╔════╝██║██╔═══██╗██║   ██║██╔════╝
+   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║███████╗
+   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║╚════██║
+   ██║   ██║╚██████╗╚██████╔╝███████╗██║╚██████╗██║╚██████╔╝╚██████╔╝███████║
+   ╚═╝   ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝ ╚═════╝╚═╝ ╚═════╝  ╚═════╝ ╚══════╝
+   Antti Eloranta, Heini Haatanen, Tanja Partanen, Péter Takács, Samu Tapanen
+   2014
+   
+   Login sivu on includettu jokaiselle asiakaspuolen sivulle oikeaan yläreunaan. Se on ihan vain lomake jossa kysytään email ja salasana.
+   -->	
 	
 <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog"
-	aria-labelledby="mySmallModalLabel" aria-hidden="true">	<!-- Sivujen yl�reunasta "kirjaudu"-nappia painamalla aukeaa t�m� ikkuna -->
+	aria-labelledby="mySmallModalLabel" aria-hidden="true">	<!-- Sivujen yläreunasta "kirjaudu"-nappia painamalla aukeaa tämä ikkuna -->
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
 			<div class="modal-header">
 
 
-				<h4 class="modal-title" id="myModalLabel">Kirjaudu sis��n</h4>
+				<h4 class="modal-title" id="myModalLabel">Kirjaudu sisään</h4>
 				<button type="button" class="btn btn-default btn-sm"
 					data-dismiss="modal" id="close">
 					<span class="glyphicon glyphicon-remove"></span>
 			</div>
-			<form action="login" class="form-horizontal" role="form"> <!-- 	Kirjautumista varten t�ytett�v� lomake
+			<form action="login" class="form-horizontal" role="form"> <!-- 	Kirjautumista varten täytettävä lomake
 																			fi/omapizzeria/customer/controller/Login.java -->
 
 				<div class="form-group">
@@ -47,7 +58,7 @@
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
 						<button type="submit" class="btn btn-default">Kirjaudu
-							sis��n</button>
+							sisään</button>
 					</div>
 				</div>
 			</form>

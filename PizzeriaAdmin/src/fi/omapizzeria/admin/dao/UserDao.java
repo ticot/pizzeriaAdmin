@@ -1,5 +1,15 @@
 package fi.omapizzeria.admin.dao;
 import java.sql.*;
+//████████╗██╗ ██████╗ ██████╗ ██╗     ██╗ ██████╗██╗ ██████╗ ██╗   ██╗███████╗
+//╚══██╔══╝██║██╔════╝██╔═══██╗██║     ██║██╔════╝██║██╔═══██╗██║   ██║██╔════╝
+//	 ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║███████╗
+//   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║╚════██║
+//   ██║   ██║╚██████╗╚██████╔╝███████╗██║╚██████╗██║╚██████╔╝╚██████╔╝███████║
+//   ╚═╝   ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝ ╚═════╝╚═╝ ╚═════╝  ╚═════╝ ╚══════╝
+//Antti Eloranta, Heini Haatanen, Tanja Partanen, Péter Takács, Samu Tapanen
+//2014
+//
+//
 import java.util.*;
 
 import fi.omapizzeria.admin.bean.UserBean;
@@ -23,13 +33,8 @@ public class UserDao {
 																	// luonti
 		try {
 			
-			while (resultSet.next()) { // Iteroidaan l�pi
-				/*
-				 * int id = resultSet.getInt("id"); String nimi =
-				 * resultSet.getString("nimi"); double hinta =
-				 * resultSet.getDouble("hinta"); System.out.println("ID : " + id
-				 * + "\nNimi: " + nimi + "\nHinta: " + hinta);
-				 */
+			while (resultSet.next()) { // Iteroidaan läpi
+			
 
 				int id = resultSet.getInt("kayttaja_id");
 				int level = resultSet.getInt("level");
@@ -49,10 +54,8 @@ public class UserDao {
 			}
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			// SULJETAAN YHTEYS
 			connection.closeConnection(con);
 		}
 		System.out.println(uList);
@@ -100,8 +103,7 @@ added=true;
 	finally {
 		connection.closeConnection(con);
 
-		// request.getRequestDispatcher("list?added=true").forward(request,
-		// response);
+
 		return added;
 	}
 	
@@ -150,14 +152,11 @@ added=true;
 				+salasana
 				+"';";
 		
-		//debug
-		System.out.println("email="+email);
-		System.out.println("pass="+salasana);
-		System.out.println("haku= "+searchQuery);
+
 		
 		try
 		{
-			//yhdistet��
+			//yhdistetään
 			con = connection.doConnection();
 			System.out.println("connection natsas");
 			stmt=con.createStatement();
@@ -169,7 +168,7 @@ added=true;
 				System.out.println("Kirjautuminen ei onnistunut!");
 				bean.setValid(false);
 			}
-			else if(more)
+			else if(more)	//asetetaan user-beaniin kaikki tarvittavat tiedot
 			{
 				
 				String etunimi = rs.getString("etunimi");
@@ -194,7 +193,7 @@ added=true;
 				bean.setValid(true);
 			}
 		}
-		catch (Exception ex)
+		catch (Exception ex)	//virheratkontaa
 		{
 			System.out.println("Exception has occurred! " + ex);
 		}
@@ -208,7 +207,7 @@ added=true;
 				rs=null;
 			}
 			
-			if (stmt != null){
+			if (stmt != null){		//kaikki suljetaan lopuksi
 				try{
 					stmt.close();
 				}catch (Exception e){}

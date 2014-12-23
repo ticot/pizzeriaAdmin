@@ -3,6 +3,20 @@
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE>
 <html>
+<!-- 
+████████╗██╗ ██████╗ ██████╗ ██╗     ██╗ ██████╗██╗ ██████╗ ██╗   ██╗███████╗
+╚══██╔══╝██║██╔════╝██╔═══██╗██║     ██║██╔════╝██║██╔═══██╗██║   ██║██╔════╝
+   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║███████╗
+   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║╚════██║
+   ██║   ██║╚██████╗╚██████╔╝███████╗██║╚██████╗██║╚██████╔╝╚██████╔╝███████║
+   ╚═╝   ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝ ╚═════╝╚═╝ ╚═════╝  ╚═════╝ ╚══════╝
+   Antti Eloranta, Heini Haatanen, Tanja Partanen, Péter Takács, Samu Tapanen
+   2014
+   
+   Order.jsp on sivu, jossa varmistetaan käyttäjän tilaus. Käyttäjä voi kirjautua sisään täyttääkseen kentät tai sitten täyttää ne käsin.
+   
+   katso pohjan kommentit index.jsp
+   -->
 <head>
 <link href="css/bootstrap.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="style.css">
@@ -43,13 +57,13 @@
 				<h2>Vahvista tilauksesi</h2>
 				
 				<div class="pricepanel">
-				<c:forEach items="${ostosKoriLista}" var="okl">
+				<c:forEach items="${ostosKoriLista}" var="okl">		<!--Listataan käyttäjän ostoskoriin lisäämät tuotteet tähän mennessä. -->
 
 			
 					<h4><c:out value="${okl.tuote_nimi}" />, <c:out value="${okl.glu}" />, <c:out value="${okl.lakt}" />, <c:out value="${okl.hinta}" /><br></h4>
 					</c:forEach>
 					<br>
-					<h4>Hinta yhteens�: <c:out value="${yht}"/> &#8364;</h4>
+					<h4>Hinta yhteensä: <c:out value="${yht}"/> &#8364;</h4>
 					<br><br>
 				</div>
 				
@@ -61,10 +75,10 @@
 			 	
 <fieldset>
 
-<!-- Form Name -->
+
 <h3>Yhteystiedot</h3>
 
-<!-- Text input-->
+<!-- Tilaajan yhteystiedot-->
 
 
 <div class="control-group">
@@ -75,7 +89,7 @@
   </div>
 </div>
 
-<!-- Text input-->
+
 <div class="control-group">
   <label class="control-label" for="Sukunimi"><h5>Sukunimi</h5></label>
   <div class="controls">
@@ -84,7 +98,6 @@
   </div>
 </div>
 
-<!-- Text input-->
 <div class="control-group">
   <label class="control-label" for="Osoite"><h5>Osoite</h5></label>
   <div class="controls">
@@ -92,7 +105,7 @@
     
   </div>
 </div>
-<!-- Text input-->
+
 <div class="control-group">
   <label class="control-label" for="Postinro"><h5>Postinro</h5></label>
   <div class="controls">
@@ -100,7 +113,7 @@
     
   </div>
 </div>
-<!-- Text input-->
+
 <div class="control-group">
   <label class="control-label" for="Postitoimipaikka"><h5>Postitoimipaikka</h5></label>
   <div class="controls">
@@ -109,7 +122,7 @@
   </div>
 </div>
 
-<!-- Text input-->
+
 <div class="control-group">
   <label class="control-label" for="Puhelin.nro"><h5>Puhelin.nro</h5></label>
   <div class="controls">
@@ -118,7 +131,7 @@
     
   </div>
 </div>
-<!-- Multiple Radios -->
+
 <div class="control-group">
   <label class="control-label" for="toimitustapa">Toimitustapa</label>
   <div class="controls">
@@ -133,13 +146,12 @@
   </div>
 </div>
 
-<!-- Multiple Radios -->
 <div class="control-group">
   <label class="control-label" for="maksutapa">Maksutapa</label>
   <div class="controls">
     <label class="radio" for="maksutapa-0">
       <input type="radio" name="maksutapa" id="maksutapa-0" value="Kateinen" checked="checked">
-      K�teinen
+      Käteinen
     </label>
     <label class="radio" for="maksutapa-1">
       <input type="radio" name="maksutapa" id="maksutapa-1" value="Paypal">
@@ -157,17 +169,17 @@
 </form>
 <%
 		
-		if (session.getAttribute("currentSessionUser") == null) {		/* tarkistetaan onko k�ytt�j� kirjautunut sis��n */
+		if (session.getAttribute("currentSessionUser") == null) {		/* tarkistetaan onko käyttäjä kirjautunut sisään */
 		
 
 %>
-				<div id="infotext">
+				<div id="infotext">			<!-- Jos ei, näytetään nappula josta voi kirjautua sisään ja täyttää kentät automaattisesti. -->
 				<button class="btn btn-primary" data-toggle="modal"
-		data-target=".bs-example-modal-sm" data-keyboard="true" id="sign">Kirjaudu sis��n</button>
-				<p>Kirjautumalla sis��n<br>
-				 lomake hakee tietosi, jotka olet tallentanut kirjautuessasi ja t�ytt�� ne automaattisesti.<br><br>
-				Jos sinulla ei viel� ole tili� Melo e Castelloon, voit rekister�ity� kohdasta rekister�idy, sivun yl�laidassa.
-				Rekister�inminen on maksutonta eik� Melo e Castello oy myy asiakkaan tietoja mainostajille</p> </div>
+		data-target=".bs-example-modal-sm" data-keyboard="true" id="sign">Kirjaudu sisään</button>
+				<p>Kirjautumalla sisään<br>
+				 lomake hakee tietosi, jotka olet tallentanut kirjautuessasi ja täyttää ne automaattisesti.<br><br>
+				Jos sinulla ei vielä ole tiliä Melo e Castelloon, voit rekisteröityä kohdasta rekisteröidy, sivun ylälaidassa.
+				Rekisteröinminen on maksutonta eikä Melo e Castello oy myy asiakkaan tietoja mainostajille</p> </div>
 				<%		} 
 		 %>
 			 	

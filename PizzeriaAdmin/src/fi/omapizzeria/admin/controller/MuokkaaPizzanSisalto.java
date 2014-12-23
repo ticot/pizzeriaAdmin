@@ -1,58 +1,38 @@
 package fi.omapizzeria.admin.controller;
-
-import include.ConnectionManager;
-
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.jsp.PageContext;
-
-import fi.omapizzeria.admin.bean.Tuote;
 import fi.omapizzeria.admin.dao.TuoteDao;
 
-/**
- * Servlet implementation class MuokkaaPizzanSisalto
- */
+
 @WebServlet("/muokkaasisalto")
+//████████╗██╗ ██████╗ ██████╗ ██╗     ██╗ ██████╗██╗ ██████╗ ██╗   ██╗███████╗
+//╚══██╔══╝██║██╔════╝██╔═══██╗██║     ██║██╔════╝██║██╔═══██╗██║   ██║██╔════╝
+//   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║███████╗
+//   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║╚════██║
+//   ██║   ██║╚██████╗╚██████╔╝███████╗██║╚██████╗██║╚██████╔╝╚██████╔╝███████║
+//   ╚═╝   ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝ ╚═════╝╚═╝ ╚═════╝  ╚═════╝ ╚══════╝
+//   Antti Eloranta, Heini Haatanen, Tanja Partanen, Péter Takács, Samu Tapanen
+//   2014
+//   
 public class MuokkaaPizzanSisalto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public MuokkaaPizzanSisalto() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// Jos k�ytt�j� klikkaa tuotesivulla tietyn tuotteen oikealta puolelta
-		// l�ytyv�� "muokkaa"-nappia, aukeaa lomake johon t�ytet��n tuotteen
-		// uudet tiedot, jonka j�lkeen ne uudet tiedot l�hetet��n t�nne.
+		// Jos käyttäjä klikkaa tuotesivulla tietyn tuotteen oikealta puolelta
+		// löytyvää "muokkaa"-nappia, aukeaa lomake johon täytetään tuotteen
+		// uudet tiedot, jonka jälkeen ne uudet tiedot lähetetään tänne.
 
 		TuoteDao pDao = new TuoteDao();
 		String tuote_id = request.getParameter("id");
@@ -89,61 +69,6 @@ public class MuokkaaPizzanSisalto extends HttpServlet {
 		else{
 			response.sendRedirect("list?error=edit");
 		}
-//		ConnectionManager connection = new ConnectionManager();
-//
-//		List<Tuote> lista = new ArrayList<Tuote>();
-//
-//		Connection con = connection.doConnection();
-//
-//		Statement statement = null;
-//		ResultSet resultSet = null;
-//
-//		try {
-//			statement = con.createStatement();
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} // Statement olion luonti
-//																//t�� sinne tuotedaoo vissiii
-//		System.out.println("osa1w: " + osa1w + "\nosa1:" + osa1);
-//		try {
-//
-//			resultSet = statement.executeQuery("UPDATE Tuote SET nimi='"
-//					+ pnimi + "', hinta='" + phinta + "', tilattavissa="
-//					+ tilattavissa + " WHERE tuote_id ='" + tuote_id + "'");
-//
-//			resultSet = statement
-//					.executeQuery("UPDATE Tuotteen_sisalto SET sisalto_id='"
-//							+ osa1 + "' WHERE tuote_id='" + tuote_id
-//							+ "' AND sisalto_id='" + osa1w + "'");
-//
-//			resultSet = statement
-//					.executeQuery("UPDATE Tuotteen_sisalto SET sisalto_id='"
-//							+ osa2 + "' WHERE tuote_id='" + tuote_id
-//							+ "' AND sisalto_id='" + osa2w + "'");
-//
-//			resultSet = statement
-//					.executeQuery("UPDATE Tuotteen_sisalto SET sisalto_id='"
-//							+ osa3 + "' WHERE tuote_id='" + tuote_id
-//							+ "' AND sisalto_id='" + osa3w + "'");
-//
-//			resultSet = statement
-//					.executeQuery("UPDATE Tuotteen_sisalto SET sisalto_id='"
-//							+ osa4 + "' WHERE tuote_id='" + tuote_id
-//							+ "' AND sisalto_id='" + osa4w + "'");
-//
-//			response.sendRedirect("list?edit=true");
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			response.sendRedirect("list?error=edit"); // MITEN LIS�T�
-//		}
-//
-//		finally {
-//			connection.closeConnection(con);
-//			// request.getRequestDispatcher("list?added=true").forward(request,
-//			// response);
-//
-//		}
+
 	}
 }

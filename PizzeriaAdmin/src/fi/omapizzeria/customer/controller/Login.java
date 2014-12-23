@@ -15,6 +15,16 @@ import fi.omapizzeria.admin.dao.UserDao;
 import fi.omapizzeria.admin.bean.UserBean;
 
 @WebServlet("/Customer/login")
+//████████╗██╗ ██████╗ ██████╗ ██╗     ██╗ ██████╗██╗ ██████╗ ██╗   ██╗███████╗
+//╚══██╔══╝██║██╔════╝██╔═══██╗██║     ██║██╔════╝██║██╔═══██╗██║   ██║██╔════╝
+//	 ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║███████╗
+//   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║╚════██║
+//   ██║   ██║╚██████╗╚██████╔╝███████╗██║╚██████╗██║╚██████╔╝╚██████╔╝███████║
+//   ╚═╝   ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝ ╚═════╝╚═╝ ╚═════╝  ╚═════╝ ╚══════╝
+//Antti Eloranta, Heini Haatanen, Tanja Partanen, Péter Takács, Samu Tapanen
+//2014
+//
+//Kun käyttäjä painaa "kirjaudu sisään" nappulaa täytettyään tiedot, käydään läpi tämä servletti. UserDaosta otetaan metodeja tähän.
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -31,14 +41,14 @@ public class Login extends HttpServlet {
 			Hash h = new Hash();
 			user.setSalasana(h.getHash(request.getParameter("salasana")));
 
-			user = UserDao.login(user);
+			user = UserDao.login(user);	//katso UserDao
 
 			if (user.isValid()) {
 				HttpSession session = request.getSession(true);
 				session.setAttribute("currentSessionUser", user);
 				
 				
-				if (user.getLevel() == 2) {		/* tarkistetaan onko k�ytt�j� kirjautunut sis��n */
+				if (user.getLevel() == 2) {		/* tarkistetaan onko käyttäjä kirjautunut sisään */
 					response.sendRedirect("index.jsp");
 
 				}

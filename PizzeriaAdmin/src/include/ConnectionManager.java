@@ -1,10 +1,16 @@
 package include;
-
+//████████╗██╗ ██████╗ ██████╗ ██╗     ██╗ ██████╗██╗ ██████╗ ██╗   ██╗███████╗
+//╚══██╔══╝██║██╔════╝██╔═══██╗██║     ██║██╔════╝██║██╔═══██╗██║   ██║██╔════╝
+//	 ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║███████╗
+//   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║╚════██║
+//   ██║   ██║╚██████╗╚██████╔╝███████╗██║╚██████╗██║╚██████╔╝╚██████╔╝███████║
+//   ╚═╝   ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝ ╚═════╝╚═╝ ╚═════╝  ╚═════╝ ╚══════╝
+//Antti Eloranta, Heini Haatanen, Tanja Partanen, Péter Takács, Samu Tapanen
+//2014
+//
+//connectionmanageria käytetään siihen, että tehdään yhteys tietokantaan.
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-
 public class ConnectionManager {
 	public Connection doConnection() {
 		Connection con = null;
@@ -25,18 +31,17 @@ public class ConnectionManager {
 																		// muodostus
 
 		} catch (Exception e) {
-			System.out.println("Tietokanta yhteys ep�onnistui");
+			System.out.println("Tietokanta yhteys epäonnistui");
 			e.printStackTrace();
 		}
 		return con;
 	}
 
-	public void closeConnection(Connection con) { //!!Aina suljetaan yhteys!!K�yt� n�in connection.closeConnection(con);
+	public void closeConnection(Connection con) { 
 		try {
 			if (con != null && !con.isClosed())
 				con.close();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

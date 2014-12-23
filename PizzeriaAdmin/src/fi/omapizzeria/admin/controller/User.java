@@ -1,52 +1,41 @@
 package fi.omapizzeria.admin.controller;
-
-import include.ConnectionManager;
 import include.Hash;
-
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.JOptionPane;
-
-import fi.omapizzeria.admin.bean.Tuote;
 import fi.omapizzeria.admin.bean.UserBean;
-import fi.omapizzeria.admin.dao.TuoteDao;
 import fi.omapizzeria.admin.dao.UserDao;
 
-/**
- * Servlet implementation class User
- */
+
 @WebServlet("/user")
+//████████╗██╗ ██████╗ ██████╗ ██╗     ██╗ ██████╗██╗ ██████╗ ██╗   ██╗███████╗
+//╚══██╔══╝██║██╔════╝██╔═══██╗██║     ██║██╔════╝██║██╔═══██╗██║   ██║██╔════╝
+//   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║███████╗
+//   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║╚════██║
+//   ██║   ██║╚██████╗╚██████╔╝███████╗██║╚██████╗██║╚██████╔╝╚██████╔╝███████║
+//   ╚═╝   ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝ ╚═════╝╚═╝ ╚═════╝  ╚═════╝ ╚══════╝
+//   Antti Eloranta, Heini Haatanen, Tanja Partanen, Péter Takács, Samu Tapanen
+//   2014
+//   
 public class User extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
+
 	public User() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		// Kun k�ytt�j� saapuu user.jsp sivulle, haetaan kaikki olemassa olevat
-		// k�ytt�j�t tietokannasta
+		// Kun käyttäjä saapuu user.jsp sivulle, haetaan kaikki olemassa olevat
+		// käyttäjät tietokannasta
 
 		UserDao uDao = new UserDao();
 		List<UserBean> uList = null;
@@ -61,31 +50,28 @@ public class User extends HttpServlet {
 		request.setAttribute("users", uList);
 		request.setAttribute("yht", yhteensa);
 
-		request.getRequestDispatcher("user.jsp").forward(request, response); // t��
+		request.getRequestDispatcher("user.jsp").forward(request, response); // tää
 																				// rivi
-																				// l�hett��
+																				// lähettää
 																				// selaimen
 																				// user.jsp
 																				// sivulle,
 																				// mukanaan
 																				// lista
-																				// k�ytt�jist�
+																				// käyttäjistä
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// jos k�ytt�j� painaa "poista" tai "lis�� k�ytt�j�" nappulaa t�ll�
-		// sivulla, menn��n t�h�n funktioon
+		// jos käyttäjä painaa "poista" tai "lisää käyttäjä" nappulaa tällä
+		// sivulla, mennään tähän funktioon
 		String action = request.getParameter("button");
 		String id = request.getParameter("id");
 		UserDao uDao = new UserDao();
 		if (action.equals("register")) { // jos painettu nappula oli
-											// "lis�� k�ytt�j�" k�yd��n t�m�
-											// funktio l�pi
+											// "lisää käyttäjä" käydään tämä
+											// funktio läpi
 			
 			
 			String email = request.getParameter("email");
@@ -115,7 +101,7 @@ public class User extends HttpServlet {
 			}
 		}
 		if (action.equals("remove")) { // Jos sivulla painettiin "poista"
-										// nappulaa k�ytt�j�listauksessa
+										// nappulaa käyttäjälistauksessa
 			boolean removed = uDao.removeUser(Integer.parseInt(id));
 			if (removed){
 				response.sendRedirect("user?removed=true");

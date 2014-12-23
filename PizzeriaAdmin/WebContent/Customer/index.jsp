@@ -2,6 +2,31 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE>
 <html>
+<!-- 
+████████╗██╗ ██████╗ ██████╗ ██╗     ██╗ ██████╗██╗ ██████╗ ██╗   ██╗███████╗
+╚══██╔══╝██║██╔════╝██╔═══██╗██║     ██║██╔════╝██║██╔═══██╗██║   ██║██╔════╝
+   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║███████╗
+   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║╚════██║
+   ██║   ██║╚██████╗╚██████╔╝███████╗██║╚██████╗██║╚██████╔╝╚██████╔╝███████║
+   ╚═╝   ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝ ╚═════╝╚═╝ ╚═════╝  ╚═════╝ ╚══════╝
+   Antti Eloranta, Heini Haatanen, Tanja Partanen, Péter Takács, Samu Tapanen
+   2014
+   
+Sivusto on jaettu admin-puolen näkymään ja asiakkaan puolen näkymään. 
+
+Admin-puoli löytyy suoraan WebContent-hakemistosta ja kaikki asiakas-puolen sivut 
+ovat "Customer"-hakemiston juuressa. Varsinaisia sivuja admin-puolella ovat:
+-index.jsp 	-etusivu, lyhyesti keskellä sivua kerrotaan yrityksestä, ylhäältä löytyy navigointipalkki ja kirjautumisnappulat
+-pizzat.jsp	-tällä sivulla listataan kaikki valikoimasta tilattavissa olevat tuotteet
+-yhteystiedot - yrityksen kivijalkaliikkeen osoite (ei oikea)
+-palaute - Sivu, jolla käyttäjä voi jättää palautetta sähköpostilla ja otsikolla varustettuna.
+-shoppincart.jsp - ostoskori-sivu, missä käyttäjän valitsemat tuotteet näytetään
+-Order.jsp - Tilauksen varmistus. 
+
+Hakemistosta löytyy myös .jsp-sivuja joita sisällytetään edellämainittuihin sivuihin jsp-include avulla
+-currentuser - sivun oikeasta yläreunasta löytyvä palkki joka näyttää kirjautuneen nkäyttäjän sähköpostin ja antaa mahdollisuuden kirjautua ulos
+-logout - sivu jonka kautta käyttäjä ohjataan, kun kirjaudutaan ulos. Muuten tyhjä, servletti käyttää get-metodia.
+ -->
 <head>
 <link href="css/bootstrap.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="style.css">
@@ -26,7 +51,7 @@
 
 		<ul>
 			<li class="active"><a href="index.jsp">Etusivu</a></li>
-			<!-- Yl�palkin navidgointinappulat -->
+			<!-- Yläpalkin navidgointinappulat -->
 			<li><a href="pizzat">Pizzat</a></li>
 			<li><a href="yhteystiedot.jsp">Yhteystiedot</a></li>
 			<li><a href="palaute">Palaute</a></li>
@@ -34,7 +59,7 @@
 
 		<jsp:include page="navigation.jsp" />
 		
-		<!-- "kirjudu|rekister�idy" napit. Katso navigation.jsp -->
+		<!-- "kirjudu|rekisteröidy" napit. Katso navigation.jsp -->
 
 	</div>
 	<div id="center">
@@ -47,26 +72,26 @@
 			<img src="img/hello.png" align="middle">
 		</div>
 		<div class="content">
-			<!-- Sivun keskelt� l�ytyv� leip�teksti, vaatii oikean tekstin -->
+			<!-- Sivun keskeltä löytyvä leipäteksti-->
 			<p>Kaupungin vanhin pizzeria, Melo e Castello, on perheyritys, joka
-				avasi ovensa ensimm�isen kerran vuoden 1981 lopulla Asemakadulla.
-				Pian t�m�n j�lkeen siirryttiin Raivolankadun tiloihin, joissa ollaan
+				avasi ovensa ensimmäisen kerran vuoden 1981 lopulla Asemakadulla.
+				Pian tämän jälkeen siirryttiin Raivolankadun tiloihin, joissa ollaan
 				oltu jo melkein 30 vuotta. Aivan Joensuun pohjoisosassa sijaitsevassa Melo e
-				Castellossa on aitoa italialaista tunnelmaa ja yst�v�llinen
+				Castellossa on aitoa italialaista tunnelmaa ja ystävällinen
 				ilmapiiri.Ruokalistamme perustana ovat ensiluokkaiset raaka-aineet,
-				joista ei tingit�. Pizzan herkullisuuden salaisuus piileekin
-				alkuper�isess� reseptiss�, jonka opimme Melo e Castellon perustajalta,
-				italialaiselta, Giovanni Castellolta. Olemme halunneet pit�� perinteist�
-				kiinni ja keskittyneet vain siihen, mit� osaamme parhaiten, eli
+				joista ei tingitä. Pizzan herkullisuuden salaisuus piileekin
+				alkuperäisessä reseptissä, jonka opimme Melo e Castellon perustajalta,
+				italialaiselta, Giovanni Castellolta. Olemme halunneet pitää perinteistä
+				kiinni ja keskittyneet vain siihen, mitä osaamme parhaiten, eli
 				pizzaan.Vuonna 2007 Melo e Castello sai uuden ilmeen sisustuksen ja
-				ruokalistan uusimisen my�t�. Saimme my�s kabinetin, jonne mahtuu 10
-				-12 henkil�� ruokailemaan. Vuonna 2010 p�ivitettiin ruokalistaa ja
-				sisustusta uudemman kerran. Listalta l�ytyy nyt my�s gluteenitonta
-				pizzaa.Mielipiteenne on meille t�rke��, joten pyyd�mme Teit�
-				j�tt�m��n palautetta Palaute-sivuillemme. Olemme halukkaita kuulemaan
+				ruokalistan uusimisen myötä. Saimme myös kabinetin, jonne mahtuu 10
+				-12 henkilöä ruokailemaan. Vuonna 2010 päivitettiin ruokalistaa ja
+				sisustusta uudemman kerran. Listalta löytyy nyt myös gluteenitonta
+				pizzaa.Mielipiteenne on meille tärkeää, joten pyydämme Teitä
+				jättämään palautetta Palaute-sivuillemme. Olemme halukkaita kuulemaan
 				asiakkaittemme mielipiteen ravintolastamme ja parannuskehotuksia
 				toiminnastamme tai ruokalistastamme. Melo e Castellolla ei ole muita
-				toimipisteit� eik� sisaryrityksi�.</p>
+				toimipisteitä eikä sisaryrityksiä.</p>
 		</div>
 	</div>
 

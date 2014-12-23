@@ -1,7 +1,6 @@
 package fi.omapizzeria.admin.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,7 +11,18 @@ import include.ConnectionManager;
 import fi.omapizzeria.admin.bean.Palaute;
 import fi.omapizzeria.admin.bean.Tuote;
 import fi.omapizzeria.admin.bean.Sisalto;
-
+//████████╗██╗ ██████╗ ██████╗ ██╗     ██╗ ██████╗██╗ ██████╗ ██╗   ██╗███████╗
+//╚══██╔══╝██║██╔════╝██╔═══██╗██║     ██║██╔════╝██║██╔═══██╗██║   ██║██╔════╝
+//	 ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║███████╗
+//   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║╚════██║
+//   ██║   ██║╚██████╗╚██████╔╝███████╗██║╚██████╗██║╚██████╔╝╚██████╔╝███████║
+//   ╚═╝   ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝ ╚═════╝╚═╝ ╚═════╝  ╚═════╝ ╚══════╝
+//Antti Eloranta, Heini Haatanen, Tanja Partanen, Péter Takács, Samu Tapanen
+//2014
+//
+//tuotedaosta löytyvät kaikki tuotteen lisäämiseen, muokkaamiseen, poistamiseen ja listaukseen liittyvät metodit.
+//myös sisällölle samat metodit
+//ja palautteelle
 public class TuoteDao {
 	ConnectionManager connection = new ConnectionManager();
 	Connection con = connection.doConnection();
@@ -32,21 +42,16 @@ public class TuoteDao {
 
 		statement = con.createStatement(); // Statement olion luonti
 
-		// resultSet = statement.executeQuery("SELECT * FROM Tuote"); // Result
+
 		// setin
 		// luonti
 		resultSet = statement
 				.executeQuery("SELECT p.tuote_id, p.nimi, p.hinta, p.tilattavissa, GROUP_CONCAT(DISTINCT c.nimi ORDER BY c.nimi SEPARATOR ', ') AS Sisalto FROM Tuote p INNER JOIN Tuotteen_sisalto r ON p.tuote_id = r.tuote_id INNER JOIN Sisalto c ON r.sisalto_id = c.sisalto_id WHERE p.tuote_id = r.tuote_id AND r.sisalto_id = c.sisalto_id GROUP BY p.tuote_id ORDER BY p.tilattavissa DESC");
 
 		try {
-			while (resultSet.next()) { // Iteroidaan l�pi
+			while (resultSet.next()) { // Iteroidaan läpi
 
-				/*
-				 * int id = resultSet.getInt("id"); String nimi =
-				 * resultSet.getString("nimi"); double hinta =
-				 * resultSet.getDouble("hinta"); System.out.println("ID : " + id
-				 * + "\nNimi: " + nimi + "\nHinta: " + hinta);
-				 */
+
 
 				int id = resultSet.getInt("tuote_id");
 				String nimi = resultSet.getString("nimi");
@@ -59,10 +64,8 @@ public class TuoteDao {
 			}
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			// LOPULTA AINA SULJETAAN YHTEYS
 			connection.closeConnection(con);
 		}
 		return lista;
@@ -83,14 +86,9 @@ public class TuoteDao {
 		resultSet = statement
 				.executeQuery("SELECT p.tuote_id, p.nimi, p.hinta, p.tilattavissa, GROUP_CONCAT(DISTINCT c.nimi ORDER BY c.nimi SEPARATOR ', ') AS Sisalto FROM Tuote p INNER JOIN Tuotteen_sisalto r ON p.tuote_id = r.tuote_id INNER JOIN Sisalto c ON r.sisalto_id = c.sisalto_id WHERE p.tuote_id = r.tuote_id AND r.sisalto_id = c.sisalto_id AND p.tilattavissa = 1 GROUP BY p.tuote_id ORDER BY p.nimi");
 		try {
-			while (resultSet.next()) { // Iteroidaan l�pi
+			while (resultSet.next()) { // Iteroidaan läpi
 
-				/*
-				 * int id = resultSet.getInt("id"); String nimi =
-				 * resultSet.getString("nimi"); double hinta =
-				 * resultSet.getDouble("hinta"); System.out.println("ID : " + id
-				 * + "\nNimi: " + nimi + "\nHinta: " + hinta);
-				 */
+				
 
 				int id = resultSet.getInt("tuote_id");
 				String nimi = resultSet.getString("nimi");
@@ -98,15 +96,13 @@ public class TuoteDao {
 				boolean tilattavissa = resultSet.getBoolean("tilattavissa");
 				String sisalto = resultSet.getString("sisalto");
 
-				Tuote p = new Tuote(id, nimi, hinta, tilattavissa, sisalto);
+				Tuote p = new Tuote(id, nimi, hinta, tilattavissa, sisalto);	//lisätään tuotteet listaan
 				lista.add(p);
 			}
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			// LOPULTA AINA SULJETAAN YHTEYS
 			connection.closeConnection(con);
 		}
 
@@ -128,14 +124,9 @@ public class TuoteDao {
 		resultSet = statement.executeQuery("SELECT * FROM Sisalto");
 
 		try {
-			while (resultSet.next()) { // Iteroidaan l�pi
+			while (resultSet.next()) { // Iteroidaan läpi
 
-				/*
-				 * int id = resultSet.getInt("id"); String nimi =
-				 * resultSet.getString("nimi"); double hinta =
-				 * resultSet.getDouble("hinta"); System.out.println("ID : " + id
-				 * + "\nNimi: " + nimi + "\nHinta: " + hinta);
-				 */
+				
 
 				int id = resultSet.getInt("sisalto_id");
 				String nimi = resultSet.getString("nimi");
@@ -145,10 +136,8 @@ public class TuoteDao {
 			}
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			// LOPULTA AINA SULJETAAN YHTEYS
 			connection.closeConnection(con);
 		}
 		return lista;
@@ -169,14 +158,9 @@ public class TuoteDao {
 		resultSet = statement.executeQuery("SELECT * FROM Sisalto");
 
 		try {
-			while (resultSet.next()) { // Iteroidaan l�pi
+			while (resultSet.next()) { // Iteroidaan läpi
 
-				/*
-				 * int id = resultSet.getInt("id"); String nimi =
-				 * resultSet.getString("nimi"); double hinta =
-				 * resultSet.getDouble("hinta"); System.out.println("ID : " + id
-				 * + "\nNimi: " + nimi + "\nHinta: " + hinta);
-				 */
+				
 				if (resultSet.getInt("sisalto_id") != 1) {
 					int id = resultSet.getInt("sisalto_id");
 					String nimi = resultSet.getString("nimi");
@@ -188,10 +172,8 @@ public class TuoteDao {
 			}
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			// LOPULTA AINA SULJETAAN YHTEYS
 			connection.closeConnection(con);
 		}
 		return lista;
@@ -208,30 +190,23 @@ public class TuoteDao {
 
 		statement = con.createStatement(); // Statement olion luonti
 
-		// T�T� EI EN�� K�YTET�� !!=?!?!!=?!=!=!=!=
+		
 
 		resultSet = statement
 				.executeQuery("SELECT tuote_id FROM Tuote ORDER BY tuote_id DESC LIMIT 1;");
 
 		try {
-			while (resultSet.next()) { // Iteroidaan l�pi
+			while (resultSet.next()) { // Iteroidaan läpi
 
-				/*
-				 * int id = resultSet.getInt("id"); String nimi =
-				 * resultSet.getString("nimi"); double hinta =
-				 * resultSet.getDouble("hinta"); System.out.println("ID : " + id
-				 * + "\nNimi: " + nimi + "\nHinta: " + hinta);
-				 */
+				
 
 				tuote_id = resultSet.getInt("tuote_id");
 
 			}
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			// LOPULTA AINA SULJETAAN YHTEYS
 			connection.closeConnection(con);
 		}
 		System.out.println(tuote_id);
@@ -254,15 +229,9 @@ public class TuoteDao {
 				.executeQuery("SELECT * FROM Palaute ORDER BY palaute_id DESC");
 
 		try {
-			while (resultSet.next()) { // Iteroidaan l�pi
+			while (resultSet.next()) { // Iteroidaan läpi
 
-				/*
-				 * int id = resultSet.getInt("id"); String nimi =
-				 * resultSet.getString("nimi"); double hinta =
-				 * resultSet.getDouble("hinta"); System.out.println("ID : " + id
-				 * + "\nNimi: " + nimi + "\nHinta: " + hinta);
-				 */
-
+				
 				int id = resultSet.getInt("palaute_id");
 				String nimi = resultSet.getString("nimi");
 				String email = resultSet.getString("email");
@@ -277,10 +246,8 @@ public class TuoteDao {
 			}
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			// LOPULTA AINA SULJETAAN YHTEYS
 			connection.closeConnection(con);
 		}
 		return palautelista;
@@ -302,14 +269,9 @@ public class TuoteDao {
 				.executeQuery("SELECT * FROM Palaute ORDER BY palaute_id DESC LIMIT 5");
 
 		try {
-			while (resultSet.next()) { // Iteroidaan l�pi
+			while (resultSet.next()) { // Iteroidaan läpi
 
-				/*
-				 * int id = resultSet.getInt("id"); String nimi =
-				 * resultSet.getString("nimi"); double hinta =
-				 * resultSet.getDouble("hinta"); System.out.println("ID : " + id
-				 * + "\nNimi: " + nimi + "\nHinta: " + hinta);
-				 */
+			
 
 				int id = resultSet.getInt("palaute_id");
 				String nimi = resultSet.getString("nimi");
@@ -326,10 +288,8 @@ public class TuoteDao {
 			}
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			// LOPULTA AINA SULJETAAN YHTEYS
 			connection.closeConnection(con);
 		}
 		return palautelista;
@@ -345,7 +305,6 @@ public class TuoteDao {
 		try {
 			statement = con.createStatement();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} // Statement olion luonti
 		try {
@@ -356,12 +315,10 @@ public class TuoteDao {
 
 		} catch (SQLException e) {
 			System.out.println("Ei");
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			System.out.println("Poistettu pizza id:" + id);
 			connection.closeConnection(con);
-			// response.sendRedirect("list?muokattu=true");
 
 		}
 		return piilotettu;
@@ -377,7 +334,6 @@ public class TuoteDao {
 		try {
 			statement = con.createStatement();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} // Statement olion luonti
 		try {
@@ -388,12 +344,9 @@ public class TuoteDao {
 
 		} catch (SQLException e) {
 			System.out.println("Ei");
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			connection.closeConnection(con);
-			// response.sendRedirect("list?muokattu=true");
-
 		}
 		return palautettu;
 	}
@@ -408,7 +361,6 @@ public class TuoteDao {
 		try {
 			statement = con.createStatement();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} // Statement olion luonti
 
@@ -420,10 +372,8 @@ public class TuoteDao {
 		} catch (SQLException e) {
 			System.out.println("Ei");
 
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			// System.out.println("Poistettu pizza id:"+id);
 			connection.closeConnection(con);
 		}
 		return poistettu;
@@ -439,17 +389,15 @@ public class TuoteDao {
 		try {
 			statement = con.createStatement();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} // Statement olion luonti
-			// T�� allaoleva tuotedaoo
+			// Tää allaoleva tuotedaoo
 		try {
 			resultSet = statement
 					.executeQuery("DELETE FROM Tuotteen_sisalto WHERE tuote_id='"
 							+ id + "'");
 		} catch (SQLException e) {
 			System.out.println("Ei");
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
@@ -458,12 +406,11 @@ public class TuoteDao {
 							+ "'");
 		} catch (SQLException e) {
 			System.out.println("Ei");
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 
 			poistettu = true;
-			// vied��n k�ytt�j� takaisin list.jsp ja otetaan mukaan tieto
+			// viedään käyttäjä takaisin list.jsp ja otetaan mukaan tieto
 			// onnistuneesta poistosta
 			connection.closeConnection(con);
 		}
@@ -476,20 +423,18 @@ public class TuoteDao {
 		boolean muokattu = false;
 		ConnectionManager connection = new ConnectionManager();
 
-		List<Tuote> lista = new ArrayList<Tuote>();
+		
 
 		Connection con = connection.doConnection();
 
 		Statement statement = null;
-		ResultSet resultSet = null;
+		
 
 		try {
 			statement = con.createStatement();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} // Statement olion luonti
-			// t�� sinne tuotedaoo vissiii
 		System.out.println("osa1w: " + osa1w + "\nosa1:" + osa1);
 		try {
 
@@ -519,17 +464,12 @@ public class TuoteDao {
 
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
+		
 		}
-
 		finally {
 			muokattu=true;
 			connection.closeConnection(con);
-			// request.getRequestDispatcher("list?added=true").forward(request,
-			// response);
-
 		}
 		return muokattu;
 	}
@@ -538,20 +478,17 @@ public class TuoteDao {
 		boolean lisatty=false;
 		ConnectionManager connection = new ConnectionManager();
 
-		List<Tuote> lista = new ArrayList<Tuote>();
 
 		Connection con = connection.doConnection();
 
 		Statement statement = null;
-		ResultSet resultSet = null;
+
 
 		try {
 			statement = con.createStatement();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} // Statement olion luonti
-		//varsinkin n�� vissii daoo
 		try {
 			resultSet = statement
 					.executeQuery("INSERT INTO Tuote(nimi, hinta, tilattavissa) VALUE ('"
@@ -574,20 +511,14 @@ public class TuoteDao {
 			resultSet = statement
 					.executeQuery("INSERT INTO Tuotteen_sisalto (sisalto_id, tuote_id) VALUE ('"
 							+ osa4 + "','" + tuote_id + "')");
-					//tuotteen lis�yksen j�lkeen menn��n taikaisin list.jsp ja vied��n tieto ett� lis�ys onnistui
 			lisatty=true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		
 		}
 
 		finally {
 			connection.closeConnection(con);
-		
-			// request.getRequestDispatcher("list?added=true").forward(request,
-			// response);
-
 		}
 		return lisatty;
 	}

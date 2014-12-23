@@ -2,9 +2,23 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<!-- 
+████████╗██╗ ██████╗ ██████╗ ██╗     ██╗ ██████╗██╗ ██████╗ ██╗   ██╗███████╗
+╚══██╔══╝██║██╔════╝██╔═══██╗██║     ██║██╔════╝██║██╔═══██╗██║   ██║██╔════╝
+   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║███████╗
+   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║╚════██║
+   ██║   ██║╚██████╗╚██████╔╝███████╗██║╚██████╗██║╚██████╔╝╚██████╔╝███████║
+   ╚═╝   ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝ ╚═════╝╚═╝ ╚═════╝  ╚═════╝ ╚══════╝
+   Antti Eloranta, Heini Haatanen, Tanja Partanen, Péter Takács, Samu Tapanen
+   2014
+   
+  rekisteröitymis-lomake avautuu jos käyttäjä painaa "rekisteröidy" nappia oikealta ylhäältä
+   
+
+   -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>	<!-- Sivujen yl�reunasta "rekister�idy"-nappia painamalla aukeaa t�m� ikkuna -->
+<title>Insert title here</title>	<!-- Sivujen yläreunasta "rekisteröidy"-nappia painamalla aukeaa tämä ikkuna -->
 </head>
 <body>
 <div class="modal fade bs-example-modal-sm2" tabindex="-1" role="dialog"
@@ -14,12 +28,12 @@
 			<div class="modal-header">
 
 
-				<h4 class="modal-title" id="myModalLabel">Rekister�idy k�ytt�j�ksi</h4>
+				<h4 class="modal-title" id="myModalLabel">Rekisteröidy käyttäjäksi</h4>
 				<button type="button" class="btn btn-default btn-sm"
 					data-dismiss="modal" id="close">
 					<span class="glyphicon glyphicon-remove"></span>
 			</div>
-			<form action="register" class="form-horizontal" role="form" method="POST"><!-- Rekister�itymist� varten t�ytett�v� formi
+			<form action="register" class="form-horizontal" role="form" method="POST"><!-- Rekisteröitymistä varten täytettävä formi
 																						fi/omapizzeria/customer/controller/Register.java -->
 
 				<div class="form-group">
@@ -89,7 +103,7 @@
 				
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" value="register" name="nappi" class="btn btn-default">Rekister�idy</button>
+						<button type="submit" value="register" name="nappi" class="btn btn-default">Rekisteröidy</button>
 					</div>
 				</div>
 			</form>

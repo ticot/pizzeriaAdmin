@@ -3,6 +3,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE>
 <html>
+<!-- 
+████████╗██╗ ██████╗ ██████╗ ██╗     ██╗ ██████╗██╗ ██████╗ ██╗   ██╗███████╗
+╚══██╔══╝██║██╔════╝██╔═══██╗██║     ██║██╔════╝██║██╔═══██╗██║   ██║██╔════╝
+   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║███████╗
+   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║╚════██║
+   ██║   ██║╚██████╗╚██████╔╝███████╗██║╚██████╗██║╚██████╔╝╚██████╔╝███████║
+   ╚═╝   ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝ ╚═════╝╚═╝ ╚═════╝  ╚═════╝ ╚══════╝
+   Antti Eloranta, Heini Haatanen, Tanja Partanen, Péter Takács, Samu Tapanen
+   2014
+   
+Katso pohjaan kuuluvat kommentit index.jsp -->
 <head>
 <link href="css/bootstrap.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="style.css">
@@ -16,7 +27,7 @@
 		       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 <meta charset="UTF-8">
-<title>Melo e Castello</title> <!-- Katso pohjan kommentit index.jsp -->
+<title>Melo e Castello</title> 
 </head>
 <body>
 
@@ -44,7 +55,7 @@
 
 
 	<div id="centercontent">
-	<!-- N�ytet��n ilmoituslaatikko onnistuneesta k�ytt�j�n lis�yksest� ja poistosta -->
+	<!-- Näytetään ilmoituslaatikko onnistuneesta käyttäjän lisäyksestä ja poistosta -->
 	<%
 			if (request.getParameter("removed") != null && request.getParameter("removed").equals("true")) {
 		%>
@@ -52,7 +63,7 @@
 			<button type="button" class="close" data-dismiss="alert">
 				<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 			</button>
-			K�ytt�j� poistettu!
+			Käyttäjä poistettu!
 		</div>
 		<%
 			}
@@ -65,7 +76,7 @@
 			<button type="button" class="close" data-dismiss="alert">
 				<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 			</button>
-			K�ytt�j�n poistaminen ep�onnistui!
+			Käyttäjän poistaminen epäonnistui!
 		</div>
 		<%
 			}
@@ -76,7 +87,7 @@
 					<button type="button" class="close" data-dismiss="alert">
 						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 					</button>
-					K�ytt�j� lis�tty!
+					Käyttäjä lisätty!
 				</div>
 				<%
 					}
@@ -89,7 +100,7 @@
 					<button type="button" class="close" data-dismiss="alert">
 						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 					</button>
-					K�ytt�j�n lis��minen ep�onnistui!
+					Käyttäjän lisääminen epäonnistui!
 				</div>
 				<%
 					}
@@ -97,18 +108,18 @@
 					%>
 	
 		<div class="jumbotron">
-			<h1>Lis�� k�ytt�j�</h1>
-			<p>T�n��n on kaunis p�iv�!</p>
+			<h1>Lisää käyttäjä</h1>
+			<p>Tänään on kaunis päivä!</p>
 		</div>
 
 
 
 		<form class="form-horizontal" name="input" action="user" method="POST">
-			<fieldset>			<!--	Lomake k�ytt�j�n lis�ykseen.
+			<fieldset>			<!--	Lomake käyttäjän lisäykseen.
 			 fi/omapizzeria/admin/controller/User.java -->
 
 				<!-- Form Name -->
-				<legend>Lis�� uusi k�ytt�j�</legend>
+				<legend>Lisää uusi käyttäjä</legend>
 
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="etunimi">Etunimi</label>
@@ -156,26 +167,26 @@
 
 				<!-- User level input -->
 				<div class="form-group">
-					<label class="col-md-4 control-label" for="userlevel">K�ytt�j�taso</label>
+					<label class="col-md-4 control-label" for="userlevel">Käyttäjätaso</label>
 					<div class="col-md-4">
 						<select id="level" name="level" placeholder="Level">
-							<option value="0">0 - Ei m��ritelty.</option>
-							<option value="1">1 - Yll�pito.</option>
-							<option value="2">2 - Perusk�ytt�j�.</option>
+							<option value="0">0 - Ei määritelty.</option>
+							<option value="1">1 - Ylläpito.</option>
+							<option value="2">2 - Peruskäyttäjä.</option>
 						</select>
 
 					</div>
 				</div>
 
 				<button type="submit" class="btn btn-primary" id="ybtn"
-					value="register" name="button">Lis�� K�ytt�j�</button>
+					value="register" name="button">Lisää Käyttäjä</button>
 				<button type="button" data-dismiss="modal" class="btn btn-default"
 					id="nbtn">Peruuta</button>
 
 			</fieldset>
 		</form>
 
-		<legend>Olemassa olevat k�ytt�j�t</legend>
+		<legend>Olemassa olevat käyttäjät</legend>
 		<table class = "table table-hover" id="usertable">
 			<thead>
 			<tr>
@@ -187,7 +198,7 @@
 			</tr>
 			</thead>
 			<tbody>
-			<c:forEach items="${users}" var="u">	<!-- Listataan olemassa olevat k�ytt�j�t -->
+			<c:forEach items="${users}" var="u">	<!-- Listataan olemassa olevat käyttäjät -->
 			<tr>
 				<td><c:out value="${u.etunimi}" /></td>
 				<td><c:out value="${u.sukunimi}" /></td>
@@ -202,14 +213,14 @@
 							<div class="modal-content" id="del">
 								<h1>Poista tuote</h1>
 								<p>
-									Oletko varma ett� haluat poistaa k�ytt�j�n <b><c:out value="${u.etunimi}" /></b> ?
+									Oletko varma että haluat poistaa käyttäjän <b><c:out value="${u.etunimi}" /></b> ?
 								</p>
 								<div id="btnwrap2">
 									<form name="input" action="user?id=<c:out value="${u.id}"/>"
 										method="POST">
 
 										<button type="submit" class="btn btn-primary" id="ybtn" name="button"
-											value="remove">Poista k�ytt�j�</button>
+											value="remove">Poista käyttäjä</button>
 										<button type="button" data-dismiss="modal"
 											class="btn btn-default" id="nbtn">Peruuta</button>
 									</form>
@@ -232,7 +243,7 @@
 			<ul class="nav nav-pills nav-stacked">
 				<li><a href="index">Etusivu</a></li>
 				<li><a href="list">Tuotteet</a></li>
-				<li class="active"><a href="user">K�ytt�j�t</a></li>
+				<li class="active"><a href="user">Käyttäjät</a></li>
 				<li><a href="sisalto">Aineosat</a></li>
 				<li><a href="palaute">Palautteet</a></li>
 			</ul>

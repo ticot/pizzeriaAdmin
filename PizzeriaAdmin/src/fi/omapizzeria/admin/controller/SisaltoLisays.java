@@ -9,40 +9,35 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import fi.omapizzeria.admin.bean.Palaute;
 import fi.omapizzeria.admin.bean.Sisalto;
 import fi.omapizzeria.admin.bean.Tuote;
 import fi.omapizzeria.admin.dao.TuoteDao;
 
-/**
- * Servlet implementation class SisaltoLisays
- */
+
 @WebServlet("/sisalto")
+//████████╗██╗ ██████╗ ██████╗ ██╗     ██╗ ██████╗██╗ ██████╗ ██╗   ██╗███████╗
+//╚══██╔══╝██║██╔════╝██╔═══██╗██║     ██║██╔════╝██║██╔═══██╗██║   ██║██╔════╝
+//   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║███████╗
+//   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║╚════██║
+//   ██║   ██║╚██████╗╚██████╔╝███████╗██║╚██████╗██║╚██████╔╝╚██████╔╝███████║
+//   ╚═╝   ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝ ╚═════╝╚═╝ ╚═════╝  ╚═════╝ ╚══════╝
+//   Antti Eloranta, Heini Haatanen, Tanja Partanen, Péter Takács, Samu Tapanen
+//   2014
+//   
 public class SisaltoLisays extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public SisaltoLisays() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// kun sis�lt�-sivulle tullaan, haetaan t��lt� lista niist� ainesosista
+		// kun sisältö-sivulle tullaan, haetaan täältä lista niistä ainesosista
 		// jotka ovat tallessa
 		TuoteDao pDao = new TuoteDao();
 		List<Sisalto> pSisaltoList = null;
@@ -50,7 +45,6 @@ public class SisaltoLisays extends HttpServlet {
 		try {
 			pSisaltoList = pDao.haeTuoteSisaltoPakolliset();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -59,14 +53,10 @@ public class SisaltoLisays extends HttpServlet {
 		request.getRequestDispatcher("sisalto.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// k�ytt�j� painaa "lis�� ainesosa" kirjoitettuaan ainesosan nimen
-		// kentt��n, tullaan t�nne ja lis�t��n ainesosa tietokantaan
+		// käyttäjä painaa "lisää ainesosa" kirjoitettuaan ainesosan nimen
+		// kenttään, tullaan tänne ja lisätään ainesosa tietokantaan
 		String uusi_sisalto = request.getParameter("sisalto");
 
 		ConnectionManager connection = new ConnectionManager();
@@ -99,7 +89,7 @@ public class SisaltoLisays extends HttpServlet {
 			connection.closeConnection(con);
 			// request.getRequestDispatcher("list?added=true").forward(request,
 			// response);
-			response.sendRedirect("sisalto?added=true"); // menn��n takas sis�lt�sivulle ja vied��n tieto onnistuneesta lis�yksest�
+			response.sendRedirect("sisalto?added=true"); // mennään takas sisältösivulle ja viedään tieto onnistuneesta lisäyksestä
 		}
 
 		// REDIRECT???????

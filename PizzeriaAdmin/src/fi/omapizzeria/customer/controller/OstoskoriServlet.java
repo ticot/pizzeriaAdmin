@@ -14,52 +14,50 @@ import javax.servlet.http.HttpServletResponse;
 import fi.omapizzeria.admin.bean.Ostoskori;
 import fi.omapizzeria.admin.bean.Tuote;
 
-/**
- * Servlet implementation class OstoskoriServlet
- */
+
 @WebServlet("/Customer/ostoskori")
+//████████╗██╗ ██████╗ ██████╗ ██╗     ██╗ ██████╗██╗ ██████╗ ██╗   ██╗███████╗
+//╚══██╔══╝██║██╔════╝██╔═══██╗██║     ██║██╔════╝██║██╔═══██╗██║   ██║██╔════╝
+//	 ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║███████╗
+//   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║╚════██║
+//   ██║   ██║╚██████╗╚██████╔╝███████╗██║╚██████╗██║╚██████╔╝╚██████╔╝███████║
+//   ╚═╝   ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝ ╚═════╝╚═╝ ╚═════╝  ╚═════╝ ╚══════╝
+//Antti Eloranta, Heini Haatanen, Tanja Partanen, Péter Takács, Samu Tapanen
+//2014
+//
+//OstoskoriServlet käsittelee ostoskorin sisältöä. Lisäys ja poistometodit löytyy.
 public class OstoskoriServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	List<Ostoskori> ostoslista = new ArrayList<Ostoskori>();
 	double hintayhteensa = 0;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public OstoskoriServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// request.getSession().invalidate();
 		request.getSession().setAttribute("yht", hintayhteensa);
-		//request.setAttribute("yht", hintayhteensa);
 		request.setAttribute("tyht", ostoslista.size());
 		request.getRequestDispatcher("shoppingcart.jsp").forward(request,
 				response);
 
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		String action = request.getParameter("action");
+		String action = request.getParameter("action");	
+		//ostoskorisivulla voi jokaisen ostoskorin tuotteen vieressä klikata "poista" 
+		//ja pizzat-sivulla voi jokaisen tuotteen kohdalla painaa "lisää ostkoskoriin". 
+		//Noh, sitä tässä vertaillaan.
 		String id = request.getParameter("id");
 
 		if (action == null) {
 			action = "0";
 		}
 		if (action.equals("1")) {//jos poistetaan
-			// ostoslista.clear();
 			for (Iterator<Ostoskori> iter = ostoslista.listIterator(); iter
 					.hasNext();) {
 				Ostoskori a = iter.next();
@@ -73,27 +71,15 @@ public class OstoskoriServlet extends HttpServlet {
 				}
 
 			}
-			// request.getSession().invalidate();
 			request.getRequestDispatcher("shoppingcart.jsp").forward(request,
 					response);
 		}
 
-		if (action.equals("0")) { //lis�t��n 
+		if (action.equals("0")) { //lisätään 
 			
 			 
 			System.out.println("sisallla" + id);
-//			for (Iterator<Ostoskori> iter = ostoslista.listIterator(); iter
-//					.hasNext();) {
-//				System.out.println(iter);
-//				Ostoskori a = iter.next();
-//				if (a.getTuote_id() == Integer.parseInt(id)) {
-//					hintayhteensa += a.getHinta();
-//					System.out.println("L�ytyi: " + hintayhteensa);
-//					request.setAttribute("yht", hintayhteensa);
-//				}
-//			
-//
-//			}
+
 
 			String tuote_nimi = request.getParameter("nimi");
 			String glu = request.getParameter("glutein-free");

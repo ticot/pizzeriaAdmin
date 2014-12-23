@@ -1,8 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE>
 <html>
+<!-- 
+████████╗██╗ ██████╗ ██████╗ ██╗     ██╗ ██████╗██╗ ██████╗ ██╗   ██╗███████╗
+╚══██╔══╝██║██╔════╝██╔═══██╗██║     ██║██╔════╝██║██╔═══██╗██║   ██║██╔════╝
+   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║███████╗
+   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║╚════██║
+   ██║   ██║╚██████╗╚██████╔╝███████╗██║╚██████╗██║╚██████╔╝╚██████╔╝███████║
+   ╚═╝   ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝ ╚═════╝╚═╝ ╚═════╝  ╚═════╝ ╚══════╝
+   Antti Eloranta, Heini Haatanen, Tanja Partanen, Péter Takács, Samu Tapanen
+   2014
+   
+   Sisalto.jsp listaa tuotteissa käytettäviä sisältöjä. Sisältöjä vooi lisätä keskeltä löytyvästä lomakkeesta. Jos sisältö kuuluu johonkin tuotteeseen, sitä ei voi poistaa.
+    Katso pohjaan kuuluvat kommentit index.jsp 
+    -->
 <head>
 <link href="css/bootstrap.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="style.css">
@@ -16,14 +29,15 @@
 		       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 <meta charset="UTF-8">
-<title>Melo e Castello</title><!-- Katso pohjaan kuuluvat kommentit index.jsp -->
+<title>Melo e Castello</title>
+<!---->
 </head>
 <body>
-<%
+	<%
 		if (session.getAttribute("currentSessionUser") == null) {
 			response.sendRedirect("Customer/index.jsp");
 
-		} 
+		}
 	%>
 	<div class="topbar">
 		<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav"
@@ -38,13 +52,11 @@
 		</header>
 
 	</div>
-	<!-- Small modal -->
 
 	<div id="centercontent">
-	<!-- N�ytet��n ilmoituslaatikko jos sis�lt� poistettiin onnistuneesti tai tuli virhe -->
-<%
-		
-				if (request.getParameter("poistettu") != null) {
+		<!-- Näytetään ilmoituslaatikko jos sisältö poistettiin onnistuneesti tai tuli virhe -->
+		<%
+			if (request.getParameter("poistettu") != null) {
 		%>
 		<div class="alert alert-info alert-dismissible" role="alert">
 			<button type="button" class="close" data-dismiss="alert">
@@ -53,36 +65,40 @@
 			Aineosa poistettu!
 		</div>
 		<%
-			}else if (request.getParameter("error") != null){
-				
+			} else if (request.getParameter("error") != null) {
 		%>
-<div class="alert alert-danger alert-dismissible" role="alert">
+		<div class="alert alert-danger alert-dismissible" role="alert">
 			<button type="button" class="close" data-dismiss="alert">
 				<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 			</button>
-			Hups ! Aineosaa ei voitu poistaa. Aineosa on t�ll� hetkell� k�yt�ss� jossain tuotteessa.
+			Hups ! Aineosaa ei voitu poistaa. Aineosa on tällä hetkellä käytössä
+			jossain tuotteessa.
 		</div>
-	
-<% }
-%>
 
+		<%
+			}
+		%>
+	<!-- Otsikko -->
 		<div class="jumbotron">
-			<h1>Lis�� uusia aineosia</h1>
-			<p>T�n��n on kaunis p�iv�!</p>
+			<h1>Lisää uusia aineosia</h1>
+			<p>Tänään on kaunis päivä!</p>
 		</div>
 
 
 
-		<form class="form-horizontal" name="input" action="sisalto" method="POST"> <!-- lomake ainesosan lis�yst� varten
+		<form class="form-horizontal" name="input" action="sisalto"
+			method="POST">
+			<!-- lomake ainesosan lisäystä varten
 		fi/omapizzeria/admin/controller/SisaltoLisays.java -->
 			<fieldset>
 
 				<!-- Form Name -->
-				<legend>Lis�� uusi aineosa</legend>
+				<legend>Lisää uusi aineosa</legend>
 
 				<!-- Email input -->
 				<div class="form-group">
-					<label class="col-md-4 control-label" for="email">Aineosan nimi</label>
+					<label class="col-md-4 control-label" for="email">Aineosan
+						nimi</label>
 					<div class="col-md-4">
 						<input id="sisalto" name="sisalto" placeholder="Nimi"
 							class="form-control input-md" required="" type="text">
@@ -91,31 +107,35 @@
 				</div>
 
 				<button type="submit" class="btn btn-primary" id="ybtn"
-					value="Submit">Lis�� aineosa</button>
+					value="Submit">Lisää aineosa</button>
 				<button type="button" data-dismiss="modal" class="btn btn-default"
 					id="nbtn">Peruuta</button>
 
 			</fieldset>
 		</form>
-<legend>Olemassa olevat aineosat</legend>
-<ul class="list-group"> <!-- Listataan ainesosat -->
-<c:forEach items="${pizzatSisalto}" var="pSisalto">
-							  <li class="list-group-item"><c:out
-									value="${pSisalto.nimi}" /><button class="glyphicon glyphicon-remove" id="rmv2"
+		<legend>Olemassa olevat aineosat</legend>
+		<ul class="list-group">
+			<!-- Listataan ainesosat -->
+			<c:forEach items="${pizzatSisalto}" var="pSisalto">
+				<li class="list-group-item"><c:out value="${pSisalto.nimi}" />
+					<button class="glyphicon glyphicon-remove" id="rmv2"
 						data-toggle="modal"
 						data-target=".bs-example-modal-sm-<c:out value="${pSisalto.tuote_id}"/>"></button>
-					<div class="modal fade bs-example-modal-sm-<c:out value="${pSisalto.tuote_id}"/>"
+					<div
+						class="modal fade bs-example-modal-sm-<c:out value="${pSisalto.tuote_id}"/>"
 						tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
-						aria-hidden="true"> 
-						<div class="modal-dialog modal-sm"> <!-- Varmistava kysymys ainesosan poistoon -->
+						aria-hidden="true">
+						<div class="modal-dialog modal-sm">
+							<!-- Varmistava kysymys ainesosan poistoon -->
 							<div class="modal-content" id="del">
 								<h1>Poista tuote</h1>
 								<p>
-									Oletko varma ett� haluat poistaa tuotteen <b><c:out
+									Oletko varma että haluat poistaa tuotteen <b><c:out
 											value="${pSisalto.nimi}" /></b> ?
 								</p>
 								<div id="btnwrap2">
-									<form name="input" action="sisaltopoisto?id=<c:out value="${pSisalto.tuote_id}"/>"
+									<form name="input"
+										action="sisaltopoisto?id=<c:out value="${pSisalto.tuote_id}"/>"
 										method="POST">
 
 										<button type="submit" class="btn btn-primary" id="ybtn"
@@ -123,40 +143,29 @@
 										<button type="button" data-dismiss="modal"
 											class="btn btn-default" id="nbtn">Peruuta</button>
 									</form>
-									<!-- 
-								<!-- <form name="input" action="list?action=poistatuote=<c:out value="${p.id}"/>" method="POST"> 
-								
-									<a href="list?action=poistaTuote&id=<c:out value="${p.id}"/>"><button type="submit" class="btn btn-primary">Poista tuote</button></a>
-									<button type="button" data-dismiss="modal" class="btn btn-default">Peruuta</button>
-								 -->
+									
 
 								</div>
 							</div>
 						</div>
 					</div></li>
-						</c:forEach>
-</ul>
-
+			</c:forEach>
+		</ul>
 	</div>
 	<div class="leftnavigation">
 		<div id="leftwrap">
 			<ul class="nav nav-pills nav-stacked">
 				<li><a href="index">Etusivu</a></li>
 				<li><a href="list">Tuotteet</a></li>
-				<li><a href="user">K�ytt�j�t</a></li>
+				<li><a href="user">Käyttäjät</a></li>
 				<li class="active"><a href="sisalto">Aineosat</a></li>
 				<li><a href="palaute">Palautteet</a></li>
 			</ul>
 		</div>
 	</div>
-
 	<div class="footer">
 		<a href="#"><img src="img/ico_tico.png"></a>
 	</div>
-
-
-
-
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

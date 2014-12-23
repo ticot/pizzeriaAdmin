@@ -4,6 +4,26 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+
+
+
+<!--
+████████╗██╗ ██████╗ ██████╗ ██╗     ██╗ ██████╗██╗ ██████╗ ██╗   ██╗███████╗
+╚══██╔══╝██║██╔════╝██╔═══██╗██║     ██║██╔════╝██║██╔═══██╗██║   ██║██╔════╝
+   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║███████╗
+   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║╚════██║
+   ██║   ██║╚██████╗╚██████╔╝███████╗██║╚██████╗██║╚██████╔╝╚██████╔╝███████║
+   ╚═╝   ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝ ╚═════╝╚═╝ ╚═════╝  ╚═════╝ ╚══════╝
+   Antti Eloranta, Heini Haatanen, Tanja Partanen, Péter Takács, Samu Tapanen
+   2014
+   
+Palaute.jsp listaa palautteet. Palautteita ei voi poistaa tai lisätä
+Palautteet on jaoteltu otsikoittain ja painamalla otsikkoa koko palautteen sisältö aukeaa.
+Jos käyttäjä painoi jotain palautetta admin-puolen etusivulla löytyvästä laatikosta, viedään käyttäjä
+tälle sivulle ja avataan kyseinen palaute jota käyttäjä painoi.
+ Katso pohjaan kuuluvat kommentit index.jsp -->
+ 
+ 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
@@ -20,7 +40,7 @@
     <![endif]-->
 <meta charset="UTF-8">
 <title>Melo e Castello</title>
-<!-- Katso pohjaan kuuluvat kommentit index.jsp -->
+
 </head>
 <body>
 	<%
@@ -44,13 +64,13 @@
 		<div class="jumbotron">
 			<h1>Palautteet</h1>
 			<p>
-				Sinulla on yhteens�
+				Sinulla on yhteensä
 				<c:out value="${yht}" />
 				saapunutta palautetta
 			</p>
 			<p>
 
-				<button class="btn btn-primary btn-lg" onclick="refresh()">P�ivit�
+				<button class="btn btn-primary btn-lg" onclick="refresh()">Päivitä
 					sivu</button>
 
 				<script>
@@ -63,7 +83,7 @@
 		<c:forEach items="${palautteet}" var="i"><!-- Listataan palautteet -->
 
 
-			<div class="panel panel-primary"> <!-- Jos k�ytt�j� klikkasi etusivulta l�ytyv�� jotain palautetta, niin korostetaan klikatun palautteen otsikko ja avataan se --> 
+			<div class="panel panel-primary"> <!-- Jos käyttäjä klikkasi etusivulta löytyvää jotain palautetta, niin korostetaan klikatun palautteen otsikko ja avataan se --> 
 				<c:set var="h" value="${highlight}" />
 				<c:choose>
 					<c:when test="${i.id == h}">
@@ -112,20 +132,14 @@
 
 			<br>
 			<br>
-					L�hett�j�:<c:out value="${i.nimi}" />
+					Lähettäjä:<c:out value="${i.nimi}" />
 			<br>
-					S�hk�posti:<c:out value="${i.email}" />
+					Sähköposti:<c:out value="${i.email}" />
 
 			</p>
 
 
-			<!-- 
-							<p>
-						<a class="specialbtn" data-toggle="collapse"
-							data-target="#viewdetails<c:out value="${i.id}" />">
-							Palautteen sis�lt�&raquo;</a>
-					</p>
-					 -->
+			
 	</div>
 	</div>
 	</c:forEach>
@@ -135,7 +149,7 @@
 			<ul class="nav nav-pills nav-stacked">
 				<li><a href="index">Etusivu</a></li>
 				<li><a href="list">Tuotteet</a></li>
-				<li><a href="user">K�ytt�j�t</a></li>
+				<li><a href="user">Käyttäjät</a></li>
 				<li><a href="sisalto">Aineosat</a></li>
 				<li class="active"><a href="palaute">Palautteet</a></li>
 			</ul>

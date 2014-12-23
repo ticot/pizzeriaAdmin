@@ -11,33 +11,33 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fi.omapizzeria.admin.bean.Palaute;
-import fi.omapizzeria.admin.bean.Tuote;
 import fi.omapizzeria.admin.dao.TuoteDao;
 
-/**
- * Servlet implementation class PalauteServletAdmin
- */
+
 @WebServlet("/palaute")
+//████████╗██╗ ██████╗ ██████╗ ██╗     ██╗ ██████╗██╗ ██████╗ ██╗   ██╗███████╗
+//╚══██╔══╝██║██╔════╝██╔═══██╗██║     ██║██╔════╝██║██╔═══██╗██║   ██║██╔════╝
+//	 ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║███████╗
+//   ██║   ██║██║     ██║   ██║██║     ██║██║     ██║██║   ██║██║   ██║╚════██║
+//   ██║   ██║╚██████╗╚██████╔╝███████╗██║╚██████╗██║╚██████╔╝╚██████╔╝███████║
+//   ╚═╝   ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝ ╚═════╝╚═╝ ╚═════╝  ╚═════╝ ╚══════╝
+//Antti Eloranta, Heini Haatanen, Tanja Partanen, Péter Takács, Samu Tapanen
+//2014
+//
 public class PalauteServletAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
+
 	public PalauteServletAdmin() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// kun tullaan palaute.jsp sivulle niin tarkistetaan et onko k�ytt�j�
-		// tullut t�nne etusivulta klikkaamalla jotain palautetta siit� keskelt�
-		// l�ytyv�st� laatikosta
+		// kun tullaan palaute.jsp sivulle niin tarkistetaan et onko käyttäjä
+		// tullut tänne etusivulta klikkaamalla jotain palautetta siitä keskeltä
+		// löytyvästä laatikosta
 		String highlight = request.getParameter("id");
 
 		TuoteDao pDao = new TuoteDao();
@@ -46,7 +46,6 @@ public class PalauteServletAdmin extends HttpServlet {
 		try {
 			palauteList = pDao.haeKaikkiPalautteet();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -54,7 +53,7 @@ public class PalauteServletAdmin extends HttpServlet {
 
 		request.setAttribute("yht", yhteensa);
 		request.setAttribute("highlight", highlight); // jos etusivulla oli
-														// klikattu tietty�
+														// klikattu tiettyä
 														// palautetta niin sen
 														// klikatun palautteen
 														// id otetaa taltee
@@ -63,13 +62,9 @@ public class PalauteServletAdmin extends HttpServlet {
 
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
 }
